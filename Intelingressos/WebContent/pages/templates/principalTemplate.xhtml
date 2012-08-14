@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+  <h:head>
+        <title>#{msgs.tituloPrincipal}</title>
+        <style type="text/css">
+            body {background-color: #eeeeee; font-size: 12px}
+        </style> 
+    </h:head>
+    <h:body>
+        <div align="center">
+            <p:layout style="min-width:1020px;max-width:1100em;min-height:1200px">  
+                <p:layoutUnit position="north" size="60">  
+                   <h:graphicImage url="/pages/resources/images/logo.png" alt="Intelingressos - Seu site de ingressos online"/>                   
+                </p:layoutUnit>  
+
+                <p:layoutUnit position="west" size="220">  
+                    <ui:insert name="menu">
+                        <h:form>
+                            <p:menu style="width: 200px">
+                                <p:submenu label="Menu">
+                                    <p:menuitem value="Wellcome" url="/pages/protected/user/welcome.xhtml" icon="ui-icon-circle-plus" />                                   
+                                </p:submenu>
+                            </p:menu>
+                        </h:form>
+                    </ui:insert>
+                    
+                </p:layoutUnit>  
+                <p:layoutUnit position="center">  
+                    <ui:insert name="centro" id="centro">
+                        O que estiver aqui será substituido!
+                    </ui:insert>
+                </p:layoutUnit>  
+                
+                 <p:layoutUnit position="south" size="80">  
+                             <p>Desenvolvido por Systemas Java  &nbsp; &nbsp; &nbsp; &nbsp; email: systemasjava@gmail.com &nbsp; &nbsp; &nbsp; &nbsp; fone: (21)7266-0689</p>
+                 </p:layoutUnit>  
+            </p:layout>  
+        </div>
+    </h:body>
+</html>

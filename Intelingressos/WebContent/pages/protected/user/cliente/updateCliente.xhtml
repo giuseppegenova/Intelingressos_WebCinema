@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+		<h3>#{msgs.clienteUpdateFieldset}</h3>
+			<h:form>
+				<h:messages />				
+
+				<h:panelGrid columns="2" styleClass="panelGrid"
+					rowClasses="panelFirstLine,panelNextLine">
+					
+					<h:outputLabel for="clienteNome" value="#{msgs.Nome}" />
+					<h:inputText id="clienteNome" value="#{clienteMB.cliente.nome}"
+						required="true" requiredMessage="#{msgs.NomeRequired}" />
+						
+					<h:outputLabel for="clienteSenha" value="#{msgs.Senha}" />
+					<h:inputSecret redisplay="false"  id="clienteSenha" value="#{clienteMB.cliente.senha}"
+						required="true" requiredMessage="#{msgs.SenhaRequired}" />
+
+					<h:outputLabel id="clienteCpfLabel" value="#{msgs.clienteCpf}" />
+					<p:inputMask mask="999.999.999-99" id="clienteCpf" value="#{clienteMB.cliente.cpf}"
+						required="true" requiredMessage="#{msgs.CpfRequired}" size="14"/>
+
+											
+				    <h:outputLabel for="clienteEmail" value="#{msgs.Email}" />
+					<h:inputText id="clienteEmail"
+						value="#{clienteMB.cliente.email}" required="true"
+						requiredMessage="#{msgs.EmailRequired}" />	
+						
+					<h:outputLabel id="clienteCelularLabel" value="#{msgs.Celular}" />
+					<p:inputMask mask="(99)9999-9999" id="clienteCelular"
+						value="#{clienteMB.cliente.celular}" required="true"
+						requiredMessage="#{msgs.CelularRequired}" />
+						
+					<h:outputLabel id="clienteTelefoneLabel" value="#{msgs.Telefone}" />
+					<p:inputMask mask="(99)9999-9999" id="clienteTelefone"
+						value="#{clienteMB.cliente.telefone}" required="true"
+						requiredMessage="#{msgs.TelefoneRequired}" />
+						
+											
+					<h:outputLabel for="clienteEnderecoLogradouro" value="#{msgs.EnderecoLogradouro}" />
+					<h:inputText id="clienteEnderecoLogradouro"
+						value="#{clienteMB.endereco.logradouro}" required="true"
+						requiredMessage="#{msgs.LogradouroRequired}" />
+						
+					<h:outputLabel for="clienteEnderecoNumero" value="#{msgs.EnderecoNumero}" />
+					<h:inputText id="clienteEnderecoNumero"
+						value="#{clienteMB.endereco.numero}" required="false"
+						requiredMessage="#{msgs.NumeroRequired}" />	
+						
+					<h:outputLabel for="clienteEnderecoComplemento" value="#{msgs.EnderecoComplemento}" />
+					<h:inputText id="clienteEnderecoComplemento"
+						value="#{clienteMB.endereco.complemento}" required="true"
+						requiredMessage="#{msgs.ComplementoRequired}" />		
+					
+					<h:outputLabel for="clienteEnderecoCep" value="#{msgs.EnderecoCep}" />
+					<p:inputMask mask="999.999-99" id="clienteEnderecoCep"
+						value="#{clienteMB.endereco.cep}" required="true"
+						requiredMessage="#{msgs.CepRequired}" />							
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+
+					<h:commandButton action="#{clienteMB.updateClienteEnd()}"
+						value="#{msgs.update}" />
+					<h:commandButton action="#{clienteMB.listAllClientes()}"
+						value="#{msgs.cancel}" immediate="true" />
+
+				</h:panelGrid>
+
+			</h:form>
+		
+	</ui:define>
+</ui:decorate>
+</html>

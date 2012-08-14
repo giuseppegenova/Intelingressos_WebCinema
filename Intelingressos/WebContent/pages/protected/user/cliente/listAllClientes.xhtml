@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+	<h:form>
+		<h3>#{msgs.clienteListFieldset}</h3>	
+		<h:messages />
+		<h:dataTable value="#{clienteMB.getAllClientes()}" var="cliente" 
+		styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" 
+		border="1">
+			<h:column>
+				<f:facet name="header">
+					#{msgs.Nome}
+				</f:facet>
+				
+				#{cliente.nome}
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					#{msgs.clienteCpf}
+				</f:facet>
+				
+				#{cliente.cpf}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					#{msgs.Email}
+				</f:facet>
+				
+				#{cliente.email}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					#{msgs.Celular}
+				</f:facet>
+				
+				#{cliente.celular}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					#{msgs.Telefone}
+				</f:facet>
+				
+				#{cliente.telefone}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					#{msgs.Endereco}
+				</f:facet>
+				
+				#{cliente.endereco.logradouro}
+			</h:column>
+			
+			<h:column>
+				<h:panelGrid columns="2" >
+				
+					<!-- Always save the id as hidden when you use a request scope MB -->
+					<h:inputHidden value="#{cliente.id}" />
+					
+					
+					<h:commandButton action="#{clienteMB.updateClienteStart()}" value="#{msgs.update}" immediate="true">
+						<f:setPropertyActionListener target="#{clienteMB.cliente}" value="#{cliente}" />
+					</h:commandButton>
+					
+					<h:commandButton action="#{clienteMB.deleteClienteStart()}" value="#{msgs.delete}">
+						<f:setPropertyActionListener target="#{clienteMB.cliente}" value="#{cliente}" />
+					</h:commandButton>
+					
+				</h:panelGrid>
+			</h:column>
+		</h:dataTable>
+		<!-- This button is displayed to the cliente, just to you see the error msg  -->
+		<h:commandButton action="#{clienteMB.createClienteStart()}" value="#{msgs.create} #{msgs.clienteNome}" />
+	</h:form>
+</ui:define>
+</ui:decorate>
+</html>

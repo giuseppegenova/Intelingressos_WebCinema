@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+ <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro">
+	<h:form>
+		<h:messages/>
+		
+		<h3>#{msgs.AssossiadoDeleteHeader}: #{assossiadoMB.assossiado.nome}</h3>
+		<h:inputHidden value="#{assossiadoMB.assossiado.id}" />
+		<h:panelGrid columns="2">
+			
+			<h:commandButton action="#{assossiadoMB.deleteAssossiadoEnd()}" value="#{msgs.delete}" />
+			<h:commandButton action="#{assossiadoMB.listAllAssossiados()}" value="#{msgs.cancel}" immediate="true" />
+		</h:panelGrid>
+		<br/>
+	</h:form>
+    </ui:define>
+    </ui:decorate>
+</html>

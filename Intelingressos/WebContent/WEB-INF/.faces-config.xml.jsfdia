@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logout::#pages#sair.xhtml" NAME="output"
+    PATH="/pages/sair.xhtml" TARGET="rules:#pages#sair.xhtml"
+    TITLE="logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="#pages#protected#user#welcome.xhtml::#pages#sair.xhtml"
+    NAME="output1" PATH="/pages/sair.xhtml"
+    TARGET="rules:#pages#sair.xhtml"
+    TITLE="/pages/protected/user/welcome.xhtml" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllClientes::#pages#protected#user#cliente#listAllClientes.xhtml"
+    NAME="output"
+    PATH="/pages/protected/user/cliente/listAllClientes.xhtml"
+    TARGET="rules:#pages#protected#user#cliente#listAllClientes.xhtml"
+    TITLE="listAllClientes" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createCliente::#pages#protected#user#cliente#createCliente.xhtml"
+    NAME="output"
+    PATH="/pages/protected/user/cliente/createCliente.xhtml"
+    TARGET="rules:#pages#protected#user#cliente#createCliente.xhtml"
+    TITLE="createCliente" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::3" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="updateCliente::#pages#protected#user#cliente#updateCliente.xhtml"
+    NAME="output"
+    PATH="/pages/protected/user/cliente/updateCliente.xhtml"
+    TARGET="rules:#pages#protected#user#cliente#updateCliente.xhtml"
+    TITLE="updateCliente" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::4" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deleteCliente::#pages#protected#user#cliente#deleteCliente.xhtml"
+    NAME="output"
+    PATH="/pages/protected/user/cliente/deleteCliente.xhtml"
+    TARGET="rules:#pages#protected#user#cliente#deleteCliente.xhtml"
+    TITLE="deleteCliente" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::5" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllClientes::#pages#protected#user#assossiado#listAllAssossiados.xhtml"
+    NAME="output"
+    PATH="/pages/protected/user/assossiado/listAllAssossiados.xhtml"
+    TARGET="rules:#pages#protected#user#assossiado#listAllAssossiados.xhtml"
+    TITLE="listAllClientes" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::6" SHAPE="32,689,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::6" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createAssossiado::#pages#protected#user#assossiado#createAssossiado.xhtml"
+    NAME="output"
+    PATH="/pages/protected/user/assossiado/createAssossiado.xhtml"
+    TARGET="rules:#pages#protected#user#assossiado#createAssossiado.xhtml"
+    TITLE="createAssossiado" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::7" SHAPE="32,801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::7" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="updateAssossiado::#pages#protected#user#assossiado#updateAssossiado.xhtml"
+    NAME="output"
+    PATH="/pages/protected/user/assossiado/updateAssossiado.xhtml"
+    TARGET="rules:#pages#protected#user#assossiado#updateAssossiado.xhtml"
+    TITLE="updateAssossiado" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::8" SHAPE="32,913,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::8" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deleteAssossiado::#pages#protected#user#assossiado#deleteAssossiado.xhtml"
+    NAME="output"
+    PATH="/pages/protected/user/assossiado/deleteAssossiado.xhtml"
+    TARGET="rules:#pages#protected#user#assossiado#deleteAssossiado.xhtml"
+    TITLE="deleteAssossiado" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#sair.xhtml" PATH="/pages/sair.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#user#assossiado#createAssossiado.xhtml"
+  PATH="/pages/protected/user/assossiado/createAssossiado.xhtml"
+  SHAPE="240,705,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#user#cliente#deleteCliente.xhtml"
+  PATH="/pages/protected/user/cliente/deleteCliente.xhtml"
+  SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#user#assossiado#deleteAssossiado.xhtml"
+  PATH="/pages/protected/user/assossiado/deleteAssossiado.xhtml"
+  SHAPE="240,929,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#user#assossiado#updateAssossiado.xhtml"
+  PATH="/pages/protected/user/assossiado/updateAssossiado.xhtml"
+  SHAPE="240,817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#user#cliente#updateCliente.xhtml"
+  PATH="/pages/protected/user/cliente/updateCliente.xhtml"
+  SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#user#cliente#listAllClientes.xhtml"
+  PATH="/pages/protected/user/cliente/listAllClientes.xhtml"
+  SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#user#assossiado#listAllAssossiados.xhtml"
+  PATH="/pages/protected/user/assossiado/listAllAssossiados.xhtml"
+  SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#user#cliente#createCliente.xhtml"
+  PATH="/pages/protected/user/cliente/createCliente.xhtml"
+  SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

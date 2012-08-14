@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+		<h1 align="center">#{msgs.cidadeTitleCadastro}</h1>
+		<fieldset>
+			<legend>#{msgs.cidadeCreateFieldset}</legend>
+			<h:form>
+				<h:messages />				
+
+				<h:panelGrid columns="2" styleClass="panelGrid"
+					rowClasses="panelFirstLine,panelNextLine">
+
+					<h:outputLabel for="cidadeNome" value="#{msgs.cidadeNome}" />
+					<h:inputText id="cidadeNome" value="#{cidadeMB.cidade.nome}"
+						required="true" requiredMessage="#{msgs.cidadeNomeRequired}" />
+
+					<h:outputLabel for="cidadeCPF" value="#{msgs.cidadeCpf}" />
+					<p:inputMask mask="999.999.999-99" id="cidadeCPF" value="#{cidadeMB.cidade.cpf}"
+						required="true" requiredMessage="#{msgs.cidadeCpfRequired}" size="17"/>
+						
+				    <h:outputLabel for="cidadeEmail" value="#{msgs.cidadeEmail}" />
+					<h:inputText id="cidadeEmail"
+						value="#{cidadeMB.cidade.email}" required="true"
+						requiredMessage="#{msgs.cidadeEmailRequired}" />	
+						
+					<h:outputLabel id="cidadeCelularLabel" value="#{msgs.cidadeCelular}" />
+					<p:inputMask mask="(99)9999-9999" id="cidadeCelular"
+						value="#{cidadeMB.cidade.celular}" required="true"
+						requiredMessage="#{msgs.cidadeCelularRequired}" />
+					
+					<h:outputLabel for="cidadeEnderecoLogradouro" value="#{msgs.cidadeEnderecoLogradouro}" />
+					<h:inputText id="cidadeEnderecoLogradouro"
+						value="#{cidadeMB.endereco.logradouro}" required="true"
+						requiredMessage="#{msgs.cidadeEnderecoLogradouroRequired}" />	
+						
+					<h:outputLabel for="cidadeEnderecoComplemento" value="#{msgs.cidadeEnderecoComplemento}" />
+					<h:inputText id="cidadeEnderecoComplemento"
+						value="#{cidadeMB.endereco.complemento}" required="true"
+						requiredMessage="#{msgs.cidadeEnderecoComplementoRequired}" />		
+					
+					<h:outputLabel for="cidadeEnderecoCep" value="#{msgs.cidadeEnderecoCep}" />
+					<p:inputMask mask="999.999-99" id="cidadeEnderecoCep"
+						value="#{cidadeMB.endereco.cep}" required="true"
+						requiredMessage="#{msgs.cidadeEnderecoCepRequired}" />	
+						
+						
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+
+					<h:commandButton action="#{cidadeMB.updateCidadeEnd()}"
+						value="#{msgs.update}" />
+					<h:commandButton action="#{cidadeMB.listAllCidades()}"
+						value="#{msgs.cancel}" immediate="true" />
+
+				</h:panelGrid>
+
+			</h:form>
+		</fieldset>
+	</ui:define>
+</ui:decorate>
+</html>

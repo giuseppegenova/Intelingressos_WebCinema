@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+		<h1 align="center">#{msgs.programacaoTitleCadastro}</h1>
+		<fieldset>
+			<legend>#{msgs.programacaoCreateFieldset}</legend>
+			<h:form>
+
+				<h:messages />
+
+				<h:panelGrid columns="2" styleClass="panelGrid"
+					rowClasses="panelFirstLine,panelNextLine">
+
+					<h:outputLabel for="programacaoNome" value="#{msgs.Nome}" />
+					<h:inputText id="programacaoNome" value="#{programacaoMB.programacao.nome}"
+						required="true" requiredMessage="#{msgs.NomeRequired}" />
+
+					<h:outputLabel id="programacaoCnpjLabel" value="#{msgs.programacaoCnpj}" />
+					<p:inputMask mask="999.999.999-99" id="programacaoCnpj" value="#{programacaoMB.programacao.cnpj}"
+						required="true" requiredMessage="#{msgs.CnpjRequired}" size="14"/>
+
+											
+				    <h:outputLabel for="programacaoEmail" value="#{msgs.Email}" />
+					<h:inputText id="programacaoEmail"
+						value="#{programacaoMB.programacao.email}" required="true"
+						requiredMessage="#{msgs.EmailRequired}" />	
+						
+					<h:outputLabel id="programacaoCelularLabel" value="#{msgs.Celular}" />
+					<p:inputMask mask="(99)9999-9999" id="programacaoCelular"
+						value="#{programacaoMB.programacao.celular}" required="true"
+						requiredMessage="#{msgs.CelularRequired}" />
+						
+											
+					<h:outputLabel for="programacaoEnderecoLogradouro" value="#{msgs.EnderecoLogradouro}" />
+					<h:inputText id="programacaoEnderecoLogradouro"
+						value="#{programacaoMB.endereco.logradouro}" required="true"
+						requiredMessage="#{msgs.LogradouroRequired}" />
+						
+					<h:outputLabel for="programacaoEnderecoNumero" value="#{msgs.EnderecoNumero}" />
+					<h:inputText id="programacaoEnderecoNumero"
+						value="#{programacaoMB.endereco.numero}" required="false"
+						requiredMessage="#{msgs.NumeroRequired}" />	
+						
+					<h:outputLabel for="programacaoEnderecoComplemento" value="#{msgs.EnderecoComplemento}" />
+					<h:inputText id="programacaoEnderecoComplemento"
+						value="#{programacaoMB.endereco.complemento}" required="true"
+						requiredMessage="#{msgs.ComplementoRequired}" />		
+					
+					<h:outputLabel for="programacaoEnderecoCep" value="#{msgs.EnderecoCep}" />
+					<p:inputMask mask="999.999-99" id="programacaoEnderecoCep"
+						value="#{programacaoMB.endereco.cep}" required="true"
+						requiredMessage="#{msgs.CepRequired}" />	
+						
+						
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+
+					<h:commandButton action="#{programacaoMB.createProgramacaoEnd()}"
+						value="#{msgs.create}" />
+					<h:commandButton action="#{programacaoMB.listAllProgramacaos()}"
+						value="#{msgs.cancel}" immediate="true" /> 
+
+				</h:panelGrid>
+
+			</h:form>
+		</fieldset>
+	</ui:define>
+</ui:decorate>
+</html>

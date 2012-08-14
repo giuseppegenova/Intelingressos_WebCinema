@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+		<h1 align="center">#{msgs.assossiadoTitleCadastro}</h1>
+		<fieldset>
+			<legend>#{msgs.assossiadoCreateFieldset}</legend>
+			<h:form>
+				<h:messages />				
+
+				<h:panelGrid columns="2" styleClass="panelGrid"
+					rowClasses="panelFirstLine,panelNextLine">
+
+					<h:outputLabel for="assossiadoNome" value="#{msgs.assossiadoNome}" />
+					<h:inputText id="assossiadoNome" value="#{assossiadoMB.assossiado.nome}"
+						required="true" requiredMessage="#{msgs.assossiadoNomeRequired}" />
+
+					<h:outputLabel for="assossiadoCPF" value="#{msgs.assossiadoCpf}" />
+					<p:inputMask mask="999.999.999-99" id="assossiadoCPF" value="#{assossiadoMB.assossiado.cpf}"
+						required="true" requiredMessage="#{msgs.assossiadoCpfRequired}" size="17"/>
+						
+				    <h:outputLabel for="assossiadoEmail" value="#{msgs.assossiadoEmail}" />
+					<h:inputText id="assossiadoEmail"
+						value="#{assossiadoMB.assossiado.email}" required="true"
+						requiredMessage="#{msgs.assossiadoEmailRequired}" />	
+						
+					<h:outputLabel id="assossiadoCelularLabel" value="#{msgs.assossiadoCelular}" />
+					<p:inputMask mask="(99)9999-9999" id="assossiadoCelular"
+						value="#{assossiadoMB.assossiado.celular}" required="true"
+						requiredMessage="#{msgs.assossiadoCelularRequired}" />
+					
+					<h:outputLabel for="assossiadoEnderecoLogradouro" value="#{msgs.assossiadoEnderecoLogradouro}" />
+					<h:inputText id="assossiadoEnderecoLogradouro"
+						value="#{assossiadoMB.endereco.logradouro}" required="true"
+						requiredMessage="#{msgs.assossiadoEnderecoLogradouroRequired}" />	
+						
+					<h:outputLabel for="assossiadoEnderecoComplemento" value="#{msgs.assossiadoEnderecoComplemento}" />
+					<h:inputText id="assossiadoEnderecoComplemento"
+						value="#{assossiadoMB.endereco.complemento}" required="true"
+						requiredMessage="#{msgs.assossiadoEnderecoComplementoRequired}" />		
+					
+					<h:outputLabel for="assossiadoEnderecoCep" value="#{msgs.assossiadoEnderecoCep}" />
+					<p:inputMask mask="999.999-99" id="assossiadoEnderecoCep"
+						value="#{assossiadoMB.endereco.cep}" required="true"
+						requiredMessage="#{msgs.assossiadoEnderecoCepRequired}" />	
+						
+						
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+
+					<h:commandButton action="#{assossiadoMB.updateAssossiadoEnd()}"
+						value="#{msgs.update}" />
+					<h:commandButton action="#{assossiadoMB.listAllAssossiados()}"
+						value="#{msgs.cancel}" immediate="true" />
+
+				</h:panelGrid>
+
+			</h:form>
+		</fieldset>
+	</ui:define>
+</ui:decorate>
+</html>

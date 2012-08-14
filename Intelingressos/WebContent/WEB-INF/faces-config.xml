@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">		
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/sair.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>/pages/protected/user/welcome.xhtml</from-outcome>
+			<to-view-id>/pages/sair.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	
+		<!-- Nabegabilidade das Views para Manutenção de Cliente -->
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllClientes</from-outcome>
+			<to-view-id>/pages/protected/user/cliente/listAllClientes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createCliente</from-outcome>
+			<to-view-id>/pages/protected/user/cliente/createCliente.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateCliente</from-outcome>
+			<to-view-id>/pages/protected/user/cliente/updateCliente.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteCliente</from-outcome>
+			<to-view-id>/pages/protected/user/cliente/deleteCliente.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- Nabegabilidade das Views para Manutenção de Assossiados -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllClientes</from-outcome>
+			<to-view-id>/pages/protected/user/assossiado/listAllAssossiados.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createAssossiado</from-outcome>
+			<to-view-id>/pages/protected/user/assossiado/createAssossiado.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateAssossiado</from-outcome>
+			<to-view-id>/pages/protected/user/assossiado/updateAssossiado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteAssossiado</from-outcome>
+			<to-view-id>/pages/protected/user/assossiado/deleteAssossiado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<application>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+	</application>
+</faces-config>
