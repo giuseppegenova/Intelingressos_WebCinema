@@ -24,14 +24,10 @@
 						required="true" requiredMessage="#{msgs.NomeRequired}" />				
 				
 				
-					<h:outputLabel value="Estado:" for="estado" />
-					<h:selectOneMenu id="estado" value="#{clienteMB.estado}" >
-						<f:selectItem itemLabel="-- Selecionar Estado --" itemValue="null" />
-						<f:selectItems value="#{clienteMB.listAllEstados()}" var="estado"
-							itemLabel="#{estado.nome}" itemValue="#{estado.id}"
-							styleClass="ui-widget ui-widget-header" />							
-					</h:selectOneMenu>
-
+					<h:outputLabel value="#{msgs.EstadoSigla}" for="estadoSigla" />
+					<p:inputMask mask="**"  id="estadoSigla" value="#{clienteMB.estado.sigla}" 
+						required="true" requiredMessage="#{msgs.NomeRequired}" size="2" />
+					
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
