@@ -29,12 +29,14 @@ public class EstadoMB {
 	
 	private Estado estado;
 	
-	private Cidade cidade;	
+	private Cidade cidade;
 	
 	private List<Estado> estados;
 	
 	private List<Cidade> cidades;
 
+	private String verificaMaiuscula;
+	
 	public EstadoMB() {
 		estado = new Estado();
 		estados = new ArrayList<Estado>();
@@ -72,10 +74,22 @@ public class EstadoMB {
 		this.estados = estados;
 	}
 
-	public List<Estado> getAllEstado() {
+	public List<Estado> getAllEstados() {
 		return estadoFacade.findAll();
 	}
 	
+	public String getVerificaMaiuscula() {
+		return verificaMaiuscula;
+	}
+
+	public void setVerificaMaiuscula(String verificaMaiuscula) {
+		this.verificaMaiuscula = verificaMaiuscula;
+	}
+	
+	public void verificaMaiuscula(){
+		this.estado.getSigla().toUpperCase();
+	}
+
 	public List<Cidade> atualizaCidades(){
 		return this.cidades = (List<Cidade>) this.estado.getCidades();
 	}
