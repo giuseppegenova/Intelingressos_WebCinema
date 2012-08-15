@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+	<h:form>
+		<h3>#{msgs.estadoTitleCadastro}</h3>	
+		<h:messages />
+		<h:dataTable value="#{estadoMB.getAllEstados()}" var="estado" 
+		styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" 
+		border="1">
+			<h:column>
+				<f:facet name="header">
+					#{msgs.Nome}
+				</f:facet>
+				
+				#{estado.nome}
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					#{msgs.EstadoSigla}
+				</f:facet>
+				
+				#{estado.sigla}
+			</h:column>
+						
+			<h:column>
+				<f:facet name="header">
+					#{msgs.opcoes}
+				</f:facet>
+				<h:panelGrid columns="2" >
+				
+					<!-- Always save the id as hidden when you use a request scope MB -->
+					<h:inputHidden value="#{estado.id}" />
+					
+					
+					<h:commandButton action="#{estadoMB.updateEstadoStart()}" value="#{msgs.update}" immediate="true">
+						<f:setPropertyActionListener target="#{estadoMB.estado}" value="#{estado}" />
+					</h:commandButton>
+					
+					<h:commandButton action="#{estadoMB.deleteEstadoStart()}" value="#{msgs.delete}">
+						<f:setPropertyActionListener target="#{estadoMB.estado}" value="#{estado}" />
+					</h:commandButton>
+					
+				</h:panelGrid>
+			</h:column>
+		</h:dataTable>
+		<!-- This button is displayed to the estado, just to you see the error msg  -->
+		<h:commandButton action="#{estadoMB.createEstadoStart()}" value="#{msgs.create} #{msgs.EstadoNome}" />
+	</h:form>
+</ui:define>
+</ui:decorate>
+</html>
