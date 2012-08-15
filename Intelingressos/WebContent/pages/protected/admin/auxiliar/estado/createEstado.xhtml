@@ -6,17 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<head>
-	<script type="text/javascript" src="js/jquery-1.6.4.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-		$("button").click(function(){
-		  $.ajax({url:"meuArquivo.txt", success:function(result){
-		    $("div").html(result);
-		  }});
-		});});
-	</script>
-</head>
+
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 	<ui:define name="centro">
 		<h1 align="center">#{msgs.estadoTitleCadastro}</h1>		

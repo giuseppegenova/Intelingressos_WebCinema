@@ -18,39 +18,15 @@
 				<h:panelGrid columns="2" styleClass="panelGrid"
 					rowClasses="panelFirstLine,panelNextLine">
 
-					<h:outputLabel for="estadoNome" value="#{msgs.estadoNome}" />
+					<h:outputLabel for="estadoNome" value="#{msgs.Nome}" />
 					<h:inputText id="estadoNome" value="#{estadoMB.estado.nome}"
-						required="true" requiredMessage="#{msgs.estadoNomeRequired}" />
-
-					<h:outputLabel for="estadoCPF" value="#{msgs.estadoCpf}" />
-					<p:inputMask mask="999.999.999-99" id="estadoCPF" value="#{estadoMB.estado.cpf}"
-						required="true" requiredMessage="#{msgs.estadoCpfRequired}" size="17"/>
-						
-				    <h:outputLabel for="estadoEmail" value="#{msgs.estadoEmail}" />
-					<h:inputText id="estadoEmail"
-						value="#{estadoMB.estado.email}" required="true"
-						requiredMessage="#{msgs.estadoEmailRequired}" />	
-						
-					<h:outputLabel id="estadoCelularLabel" value="#{msgs.estadoCelular}" />
-					<p:inputMask mask="(99)9999-9999" id="estadoCelular"
-						value="#{estadoMB.estado.celular}" required="true"
-						requiredMessage="#{msgs.estadoCelularRequired}" />
+						required="true" requiredMessage="#{msgs.EstadoNomeRequired}" />				
+				
+				
+					<h:outputLabel value="#{msgs.EstadoSigla}" for="estadoSigla" />
+					<h:inputText id="estadoSigla" value="#{estadoMB.estado.sigla}" 
+						maxlength="2" required="true" requiredMessage="#{mesgs.EstadoSiglaRequired}"/>						
 					
-					<h:outputLabel for="estadoEnderecoLogradouro" value="#{msgs.estadoEnderecoLogradouro}" />
-					<h:inputText id="estadoEnderecoLogradouro"
-						value="#{estadoMB.endereco.logradouro}" required="true"
-						requiredMessage="#{msgs.estadoEnderecoLogradouroRequired}" />	
-						
-					<h:outputLabel for="estadoEnderecoComplemento" value="#{msgs.estadoEnderecoComplemento}" />
-					<h:inputText id="estadoEnderecoComplemento"
-						value="#{estadoMB.endereco.complemento}" required="true"
-						requiredMessage="#{msgs.estadoEnderecoComplementoRequired}" />		
-					
-					<h:outputLabel for="estadoEnderecoCep" value="#{msgs.estadoEnderecoCep}" />
-					<p:inputMask mask="999.999-99" id="estadoEnderecoCep"
-						value="#{estadoMB.endereco.cep}" required="true"
-						requiredMessage="#{msgs.estadoEnderecoCepRequired}" />	
-						
 						
 
 				</h:panelGrid>
