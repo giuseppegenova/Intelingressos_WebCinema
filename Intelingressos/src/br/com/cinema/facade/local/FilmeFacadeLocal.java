@@ -19,4 +19,5 @@ abstract void save(Filme filme);
 	
 	abstract List<Filme> findAll();
 	
+	Filme findFilmeByNome(String nome);
 }

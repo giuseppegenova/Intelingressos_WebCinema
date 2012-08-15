@@ -7,16 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "filme")
+@NamedQuery(name="Filme.findByNome", query="select f from Filme f where f.tituto = :titulo")
 public class Filme implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1808765237432372920L;
+	
+	public static final String FIND_FILME_BY_NOME = "Filme.findByNome";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

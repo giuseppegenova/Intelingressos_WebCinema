@@ -39,6 +39,11 @@ public class FilmeFacade implements FilmeFacadeLocal{
 	public List<Filme> findAll() {		
 		return filmeDAO.findAll();
 	}
+
+	@Override
+	public Filme findFilmeByNome(String nome) {
+		return filmeDAO.findFilmeByNome(nome);
+	}
 	
 	
 

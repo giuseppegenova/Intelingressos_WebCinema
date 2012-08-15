@@ -5,38 +5,38 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import br.com.cinema.dao.FilmeDAO;
-import br.com.cinema.entity.Filme;
-import br.com.cinema.facade.local.FilmeFacadeLocal;
+import br.com.cinema.dao.IngressoDAO;
+import br.com.cinema.entity.Ingresso;
+import br.com.cinema.facade.local.IngressoFacadeLocal;
 
 @Stateless
-public class IngressoFacade implements FilmeFacadeLocal{
+public class IngressoFacade implements IngressoFacadeLocal{
 
 	@EJB
-	private FilmeDAO filmeDAO;
+	private IngressoDAO filmeDAO;
 	
 	@Override
-	public void save(Filme filme) {
+	public void save(Ingresso filme) {
 		filmeDAO.save(filme);		
 	}
 
 	@Override
-	public Filme update(Filme filme) {
+	public Ingresso update(Ingresso filme) {
 		return filmeDAO.update(filme);		 
 	}
 
 	@Override
-	public void delete(Filme filme) {
+	public void delete(Ingresso filme) {
 		filmeDAO.delete(filme);		
 	}
 
 	@Override
-	public Filme find(Long entityID) {		
+	public Ingresso find(Long entityID) {		
 		return filmeDAO.find(entityID);
 	}
 
 	@Override
-	public List<Filme> findAll() {		
+	public List<Ingresso> findAll() {		
 		return filmeDAO.findAll();
 	}
 	
