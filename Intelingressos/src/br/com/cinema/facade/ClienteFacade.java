@@ -6,7 +6,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.com.cinema.dao.ClienteDAO;
-import br.com.cinema.dao.EnderecoDAO;
 import br.com.cinema.entity.Cliente;
 import br.com.cinema.facade.local.ClienteFacadeLocal;
 
@@ -16,9 +15,7 @@ public class ClienteFacade implements ClienteFacadeLocal{
 	@EJB
 	private ClienteDAO clienteDAO;
 	
-	@EJB
-	private EnderecoDAO enderecoDAO;
-	
+		
 	@Override
 	public void save(Cliente Cliente) {
 		clienteDAO.save(Cliente);		

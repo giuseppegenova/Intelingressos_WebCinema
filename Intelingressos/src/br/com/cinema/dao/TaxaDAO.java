@@ -3,13 +3,13 @@ package br.com.cinema.dao;
 import javax.ejb.Stateless;
 
 import br.com.cinema.dao.persistence.PersistenceDAO;
-import br.com.cinema.entity.Plano;
+import br.com.cinema.entity.Taxa;
 
 @Stateless
-public class PlanoDAO extends PersistenceDAO<Plano>{
+public class TaxaDAO extends PersistenceDAO<Taxa>{
 
-	public PlanoDAO() {
-		super(Plano.class);
+	public TaxaDAO() {
+		super(Taxa.class);
 	}
 
 }

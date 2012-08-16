@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "filme")
-@NamedQuery(name="Filme.findByNome", query="select f from Filme f where f.tituto = :titulo")
+@NamedQuery(name="Filme.findByNome", query="select f from Filme f where f.nome = :nome")
 public class Filme implements Serializable{
 
 	/**
@@ -26,8 +26,8 @@ public class Filme implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;		
 	
-	@Column(nullable = false, unique = true)
-	private String titulo;
+	@Column(nullable = false, unique = true, updatable = true)
+	private String nome;
 	
 	@Column(nullable = false)
 	private String sinopse;
@@ -43,12 +43,12 @@ public class Filme implements Serializable{
 		this.id = id;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getSinopse() {
@@ -68,20 +68,14 @@ public class Filme implements Serializable{
 	}
 
 	@Override
-	public String toString() {
-		return "Filme [id=" + id + ", titulo=" + titulo + ", sinopse="
-				+ sinopse + ", siteOficial=" + siteOficial + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((sinopse == null) ? 0 : sinopse.hashCode());
 		result = prime * result
 				+ ((siteOficial == null) ? 0 : siteOficial.hashCode());
-		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		return result;
 	}
 
@@ -91,13 +85,18 @@ public class Filme implements Serializable{
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Filme))
+		if (getClass() != obj.getClass())
 			return false;
 		Filme other = (Filme) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
 			return false;
 		if (sinopse == null) {
 			if (other.sinopse != null)
@@ -109,11 +108,14 @@ public class Filme implements Serializable{
 				return false;
 		} else if (!siteOficial.equals(other.siteOficial))
 			return false;
-		if (titulo == null) {
-			if (other.titulo != null)
-				return false;
-		} else if (!titulo.equals(other.titulo))
-			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Filme [id=" + id + ", nome=" + nome + ", sinopse=" + sinopse
+				+ ", siteOficial=" + siteOficial + "]";
+	}
+
+	
 }
