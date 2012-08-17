@@ -18,13 +18,18 @@
 				rowClasses="panelFirstLine,panelNextLine">
 
 				<h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
-				<h:inputText id="sessaoData" value="#{sessaoMB.sessao.data}"
-					required="true" requiredMessage="#{msgs.SessaoDataRequired}" />
-
-
+				<p:calendar 
+				pattern="dd/MM/yyyy" value="#{sessaoMB.sessao.data}" size="7"
+				id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+				<f:convertDateTime/>
+				</p:calendar>
+				
 				<h:outputLabel value="#{msgs.SessaoHora}" for="sessaoHora" />
-				<h:inputText id="sessaoHora" value="#{sessaoMB.sessao.hora}"
-					required="true" requiredMessage="#{mesgs.SessaoHoraRequired}" />
+				<p:inputMask mask="99:99:99" id="sessaoHora" value="#{sessaoMB.sessao.hora}"
+					required="true" requiredMessage="#{mesgs.SessaoHoraRequired}" size="7"
+					convert="num">
+						
+				</p:inputMask>
 
 				
 
@@ -34,7 +39,7 @@
 
 				<h:commandButton action="#{sessaoMB.createSessaoEnd()}"
 					value="#{msgs.create}" />
-				<h:commandButton action="#{sessaoMB.listAllSessaos()}"
+				<h:commandButton action="#{sessaoMB.listAllSessoes()}"
 					value="#{msgs.cancel}" immediate="true" />
 
 			</h:panelGrid>

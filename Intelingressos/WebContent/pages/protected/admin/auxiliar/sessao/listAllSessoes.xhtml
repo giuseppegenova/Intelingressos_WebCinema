@@ -13,15 +13,16 @@
 	<h:form>
 		<h3>#{msgs.sessaoTitleCadastro}</h3>	
 		<h:messages />
-		<h:dataTable value="#{sessaoMB.getAllSessaos()}" var="sessao" 
+		<h:dataTable value="#{sessaoMB.getAllSessoes()}" var="sessao" 
 		styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" 
 		border="1">
 			<h:column>
-				<f:facet name="header">
+				<f:facet name="header" >
 					#{msgs.SessaoData}
 				</f:facet>
 				
 				#{sessao.data}
+				
 			</h:column>
 			<h:column>
 				<f:facet name="header">

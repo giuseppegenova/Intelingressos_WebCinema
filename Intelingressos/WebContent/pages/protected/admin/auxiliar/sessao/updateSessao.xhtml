@@ -17,24 +17,19 @@
 				<h:panelGrid columns="2" styleClass="panelGrid"
 					rowClasses="panelFirstLine,panelNextLine">
 					
-					<h:outputLabel for="sessaoIdentificador" value="#{msgs.SessaoTitulo}" />
-				<h:inputText id="sessaoIdentificador" value="#{sessaoMB.sessao.id}" disabled="true"
-					required="true" requiredMessage="#{msgs.SessaoIdentificadorRequired}" />
-
-						<h:outputLabel for="sessaoTitulo" value="#{msgs.SessaoTitulo}" />
-				<h:inputText id="sessaoTitulo" value="#{sessaoMB.sessao.nome}"
-					required="true" requiredMessage="#{msgs.SessaoTituloRequired}" />
-
-
-				<h:outputLabel value="#{msgs.SessaoSinopse}" for="sessaoSinopse" />
-				<h:inputTextarea id="sessaoSinopse" value="#{sessaoMB.sessao.sinopse}"
-					maxlength="5000" required="true"
-					requiredMessage="#{mesgs.SessaoSinopseRequired}" />
-
-				<h:outputLabel for="sessaoSite" value="#{msgs.SessaoSite}" />
-				<h:inputText id="sessaoSite" value="#{sessaoMB.sessao.siteOficial}"
-					required="true" requiredMessage="#{msgs.SessaoSiteRequired}" />						
-					
+					<h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
+				<p:calendar 
+				pattern="dd/MM/yyyy" value="#{sessaoMB.sessao.data}" size="7"
+				id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+				<f:convertDateTime/>
+				</p:calendar>
+				
+				<h:outputLabel value="#{msgs.SessaoHora}" for="sessaoHora" />
+				<p:inputMask mask="99:99:99" id="sessaoHora" value="#{sessaoMB.sessao.hora}"
+					required="true" requiredMessage="#{mesgs.SessaoHoraRequired}" size="7"
+					convert="num">
+						
+				</p:inputMask>
 						
 
 				</h:panelGrid>
