@@ -25,7 +25,7 @@ public class Sala implements Serializable{
 	@Column(unique = true, nullable = false)
 	private String nome;
 	
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private int capacidade;
 
 	public Long getId() {

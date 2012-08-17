@@ -2,6 +2,7 @@ package br.com.cinema.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,8 +22,8 @@ public class Sessao {
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	
-	@Temporal(TemporalType.TIME)
-	private Date hora;
+	@Column(length = 8)
+	private String hora;
 	
 	private int ingressosVendidos;
 	
@@ -45,11 +46,11 @@ public class Sessao {
 		this.data = data;
 	}
 
-	public Date getHora() {
+	public String getHora() {
 		return hora;
 	}
 
-	public void setHora(Date hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 
