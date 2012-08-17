@@ -10,46 +10,35 @@
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 	<ui:define name="centro">
 		<h1 align="center">#{msgs.salaTitleCadastro}</h1>
-		
-			<h:form>
-				<h:messages />				
 
-				<h:panelGrid columns="2" styleClass="panelGrid"
-					rowClasses="panelFirstLine,panelNextLine">
-					
-					<h:outputLabel for="salaIdentificador" value="#{msgs.SalaTitulo}" />
-				<h:inputText id="salaIdentificador" value="#{salaMB.sala.id}" disabled="true"
-					required="true" requiredMessage="#{msgs.SalaIdentificadorRequired}" />
+		<h:form>
+			<h:messages />
 
-						<h:outputLabel for="salaTitulo" value="#{msgs.SalaTitulo}" />
-				<h:inputText id="salaTitulo" value="#{salaMB.sala.nome}"
-					required="true" requiredMessage="#{msgs.SalaTituloRequired}" />
+			<h:panelGrid columns="2" styleClass="panelGrid"
+				rowClasses="panelFirstLine,panelNextLine">
+
+				<h:outputLabel for="salaNome" value="#{msgs.SalaNome}" />
+				<h:inputText id="salaNome" value="#{salaMB.sala.nome}"
+					required="true" requiredMessage="#{msgs.SalaNomeRequired}" />
 
 
-				<h:outputLabel value="#{msgs.SalaSinopse}" for="salaSinopse" />
-				<h:inputTextarea id="salaSinopse" value="#{salaMB.sala.sinopse}"
-					maxlength="5000" required="true"
-					requiredMessage="#{mesgs.SalaSinopseRequired}" />
+				<h:outputLabel value="#{msgs.SalaCapacidade}" for="salaCapacidade" />
+				<h:inputTextarea id="salaCapacidade"
+					value="#{salaMB.sala.capacidade}" maxlength="5000" required="true"
+					requiredMessage="#{mesgs.SalaCapacidadeRequired}" />
+			</h:panelGrid>
 
-				<h:outputLabel for="salaSite" value="#{msgs.SalaSite}" />
-				<h:inputText id="salaSite" value="#{salaMB.sala.siteOficial}"
-					required="true" requiredMessage="#{msgs.SalaSiteRequired}" />						
-					
-						
+			<h:panelGrid columns="2">
 
-				</h:panelGrid>
+				<h:commandButton action="#{salaMB.updateSalaEnd()}"
+					value="#{msgs.update}" />
+				<h:commandButton action="#{salaMB.listAllSalas()}"
+					value="#{msgs.cancel}" immediate="true" />
 
-				<h:panelGrid columns="2">
+			</h:panelGrid>
 
-					<h:commandButton action="#{salaMB.updateSalaEnd()}"
-						value="#{msgs.update}" />
-					<h:commandButton action="#{salaMB.listAllSalas()}"
-						value="#{msgs.cancel}" immediate="true" />
+		</h:form>
 
-				</h:panelGrid>
-
-			</h:form>
-		
 	</ui:define>
 </ui:decorate>
 </html>
