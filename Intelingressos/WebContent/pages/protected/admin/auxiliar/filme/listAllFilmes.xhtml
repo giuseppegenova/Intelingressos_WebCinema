@@ -11,9 +11,9 @@
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 	<ui:define name="centro">
 	<h:form>
-		<h3>#{msgs.estadoTitleCadastro}</h3>	
+		<h3>#{msgs.filmeTitleCadastro}</h3>	
 		<h:messages />
-		<h:dataTable value="#{estadoMB.getAllEstados()}" var="estado" 
+		<h:dataTable value="#{filmeMB.getAllFilmes()}" var="filme" 
 		styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" 
 		border="1">
 			<h:column>
@@ -21,14 +21,21 @@
 					#{msgs.Nome}
 				</f:facet>
 				
-				#{estado.nome}
+				#{filme.nome}
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					#{msgs.EstadoSigla}
+					#{msgs.FilmeSinopse}
 				</f:facet>
 				
-				#{estado.sigla}
+				#{filme.sinopse}
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					#{msgs.FilmeSite}
+				</f:facet>
+				
+				#{filme.siteOficial}
 			</h:column>
 						
 			<h:column>
@@ -38,22 +45,22 @@
 				<h:panelGrid columns="2" >
 				
 					<!-- Always save the id as hidden when you use a request scope MB -->
-					<h:inputHidden value="#{estado.id}" />
+					<h:inputHidden value="#{filme.id}" />
 					
 					
-					<h:commandButton action="#{estadoMB.updateEstadoStart()}" value="#{msgs.update}" immediate="true">
-						<f:setPropertyActionListener target="#{estadoMB.estado}" value="#{estado}" />
+					<h:commandButton action="#{filmeMB.updateFilmeStart()}" value="#{msgs.update}" immediate="true">
+						<f:setPropertyActionListener target="#{filmeMB.filme}" value="#{filme}" />
 					</h:commandButton>
 					
-					<h:commandButton action="#{estadoMB.deleteEstadoStart()}" value="#{msgs.delete}">
-						<f:setPropertyActionListener target="#{estadoMB.estado}" value="#{estado}" />
+					<h:commandButton action="#{filmeMB.deleteFilmeStart()}" value="#{msgs.delete}">
+						<f:setPropertyActionListener target="#{filmeMB.filme}" value="#{filme}" />
 					</h:commandButton>
 					
 				</h:panelGrid>
 			</h:column>
 		</h:dataTable>
-		<!-- This button is displayed to the estado, just to you see the error msg  -->
-		<h:commandButton action="#{estadoMB.createEstadoStart()}" value="#{msgs.create} #{msgs.EstadoNome}" />
+		<!-- This button is displayed to the filme, just to you see the error msg  -->
+		<h:commandButton action="#{filmeMB.createFilmeStart()}" value="#{msgs.create} #{msgs.Filme}" />
 	</h:form>
 </ui:define>
 </ui:decorate>

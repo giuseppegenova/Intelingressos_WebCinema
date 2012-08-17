@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.ejb.Stateless;
 
 import br.com.cinema.dao.persistence.PersistenceDAO;
-import br.com.cinema.entity.Estado;
 import br.com.cinema.entity.Filme;
 
 @Stateless
@@ -18,7 +17,7 @@ public class FilmeDAO extends PersistenceDAO<Filme>{
 
 	public Filme findFilmeByNome(String nome){
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("titulo", nome);		
+		parameters.put("nome", nome);		
 		
 		return super.findOneResult(Filme.FIND_FILME_BY_NOME, parameters);
 	}	 

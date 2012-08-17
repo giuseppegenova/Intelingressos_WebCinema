@@ -9,12 +9,12 @@
 	<h:form>
 		<h:messages/>
 		
-		<h3>#{msgs.EstadoDeleteHeader}: #{estadoMB.estado.nome}</h3>
-		<h:inputHidden value="#{estadoMB.estado.id}" />
+		<h3>#{msgs.FilmeDeleteHeader}: #{filmeMB.filme.nome}</h3>
+		<h:inputHidden value="#{filmeMB.filme.id}" />
 		<h:panelGrid columns="2">
 			
-			<h:commandButton action="#{estadoMB.deleteEstadoEnd()}" value="#{msgs.delete}" />
-			<h:commandButton action="#{estadoMB.listAllEstados()}" value="#{msgs.cancel}" immediate="true" />
+			<h:commandButton action="#{filmeMB.deleteFilmeEnd()}" value="#{msgs.delete}" />
+			<h:commandButton action="#{filmeMB.listAllFilmes()}" value="#{msgs.cancel}" immediate="true" />
 		</h:panelGrid>
 		<br/>
 	</h:form>
