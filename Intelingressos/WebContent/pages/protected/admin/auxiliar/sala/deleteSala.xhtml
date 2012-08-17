@@ -9,12 +9,12 @@
 	<h:form>
 		<h:messages/>
 		
-		<h3>#{msgs.FilmeDeleteHeader}: #{filmeMB.filme.nome}</h3>
-		<h:inputHidden value="#{filmeMB.filme.id}" />
+		<h3>#{msgs.SalaDeleteHeader}: #{salaMB.sala.nome}</h3>
+		<h:inputHidden value="#{salaMB.sala.id}" />
 		<h:panelGrid columns="2">
 			
-			<h:commandButton action="#{filmeMB.deleteFilmeEnd()}" value="#{msgs.delete}" />
-			<h:commandButton action="#{filmeMB.listAllFilmes()}" value="#{msgs.cancel}" immediate="true" />
+			<h:commandButton action="#{salaMB.deleteSalaEnd()}" value="#{msgs.delete}" />
+			<h:commandButton action="#{salaMB.listAllSalas()}" value="#{msgs.cancel}" immediate="true" />
 		</h:panelGrid>
 		<br/>
 	</h:form>

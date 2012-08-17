@@ -11,9 +11,9 @@
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 	<ui:define name="centro">
 	<h:form>
-		<h3>#{msgs.filmeTitleCadastro}</h3>	
+		<h3>#{msgs.salaTitleCadastro}</h3>	
 		<h:messages />
-		<h:dataTable value="#{filmeMB.getAllFilmes()}" var="filme" 
+		<h:dataTable value="#{salaMB.getAllSalas()}" var="sala" 
 		styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" 
 		border="1">
 			<h:column>
@@ -21,21 +21,21 @@
 					#{msgs.Nome}
 				</f:facet>
 				
-				#{filme.nome}
+				#{sala.nome}
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					#{msgs.FilmeSinopse}
+					#{msgs.SalaSinopse}
 				</f:facet>
 				
-				#{filme.sinopse}
+				#{sala.sinopse}
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					#{msgs.FilmeSite}
+					#{msgs.SalaSite}
 				</f:facet>
 				
-				#{filme.siteOficial}
+				#{sala.siteOficial}
 			</h:column>
 						
 			<h:column>
@@ -45,22 +45,22 @@
 				<h:panelGrid columns="2" >
 				
 					<!-- Always save the id as hidden when you use a request scope MB -->
-					<h:inputHidden value="#{filme.id}" />
+					<h:inputHidden value="#{sala.id}" />
 					
 					
-					<h:commandButton action="#{filmeMB.updateFilmeStart()}" value="#{msgs.update}" immediate="true">
-						<f:setPropertyActionListener target="#{filmeMB.filme}" value="#{filme}" />
+					<h:commandButton action="#{salaMB.updateSalaStart()}" value="#{msgs.update}" immediate="true">
+						<f:setPropertyActionListener target="#{salaMB.sala}" value="#{sala}" />
 					</h:commandButton>
 					
-					<h:commandButton action="#{filmeMB.deleteFilmeStart()}" value="#{msgs.delete}">
-						<f:setPropertyActionListener target="#{filmeMB.filme}" value="#{filme}" />
+					<h:commandButton action="#{salaMB.deleteSalaStart()}" value="#{msgs.delete}">
+						<f:setPropertyActionListener target="#{salaMB.sala}" value="#{sala}" />
 					</h:commandButton>
 					
 				</h:panelGrid>
 			</h:column>
 		</h:dataTable>
-		<!-- This button is displayed to the filme, just to you see the error msg  -->
-		<h:commandButton action="#{filmeMB.createFilmeStart()}" value="#{msgs.create} #{msgs.Filme}" />
+		<!-- This button is displayed to the sala, just to you see the error msg  -->
+		<h:commandButton action="#{salaMB.createSalaStart()}" value="#{msgs.create} #{msgs.Sala}" />
 	</h:form>
 </ui:define>
 </ui:decorate>

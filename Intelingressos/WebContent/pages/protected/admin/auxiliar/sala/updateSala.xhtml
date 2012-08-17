@@ -9,7 +9,7 @@
 
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 	<ui:define name="centro">
-		<h1 align="center">#{msgs.filmeTitleCadastro}</h1>
+		<h1 align="center">#{msgs.salaTitleCadastro}</h1>
 		
 			<h:form>
 				<h:messages />				
@@ -17,23 +17,23 @@
 				<h:panelGrid columns="2" styleClass="panelGrid"
 					rowClasses="panelFirstLine,panelNextLine">
 					
-					<h:outputLabel for="filmeIdentificador" value="#{msgs.FilmeTitulo}" />
-				<h:inputText id="filmeIdentificador" value="#{filmeMB.filme.id}" disabled="true"
-					required="true" requiredMessage="#{msgs.FilmeIdentificadorRequired}" />
+					<h:outputLabel for="salaIdentificador" value="#{msgs.SalaTitulo}" />
+				<h:inputText id="salaIdentificador" value="#{salaMB.sala.id}" disabled="true"
+					required="true" requiredMessage="#{msgs.SalaIdentificadorRequired}" />
 
-						<h:outputLabel for="filmeTitulo" value="#{msgs.FilmeTitulo}" />
-				<h:inputText id="filmeTitulo" value="#{filmeMB.filme.nome}"
-					required="true" requiredMessage="#{msgs.FilmeTituloRequired}" />
+						<h:outputLabel for="salaTitulo" value="#{msgs.SalaTitulo}" />
+				<h:inputText id="salaTitulo" value="#{salaMB.sala.nome}"
+					required="true" requiredMessage="#{msgs.SalaTituloRequired}" />
 
 
-				<h:outputLabel value="#{msgs.FilmeSinopse}" for="filmeSinopse" />
-				<h:inputTextarea id="filmeSinopse" value="#{filmeMB.filme.sinopse}"
+				<h:outputLabel value="#{msgs.SalaSinopse}" for="salaSinopse" />
+				<h:inputTextarea id="salaSinopse" value="#{salaMB.sala.sinopse}"
 					maxlength="5000" required="true"
-					requiredMessage="#{mesgs.FilmeSinopseRequired}" />
+					requiredMessage="#{mesgs.SalaSinopseRequired}" />
 
-				<h:outputLabel for="filmeSite" value="#{msgs.FilmeSite}" />
-				<h:inputText id="filmeSite" value="#{filmeMB.filme.siteOficial}"
-					required="true" requiredMessage="#{msgs.FilmeSiteRequired}" />						
+				<h:outputLabel for="salaSite" value="#{msgs.SalaSite}" />
+				<h:inputText id="salaSite" value="#{salaMB.sala.siteOficial}"
+					required="true" requiredMessage="#{msgs.SalaSiteRequired}" />						
 					
 						
 
@@ -41,9 +41,9 @@
 
 				<h:panelGrid columns="2">
 
-					<h:commandButton action="#{filmeMB.updateFilmeEnd()}"
+					<h:commandButton action="#{salaMB.updateSalaEnd()}"
 						value="#{msgs.update}" />
-					<h:commandButton action="#{filmeMB.listAllFilmes()}"
+					<h:commandButton action="#{salaMB.listAllSalas()}"
 						value="#{msgs.cancel}" immediate="true" />
 
 				</h:panelGrid>
