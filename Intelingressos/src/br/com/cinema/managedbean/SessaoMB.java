@@ -20,7 +20,7 @@ public class SessaoMB {
 	private static final String CREATE_SESSAO = "createSessao";
 	private static final String DELETE_SESSAO = "deleteSessao"; 
 	private static final String UPDATE_SESSAO = "updateSessao";
-	private static final String LIST_ALL_SESSAOS = "listAllSessaos";	
+	private static final String LIST_ALL_SESSOES = "listAllSessoes";	
 	private static final String STAY_IN_THE_SAME_PAGE = null;
 
 	@EJB
@@ -40,7 +40,7 @@ public class SessaoMB {
 		this.sessao = sessao;
 	}
 	
-	public List<Sessao> getAllSessaos() {
+	public List<Sessao> getAllSessoes() {
 		return sessaoFacade.findAll();
 	}
 	
@@ -57,7 +57,7 @@ public class SessaoMB {
 		}
 		
 		sendInfoMessageToUser("Operação realizada com sucesso: Sessao Atualizada");
-		return LIST_ALL_SESSAOS;
+		return LIST_ALL_SESSOES;
 	}
 	
 	public String deleteSessaoStart(){
@@ -76,7 +76,7 @@ public class SessaoMB {
 		
 		sendInfoMessageToUser("Operação realizada com sucesso: Sessao Excluida");
 		
-		return LIST_ALL_SESSAOS;
+		return LIST_ALL_SESSOES;
 	}
 	
 	public String createSessaoStart(){
@@ -96,17 +96,17 @@ public class SessaoMB {
 		
 		sendInfoMessageToUser("Operação realizada com sucesso: Sessao Criada");
 		
-		return LIST_ALL_SESSAOS;
+		return LIST_ALL_SESSOES;
 	}
 	
-	public List<Sessao> listSessaosByNome(String nome){
+	public List<Sessao> listSessoesByNome(String nome){
 		List<Sessao> sessaos = new ArrayList<Sessao>();
 		//sessaos.add(sessaoFacade.findSessaoByNome(nome));
 		return sessaos;
 	}
 	
-	public String listAllSessaos(){
-		return LIST_ALL_SESSAOS;
+	public String listAllSessoes(){
+		return LIST_ALL_SESSOES;
 	}	
 	
 	private void sendInfoMessageToUser(String message){
