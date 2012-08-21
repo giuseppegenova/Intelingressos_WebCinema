@@ -87,14 +87,7 @@ public class Programacao implements Serializable{
 
 	public void setSessao(Sessao sessao) {
 		this.sessao = sessao;
-	}
-
-	@Override
-	public String toString() {
-		return "Programacao [id=" + id + ", inicio=" + inicio + ", fim=" + fim
-				+ ", filme=" + filme + ", sala=" + sala + ", sessao=" + sessao
-				+ "]";
-	}
+	}	
 
 	@Override
 	public int hashCode() {
@@ -150,4 +143,13 @@ public class Programacao implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Programacao [id=" + id + ", inicio=" + inicio + ", fim=" + fim
+				+ ", filme=" + filme + ", sala=" + sala + ", sessao=" + sessao
+				+ "]";
+	}
+	
+	
 }

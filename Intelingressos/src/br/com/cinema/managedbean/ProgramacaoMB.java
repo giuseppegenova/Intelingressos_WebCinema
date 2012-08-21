@@ -44,7 +44,9 @@ public class ProgramacaoMB {
 		return programacaoFacade.findAll();
 	}
 	
-	public Programacao findProgramacaoBy
+	public Programacao findProgramacaoByFilme(){
+		return null;
+	}
 	
 	public String updateProgramacaoStart(){
 		return UPDATE_PROGRAMACAO;
