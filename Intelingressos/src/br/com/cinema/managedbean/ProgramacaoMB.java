@@ -44,6 +44,8 @@ public class ProgramacaoMB {
 		return programacaoFacade.findAll();
 	}
 	
+	public Programacao findProgramacaoBy
+	
 	public String updateProgramacaoStart(){
 		return UPDATE_PROGRAMACAO;
 	}

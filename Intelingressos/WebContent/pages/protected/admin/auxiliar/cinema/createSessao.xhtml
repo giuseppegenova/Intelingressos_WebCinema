@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+		<h1 align="center">#{msgs.sessaoTitleCadastro}</h1>
+		<h:form>
+
+			<h:messages />
+
+			<h:panelGrid columns="2" styleClass="panelGrid"
+				rowClasses="panelFirstLine,panelNextLine">
+
+				<h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
+				<p:calendar 
+				pattern="dd/MM/yyyy" value="#{sessaoMB.sessao.data}" size="7"
+				id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+				<f:convertDateTime/>
+				</p:calendar>
+				
+				<h:outputLabel value="#{msgs.SessaoHora}" for="sessaoHora" />
+				<p:inputMask mask="99:99:99" id="sessaoHora" value="#{sessaoMB.sessao.hora}"
+					required="true" requiredMessage="#{mesgs.SessaoHoraRequired}" size="7"
+					convert="num">
+						
+				</p:inputMask>
+
+				
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="2">
+
+				<h:commandButton action="#{sessaoMB.createSessaoEnd()}"
+					value="#{msgs.create}" />
+				<h:commandButton action="#{sessaoMB.listAllSessoes()}"
+					value="#{msgs.cancel}" immediate="true" />
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:decorate>
+</html>
