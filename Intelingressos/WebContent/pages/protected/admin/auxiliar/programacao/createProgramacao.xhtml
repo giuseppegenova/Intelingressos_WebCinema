@@ -17,18 +17,15 @@
 			<h:panelGrid columns="2" styleClass="panelGrid"
 				rowClasses="panelFirstLine,panelNextLine">
 
-				<h:outputLabel for="programacaoFilme" value="#{msgs.ProgramacaoFilme}" converter="programacaoConverter"/>
-				<p:selectOneMenu id="programacaoFilme" value="#{programacaoMB.programacao.filme}">  
+				<h:outputLabel for="programacaoFilme" value="#{msgs.ProgramacaoFilme}" />
+				<p:selectOneMenu id="programacaoFilme" value="#{programacaoMB.programacao.filme}" converter="filmeConverter">  
 		            <f:selectItem itemLabel="Select One" itemValue="null" />  
 		            <f:selectItems value="#{filmeMB.getAllFilmes()}" var="filme" 
 		            	itemLabel="#{filme.nome}" itemValue="#{filme}" 
 		            	styleClass="ui-widget ui-widget-header"/>  
 				</p:selectOneMenu>
 				
-				<p:pickList id="pickList"
-					value="#{programacaoMB.programacao.filme}" var="prog"
-					itemLabel="#{prog.filme}" itemValue="#{prog}"
-					converter="programacaoConverter" required="true" styleClass="ui-widget ui-widget-header"/>				
+						
 
 			</h:panelGrid>
 

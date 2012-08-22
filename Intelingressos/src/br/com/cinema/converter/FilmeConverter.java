@@ -9,29 +9,29 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-import br.com.cinema.entity.Programacao;
-import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
+import br.com.cinema.entity.Filme;
+import br.com.cinema.facade.local.FilmeFacadeLocal;
 
 @Stateless
-@FacesConverter(value="programacaoConverter")
-public class ProgramacaoConverter implements Converter {
+@FacesConverter(value="filmeConverter")
+public class FilmeConverter implements Converter {
 
-	public ProgramacaoConverter() {
+	public FilmeConverter() {
 	}
 	
 	@EJB
-	ProgramacaoFacadeLocal programacaoFacade;
+	FilmeFacadeLocal filmeFacade;
 
 	public Object getAsObject(FacesContext context, UIComponent component,
 			String value) {
 		if (value == null || value.equals("")) {
 			return value;
 		}
-		Programacao c = new Programacao();
+		Filme c = new Filme();
 		try {
-			c = programacaoFacade.find(Long.valueOf(value)) ;
+			c = filmeFacade.find(Long.valueOf(value)) ;
 		}catch(NumberFormatException exception) {	 
-            throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de conversão!", "Programacao Inválida"));
+            throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de conversão!", "Filme Inválida"));
 		}		
 		return c;
 }
@@ -41,13 +41,13 @@ public class ProgramacaoConverter implements Converter {
 			return "";
 		}
 
-		Programacao programacao = (Programacao) value;
+		Filme filme = (Filme) value;
 		
-		if (programacao.getId() == 0){
+		if (filme.getId() == 0){
 			return "";
 		}
 		
-		return programacao.getId().toString();
+		return filme.getId().toString();
 
 	}
 }
