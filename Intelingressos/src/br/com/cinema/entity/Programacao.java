@@ -90,66 +90,21 @@ public class Programacao implements Serializable{
 	}	
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((filme == null) ? 0 : filme.hashCode());
-		result = prime * result + ((fim == null) ? 0 : fim.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((inicio == null) ? 0 : inicio.hashCode());
-		result = prime * result + ((sala == null) ? 0 : sala.hashCode());
-		result = prime * result + ((sessao == null) ? 0 : sessao.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Programacao))
-			return false;
-		Programacao other = (Programacao) obj;
-		if (filme == null) {
-			if (other.filme != null)
-				return false;
-		} else if (!filme.equals(other.filme))
-			return false;
-		if (fim == null) {
-			if (other.fim != null)
-				return false;
-		} else if (!fim.equals(other.fim))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (inicio == null) {
-			if (other.inicio != null)
-				return false;
-		} else if (!inicio.equals(other.inicio))
-			return false;
-		if (sala == null) {
-			if (other.sala != null)
-				return false;
-		} else if (!sala.equals(other.sala))
-			return false;
-		if (sessao == null) {
-			if (other.sessao != null)
-				return false;
-		} else if (!sessao.equals(other.sessao))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Programacao [id=" + id + ", inicio=" + inicio + ", fim=" + fim
-				+ ", filme=" + filme + ", sala=" + sala + ", sessao=" + sessao
-				+ "]";
+	public int hashCode(){
+		return Integer.parseInt(id.toString());
 	}
 	
+	@Override
+	public boolean equals(Object obj){
+		if(obj instanceof Programacao){
+			Programacao programacao = (Programacao)obj;
+			return programacao.getId() == id;
+		}
+		return false;
+	}
 	
+	@Override
+	public String toString(){
+		return "Filme: " +filme.getNome();
+	}
 }

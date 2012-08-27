@@ -52,48 +52,22 @@ public class IngressoTipo implements Serializable{
 		this.preco = preco;
 	}	
 
-
 	@Override
-	public String toString() {
-		return "IngressoTipo [id=" + id + ", nome=" + nome + ", preco=" + preco
-				+ "]";
+	public int hashCode(){
+		return Integer.parseInt(id.toString());
 	}
-
+	
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((preco == null) ? 0 : preco.hashCode());
-		return result;
+	public boolean equals(Object obj){
+		if(obj instanceof IngressoTipo){
+			IngressoTipo ingressoTipo = (IngressoTipo)obj;
+			return ingressoTipo.getId() == id;
+		}
+		return false;
 	}
-
+	
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof IngressoTipo))
-			return false;
-		IngressoTipo other = (IngressoTipo) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (preco == null) {
-			if (other.preco != null)
-				return false;
-		} else if (!preco.equals(other.preco))
-			return false;
-		return true;
+	public String toString(){
+		return nome;
 	}
-
 }

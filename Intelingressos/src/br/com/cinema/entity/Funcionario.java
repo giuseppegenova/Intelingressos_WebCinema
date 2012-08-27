@@ -59,45 +59,20 @@ public class Funcionario extends Usuario implements Serializable{
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((cargo == null) ? 0 : cargo.hashCode());
-		result = prime * result + ((cinema == null) ? 0 : cinema.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+		return Integer.parseInt(id.toString());
 	}
-
+	
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (!(obj instanceof Funcionario))
-			return false;
-		Funcionario other = (Funcionario) obj;
-		if (cargo == null) {
-			if (other.cargo != null)
-				return false;
-		} else if (!cargo.equals(other.cargo))
-			return false;
-		if (cinema == null) {
-			if (other.cinema != null)
-				return false;
-		} else if (!cinema.equals(other.cinema))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public boolean equals(Object obj){
+		if(obj instanceof Funcionario){
+			Funcionario funcionario = (Funcionario)obj;
+			return funcionario.getId() == id;			
+		}
+		return false;
 	}
-
+		
 	@Override
-	public String toString() {
-		return "Funcionario [id=" + id + ", cargo=" + cargo + ", cinema="
-				+ cinema + "]";
+	public String toString(){
+		return super.getNome();
 	}
-			
 }

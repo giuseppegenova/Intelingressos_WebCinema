@@ -11,39 +11,39 @@
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 	<ui:define name="centro">
 	<h:form>
-		<h3>#{msgs.sessaoTitleCadastro}</h3>	
+		<h3>#{msgs.programacaoTitleCadastro}</h3>	
 		<h:messages />
-		<h:dataTable value="#{sessaoMB.getAllSessoes()}" var="sessao" 
+		<h:dataTable value="#{programacaoMB.getAllProgramacoes()}" var="programacao" 
 		styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" 
 		border="1">
 			<h:column>
 				<f:facet name="header" >
-					#{msgs.SessaoData}
+					#{msgs.filme}
 				</f:facet>
 				
-				#{sessao.data}
+				#{programacao.filme.nome}
 				
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					#{msgs.SessaoHora}
+					#{msgs.ProgramacaoHora}
 				</f:facet>
 				
-				#{sessao.hora}
+				#{programacao.hora}
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					#{msgs.SessaoIngressosDisponiveis}
+					#{msgs.ProgramacaoIngressosDisponiveis}
 				</f:facet>
 				
-				#{sessao.ingressosDisponiveis}
+				#{programacao.ingressosDisponiveis}
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					#{msgs.SessaoIngressosVendidos}
+					#{msgs.ProgramacaoIngressosVendidos}
 				</f:facet>
 				
-				#{sessao.ingressosVendidos}
+				#{programacao.ingressosVendidos}
 			</h:column>
 						
 			<h:column>
@@ -53,22 +53,22 @@
 				<h:panelGrid columns="2" >
 				
 					<!-- Always save the id as hidden when you use a request scope MB -->
-					<h:inputHidden value="#{sessao.id}" />
+					<h:inputHidden value="#{programacao.id}" />
 					
 					
-					<h:commandButton action="#{sessaoMB.updateSessaoStart()}" value="#{msgs.update}" immediate="true">
-						<f:setPropertyActionListener target="#{sessaoMB.sessao}" value="#{sessao}" />
+					<h:commandButton action="#{programacaoMB.updateProgramacaoStart()}" value="#{msgs.update}" immediate="true">
+						<f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
 					</h:commandButton>
 					
-					<h:commandButton action="#{sessaoMB.deleteSessaoStart()}" value="#{msgs.delete}">
-						<f:setPropertyActionListener target="#{sessaoMB.sessao}" value="#{sessao}" />
+					<h:commandButton action="#{programacaoMB.deleteProgramacaoStart()}" value="#{msgs.delete}">
+						<f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
 					</h:commandButton>
 					
 				</h:panelGrid>
 			</h:column>
 		</h:dataTable>
-		<!-- This button is displayed to the sessao, just to you see the error msg  -->
-		<h:commandButton action="#{sessaoMB.createSessaoStart()}" value="#{msgs.create} #{msgs.Sessao}" />
+		<!-- This button is displayed to the programacao, just to you see the error msg  -->
+		<h:commandButton action="#{programacaoMB.createProgramacaoStart()}" value="#{msgs.create} #{msgs.Programacao}" />
 	</h:form>
 </ui:define>
 </ui:decorate>

@@ -1,7 +1,6 @@
 package br.com.cinema.converter;
 
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -12,42 +11,35 @@ import javax.faces.convert.FacesConverter;
 import br.com.cinema.entity.Filme;
 import br.com.cinema.facade.local.FilmeFacadeLocal;
 
-@Stateless
 @FacesConverter(value="filmeConverter")
 public class FilmeConverter implements Converter {
-
-	public FilmeConverter() {
-	}
 	
 	@EJB
-	FilmeFacadeLocal filmeFacade;
+	private FilmeFacadeLocal filmeFacade;
+	
 
-	public Object getAsObject(FacesContext context, UIComponent component,
-			String value) {
-		if (value == null || value.equals("")) {
-			return value;
-		}
-		Filme c = new Filme();
+	@Override
+	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
+		
+		
+		Long filmeId;
+
 		try {
-			c = filmeFacade.find(Long.valueOf(value)) ;
-		}catch(NumberFormatException exception) {	 
-            throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de conversão!", "Filme Inválida"));
-		}		
-		return c;
-}
-
-	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (value == null || value.equals("")) {
-			return "";
+			filmeId = Long.parseLong(arg2);
+		} catch (NumberFormatException exception) {
+			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Type the name of a Dog and select it (or use the dropdow)", "Type the name of a Dog and select it (or use the dropdow)"));
 		}
 
-		Filme filme = (Filme) value;
-		
-		if (filme.getId() == 0){
+		return filmeFacade.find(filmeId);
+	}
+
+	@Override
+	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
+
+		if (arg2 == null) {
 			return "";
 		}
-		
-		return filme.getId().toString();
-
+		Filme filme = (Filme) arg2;
+		return String.valueOf(filme.getId());
 	}
 }

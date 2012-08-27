@@ -59,47 +59,21 @@ public class Cliente extends Usuario implements Serializable{
 	}
 
 	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", cpf=" + cpf + ", ingressoComprado="
-				+ ingressoCompra + "]";
+	public int hashCode(){
+		return Integer.parseInt(id.toString());
 	}
-
+	
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((ingressoCompra == null) ? 0 : ingressoCompra.hashCode());
-		return result;
+	public boolean equals(Object obj){
+		if(obj instanceof Cliente){
+			Cliente cliente = (Cliente)obj;
+			return cliente.getId() == id;
+		}
+		return false;
 	}
-
+	
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (!(obj instanceof Cliente))
-			return false;
-		Cliente other = (Cliente) obj;
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (ingressoCompra == null) {
-			if (other.ingressoCompra != null)
-				return false;
-		} else if (!ingressoCompra.equals(other.ingressoCompra))
-			return false;
-		return true;
-	}		
-
+	public String toString(){
+		return super.getNome();
+	}
 }

@@ -14,18 +14,27 @@
 
 			<h:messages />
 
-			<h:panelGrid columns="2" styleClass="panelGrid"
+			<h:panelGrid columns="3" styleClass="panelGrid"
 				rowClasses="panelFirstLine,panelNextLine">
 
 				<h:outputLabel for="programacaoFilme" value="#{msgs.ProgramacaoFilme}" />
-				<p:selectOneMenu id="programacaoFilme" value="#{programacaoMB.programacao.filme}" converter="filmeConverter">  
+				<p:selectOneMenu id="programacaoFilme" value="#{programacaoMB.programacao.filme}" >  
 		            <f:selectItem itemLabel="Select One" itemValue="null" />  
 		            <f:selectItems value="#{filmeMB.getAllFilmes()}" var="filme" 
 		            	itemLabel="#{filme.nome}" itemValue="#{filme}" 
 		            	styleClass="ui-widget ui-widget-header"/>  
 				</p:selectOneMenu>
 				
-						
+				<h:commandButton action="#{filmeMB.createFilmeStart()}" value="#{msgs.create}" immediate="true"/> 
+				
+				<h:outputLabel for="programacaoSala" value="#{msgs.ProgramacaoSala}" />
+				<p:selectOneMenu id="programacaoSala" value="#{programacaoMB.programacao.sala}">  
+		            <f:selectItem itemLabel="Select One" itemValue="null" />  
+		            <f:selectItems value="#{salaMB.getAllSalas()}" var="sala" 
+		            	itemLabel="#{sala.nome}" itemValue="#{sala}"
+		            	styleClass="ui-widget ui-widget-header"/> 
+		            	
+				</p:selectOneMenu>					
 
 			</h:panelGrid>
 

@@ -5,13 +5,10 @@
    <PROCESS-ITEM-OUTPUT ID="logout::#pages#sair.xhtml" NAME="output"
     PATH="/pages/sair.xhtml" TARGET="rules:#pages#sair.xhtml"
     TITLE="logout" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="#pages#protected#user#welcome.xhtml::#pages#sair.xhtml"
-    NAME="output1" PATH="/pages/sair.xhtml"
-    TARGET="rules:#pages#sair.xhtml"
-    TITLE="/pages/protected/user/welcome.xhtml" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#sair.xhtml" PATH="/pages/sair.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -55,61 +52,371 @@
  <PROCESS-ITEM NAME="rules::5" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="listAllClientes::#pages#protected#user#assossiado#listAllAssossiados.xhtml"
+    ID="listAllCidades::#pages#protected#admin#auxiliar#cidade#listAllCidades.xhtml"
     NAME="output"
-    PATH="/pages/protected/user/assossiado/listAllAssossiados.xhtml"
-    TARGET="rules:#pages#protected#user#assossiado#listAllAssossiados.xhtml"
-    TITLE="listAllClientes" model-entity="JSFProcessItemOutput"/>
+    PATH="/pages/protected/admin/auxiliar/cidade/listAllCidades.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#cidade#listAllCidades.xhtml"
+    TITLE="listAllCidades" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules::6" SHAPE="32,689,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::6" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="createAssossiado::#pages#protected#user#assossiado#createAssossiado.xhtml"
+    ID="createCidade::#pages#protected#admin#auxiliar#cidade#createCidade.xhtml"
     NAME="output"
-    PATH="/pages/protected/user/assossiado/createAssossiado.xhtml"
-    TARGET="rules:#pages#protected#user#assossiado#createAssossiado.xhtml"
-    TITLE="createAssossiado" model-entity="JSFProcessItemOutput"/>
+    PATH="/pages/protected/admin/auxiliar/cidade/createCidade.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#cidade#createCidade.xhtml"
+    TITLE="createCidade" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules::7" SHAPE="32,801,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::7" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="updateAssossiado::#pages#protected#user#assossiado#updateAssossiado.xhtml"
+    ID="updateCidade::#pages#protected#admin#auxiliar#cidade#updateCidade.xhtml"
     NAME="output"
-    PATH="/pages/protected/user/assossiado/updateAssossiado.xhtml"
-    TARGET="rules:#pages#protected#user#assossiado#updateAssossiado.xhtml"
-    TITLE="updateAssossiado" model-entity="JSFProcessItemOutput"/>
+    PATH="/pages/protected/admin/auxiliar/cidade/updateCidade.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#cidade#updateCidade.xhtml"
+    TITLE="updateCidade" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules::8" SHAPE="32,913,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::8" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="deleteAssossiado::#pages#protected#user#assossiado#deleteAssossiado.xhtml"
+    ID="deleteCidade::#pages#protected#admin#auxiliar#cidade#deleteCidade.xhtml"
     NAME="output"
-    PATH="/pages/protected/user/assossiado/deleteAssossiado.xhtml"
-    TARGET="rules:#pages#protected#user#assossiado#deleteAssossiado.xhtml"
-    TITLE="deleteAssossiado" model-entity="JSFProcessItemOutput"/>
+    PATH="/pages/protected/admin/auxiliar/cidade/deleteCidade.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#cidade#deleteCidade.xhtml"
+    TITLE="deleteCidade" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#pages#sair.xhtml" PATH="/pages/sair.xhtml"
-  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::9" SHAPE="32,1025,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::9" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllCinemas::#pages#protected#admin#auxiliar#cinema#listAllCinemas.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/cinema/listAllCinemas.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#cinema#listAllCinemas.xhtml"
+    TITLE="listAllCinemas" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::10" SHAPE="32,1137,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::10" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createCinema::#pages#protected#admin#auxiliar#cinema#createCinema.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/cinema/createCinema.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#cinema#createCinema.xhtml"
+    TITLE="createCinema" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::11" SHAPE="32,1249,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::11" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="updateCinema::#pages#protected#admin#auxiliar#cinema#updateCinema.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/cinema/updateCinema.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#cinema#updateCinema.xhtml"
+    TITLE="updateCinema" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::12" SHAPE="32,1361,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::12" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deleteCinema::#pages#protected#admin#auxiliar#cinema#deleteCinema.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/cinema/deleteCinema.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#cinema#deleteCinema.xhtml"
+    TITLE="deleteCinema" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::13" SHAPE="32,1473,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::13" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllEstados::#pages#protected#admin#auxiliar#estado#listAllEstados.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/estado/listAllEstados.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#estado#listAllEstados.xhtml"
+    TITLE="listAllEstados" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::14" SHAPE="32,1585,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::14" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createEstado::#pages#protected#admin#auxiliar#estado#createEstado.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/estado/createEstado.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#estado#createEstado.xhtml"
+    TITLE="createEstado" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::15" SHAPE="32,1697,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::15" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="updateEstado::#pages#protected#admin#auxiliar#estado#updateEstado.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/estado/updateEstado.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#estado#updateEstado.xhtml"
+    TITLE="updateEstado" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::16" SHAPE="32,1809,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::16" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deleteEstado::#pages#protected#admin#auxiliar#estado#deleteEstado.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/estado/deleteEstado.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#estado#deleteEstado.xhtml"
+    TITLE="deleteEstado" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::17" SHAPE="32,1921,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::17" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllFilmes::#pages#protected#admin#auxiliar#filme#listAllFilmes.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/filme/listAllFilmes.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#filme#listAllFilmes.xhtml"
+    TITLE="listAllFilmes" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::18" SHAPE="32,2033,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::18" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createFilme::#pages#protected#admin#auxiliar#filme#createFilme.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/filme/createFilme.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#filme#createFilme.xhtml"
+    TITLE="createFilme" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::19" SHAPE="32,2145,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::19" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="updateFilme::#pages#protected#admin#auxiliar#filme#updateFilme.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/filme/updateFilme.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#filme#updateFilme.xhtml"
+    TITLE="updateFilme" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::20" SHAPE="32,2257,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::20" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deleteFilme::#pages#protected#admin#auxiliar#filme#deleteFilme.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/filme/deleteFilme.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#filme#deleteFilme.xhtml"
+    TITLE="deleteFilme" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::21" SHAPE="32,2369,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::21" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllProgramacoes::#pages#protected#admin#auxiliar#programacao#listAllProgramacoes.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/programacao/listAllProgramacoes.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#programacao#listAllProgramacoes.xhtml"
+    TITLE="listAllProgramacoes" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::22" SHAPE="32,2481,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::22" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createProgramacao::#pages#protected#admin#auxiliar#programacao#createProgramacao.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/programacao/createProgramacao.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#programacao#createProgramacao.xhtml"
+    TITLE="createProgramacao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::23" SHAPE="32,2593,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::23" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="updateProgramacao::#pages#protected#admin#auxiliar#programacao#updateProgramacao.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/programacao/updateProgramacao.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#programacao#updateProgramacao.xhtml"
+    TITLE="updateProgramacao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::24" SHAPE="32,2705,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::24" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deleteProgramacao::#pages#protected#admin#auxiliar#programacao#deleteProgramacao.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/programacao/deleteProgramacao.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#programacao#deleteProgramacao.xhtml"
+    TITLE="deleteProgramacao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::25" SHAPE="32,2817,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::25" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllSalas::#pages#protected#admin#auxiliar#sala#listAllSalas.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/sala/listAllSalas.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#sala#listAllSalas.xhtml"
+    TITLE="listAllSalas" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::26" SHAPE="32,2929,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::26" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createSala::#pages#protected#admin#auxiliar#sala#createSala.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/sala/createSala.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#sala#createSala.xhtml"
+    TITLE="createSala" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::27" SHAPE="32,3041,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::27" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="updateSala::#pages#protected#admin#auxiliar#sala#updateSala.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/sala/updateSala.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#sala#updateSala.xhtml"
+    TITLE="updateSala" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::28" SHAPE="32,3153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::28" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deleteSala::#pages#protected#admin#auxiliar#sala#deleteSala.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/sala/deleteSala.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#sala#deleteSala.xhtml"
+    TITLE="deleteSala" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::29" SHAPE="32,3265,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::29" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listAllSessoes::#pages#protected#admin#auxiliar#sessao#listAllSessoes.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/sessao/listAllSessoes.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#sessao#listAllSessoes.xhtml"
+    TITLE="listAllSessoes" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::30" SHAPE="32,3377,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::30" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createSessao::#pages#protected#admin#auxiliar#sessao#createSessao.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/sessao/createSessao.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#sessao#createSessao.xhtml"
+    TITLE="createSessao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::31" SHAPE="32,3489,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::31" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="updateSessao::#pages#protected#admin#auxiliar#sessao#updateSessao.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/sessao/updateSessao.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#sessao#updateSessao.xhtml"
+    TITLE="updateSessao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::32" SHAPE="32,3601,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::32" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deleteSessao::#pages#protected#admin#auxiliar#sessao#deleteSessao.xhtml"
+    NAME="output"
+    PATH="/pages/protected/admin/auxiliar/sessao/deleteSessao.xhtml"
+    TARGET="rules:#pages#protected#admin#auxiliar#sessao#deleteSessao.xhtml"
+    TITLE="deleteSessao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM
-  NAME="rules:#pages#protected#user#assossiado#createAssossiado.xhtml"
-  PATH="/pages/protected/user/assossiado/createAssossiado.xhtml"
-  SHAPE="240,705,0,0" model-entity="JSFProcessGroup"/>
+  NAME="rules:#pages#protected#admin#auxiliar#cidade#listAllCidades.xhtml"
+  PATH="/pages/protected/admin/auxiliar/cidade/listAllCidades.xhtml"
+  SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM
-  NAME="rules:#pages#protected#user#cliente#deleteCliente.xhtml"
-  PATH="/pages/protected/user/cliente/deleteCliente.xhtml"
-  SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
+  NAME="rules:#pages#protected#admin#auxiliar#estado#listAllEstados.xhtml"
+  PATH="/pages/protected/admin/auxiliar/estado/listAllEstados.xhtml"
+  SHAPE="240,1489,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM
-  NAME="rules:#pages#protected#user#assossiado#deleteAssossiado.xhtml"
-  PATH="/pages/protected/user/assossiado/deleteAssossiado.xhtml"
+  NAME="rules:#pages#protected#admin#auxiliar#cidade#updateCidade.xhtml"
+  PATH="/pages/protected/admin/auxiliar/cidade/updateCidade.xhtml"
+  SHAPE="240,817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#cinema#updateCinema.xhtml"
+  PATH="/pages/protected/admin/auxiliar/cinema/updateCinema.xhtml"
+  SHAPE="240,1265,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#cidade#deleteCidade.xhtml"
+  PATH="/pages/protected/admin/auxiliar/cidade/deleteCidade.xhtml"
   SHAPE="240,929,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM
-  NAME="rules:#pages#protected#user#assossiado#updateAssossiado.xhtml"
-  PATH="/pages/protected/user/assossiado/updateAssossiado.xhtml"
-  SHAPE="240,817,0,0" model-entity="JSFProcessGroup"/>
+  NAME="rules:#pages#protected#admin#auxiliar#estado#createEstado.xhtml"
+  PATH="/pages/protected/admin/auxiliar/estado/createEstado.xhtml"
+  SHAPE="240,1601,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#cinema#createCinema.xhtml"
+  PATH="/pages/protected/admin/auxiliar/cinema/createCinema.xhtml"
+  SHAPE="240,1153,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#cinema#listAllCinemas.xhtml"
+  PATH="/pages/protected/admin/auxiliar/cinema/listAllCinemas.xhtml"
+  SHAPE="240,1041,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#cinema#deleteCinema.xhtml"
+  PATH="/pages/protected/admin/auxiliar/cinema/deleteCinema.xhtml"
+  SHAPE="240,1377,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#cidade#createCidade.xhtml"
+  PATH="/pages/protected/admin/auxiliar/cidade/createCidade.xhtml"
+  SHAPE="240,705,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#estado#updateEstado.xhtml"
+  PATH="/pages/protected/admin/auxiliar/estado/updateEstado.xhtml"
+  SHAPE="240,1713,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#filme#listAllFilmes.xhtml"
+  PATH="/pages/protected/admin/auxiliar/filme/listAllFilmes.xhtml"
+  SHAPE="240,1937,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#filme#createFilme.xhtml"
+  PATH="/pages/protected/admin/auxiliar/filme/createFilme.xhtml"
+  SHAPE="240,2049,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#filme#updateFilme.xhtml"
+  PATH="/pages/protected/admin/auxiliar/filme/updateFilme.xhtml"
+  SHAPE="240,2161,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#filme#deleteFilme.xhtml"
+  PATH="/pages/protected/admin/auxiliar/filme/deleteFilme.xhtml"
+  SHAPE="240,2273,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#programacao#createProgramacao.xhtml"
+  PATH="/pages/protected/admin/auxiliar/programacao/createProgramacao.xhtml"
+  SHAPE="240,2497,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#programacao#updateProgramacao.xhtml"
+  PATH="/pages/protected/admin/auxiliar/programacao/updateProgramacao.xhtml"
+  SHAPE="240,2609,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#programacao#deleteProgramacao.xhtml"
+  PATH="/pages/protected/admin/auxiliar/programacao/deleteProgramacao.xhtml"
+  SHAPE="240,2721,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#sala#listAllSalas.xhtml"
+  PATH="/pages/protected/admin/auxiliar/sala/listAllSalas.xhtml"
+  SHAPE="240,2833,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#sala#createSala.xhtml"
+  PATH="/pages/protected/admin/auxiliar/sala/createSala.xhtml"
+  SHAPE="240,2945,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#sala#updateSala.xhtml"
+  PATH="/pages/protected/admin/auxiliar/sala/updateSala.xhtml"
+  SHAPE="240,3057,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#sala#deleteSala.xhtml"
+  PATH="/pages/protected/admin/auxiliar/sala/deleteSala.xhtml"
+  SHAPE="240,3169,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM
   NAME="rules:#pages#protected#user#cliente#updateCliente.xhtml"
   PATH="/pages/protected/user/cliente/updateCliente.xhtml"
@@ -119,11 +426,35 @@
   PATH="/pages/protected/user/cliente/listAllClientes.xhtml"
   SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM
-  NAME="rules:#pages#protected#user#assossiado#listAllAssossiados.xhtml"
-  PATH="/pages/protected/user/assossiado/listAllAssossiados.xhtml"
-  SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM
   NAME="rules:#pages#protected#user#cliente#createCliente.xhtml"
   PATH="/pages/protected/user/cliente/createCliente.xhtml"
   SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#user#cliente#deleteCliente.xhtml"
+  PATH="/pages/protected/user/cliente/deleteCliente.xhtml"
+  SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#programacao#listAllProgramacoes.xhtml"
+  PATH="/pages/protected/admin/auxiliar/programacao/listAllProgramacoes.xhtml"
+  SHAPE="240,2385,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#estado#deleteEstado.xhtml"
+  PATH="/pages/protected/admin/auxiliar/estado/deleteEstado.xhtml"
+  SHAPE="240,1825,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#sessao#deleteSessao.xhtml"
+  PATH="/pages/protected/admin/auxiliar/sessao/deleteSessao.xhtml"
+  SHAPE="240,3617,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#sessao#listAllSessoes.xhtml"
+  PATH="/pages/protected/admin/auxiliar/sessao/listAllSessoes.xhtml"
+  SHAPE="240,3281,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#sessao#createSessao.xhtml"
+  PATH="/pages/protected/admin/auxiliar/sessao/createSessao.xhtml"
+  SHAPE="240,3393,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#protected#admin#auxiliar#sessao#updateSessao.xhtml"
+  PATH="/pages/protected/admin/auxiliar/sessao/updateSessao.xhtml"
+  SHAPE="240,3505,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

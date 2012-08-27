@@ -29,7 +29,7 @@ public class Ingresso implements Serializable{
 	private Long id;
 	
 	@Column(nullable = false)
-	private int protocolo;
+	private Integer protocolo;
 	
 	@Column(nullable = false)
 	private double valorTotal;
@@ -58,11 +58,11 @@ public class Ingresso implements Serializable{
 		this.id = id;
 	}
 
-	public int getProtocolo() {
+	public Integer getProtocolo() {
 		return protocolo;
 	}
 
-	public void setProtocolo(int protocolo) {
+	public void setProtocolo(Integer protocolo) {
 		this.protocolo = protocolo;
 	}
 
@@ -115,76 +115,21 @@ public class Ingresso implements Serializable{
 	}
 
 	@Override
-	public String toString() {
-		return "Ingresso [id=" + id + ", protocolo=" + protocolo
-				+ ", valorTotal=" + valorTotal + ", cartaoCredito="
-				+ cartaoCredito + ", validadeCartao=" + validadeCartao
-				+ ", ingressoCompra=" + ingressoCompra + ", ingressoTipo="
-				+ ingressoTipo + ", valido=" + valido + "]";
-	}
-
-	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((cartaoCredito == null) ? 0 : cartaoCredito.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((ingressoCompra == null) ? 0 : ingressoCompra.hashCode());
-		result = prime * result
-				+ ((ingressoTipo == null) ? 0 : ingressoTipo.hashCode());
-		result = prime * result + protocolo;
-		result = prime * result
-				+ ((validadeCartao == null) ? 0 : validadeCartao.hashCode());
-		result = prime * result + (valido ? 1231 : 1237);
-		long temp;
-		temp = Double.doubleToLongBits(valorTotal);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
+		return Integer.parseInt(id.toString());
 	}
-
+	
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Ingresso))
-			return false;
-		Ingresso other = (Ingresso) obj;
-		if (cartaoCredito == null) {
-			if (other.cartaoCredito != null)
-				return false;
-		} else if (!cartaoCredito.equals(other.cartaoCredito))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (ingressoCompra == null) {
-			if (other.ingressoCompra != null)
-				return false;
-		} else if (!ingressoCompra.equals(other.ingressoCompra))
-			return false;
-		if (ingressoTipo == null) {
-			if (other.ingressoTipo != null)
-				return false;
-		} else if (!ingressoTipo.equals(other.ingressoTipo))
-			return false;
-		if (protocolo != other.protocolo)
-			return false;
-		if (validadeCartao == null) {
-			if (other.validadeCartao != null)
-				return false;
-		} else if (!validadeCartao.equals(other.validadeCartao))
-			return false;
-		if (valido != other.valido)
-			return false;
-		if (Double.doubleToLongBits(valorTotal) != Double
-				.doubleToLongBits(other.valorTotal))
-			return false;
-		return true;
+	public boolean equals(Object obj){
+		if(obj instanceof Ingresso){
+			Ingresso ingresso = (Ingresso)obj;
+			return ingresso.getId() == id;			
+		}
+		return false;
+	}
+		
+	@Override
+	public String toString(){
+		return protocolo.toString();
 	}
 }

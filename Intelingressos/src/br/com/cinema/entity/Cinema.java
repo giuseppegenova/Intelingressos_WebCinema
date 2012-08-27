@@ -58,48 +58,21 @@ public class Cinema implements Serializable{
 	}
 
 	@Override
-	public String toString() {
-		return "Cinema [id=" + id + ", nome=" + nome + ", programacao="
-				+ programacao + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result
-				+ ((programacao == null) ? 0 : programacao.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Cinema))
-			return false;
-		Cinema other = (Cinema) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (programacao == null) {
-			if (other.programacao != null)
-				return false;
-		} else if (!programacao.equals(other.programacao))
-			return false;
-		return true;
+	public int hashCode(){
+		return Integer.parseInt(id.toString());
 	}
 	
+	@Override
+	public  boolean equals(Object obj){
+		if(obj instanceof Cinema){
+			Cinema cinema = (Cinema) obj;
+			return cinema.getId()== id;
+		}
+		return false;
+	}
 	
+	@Override
+	public String toString(){
+		return nome;
+	}
 }

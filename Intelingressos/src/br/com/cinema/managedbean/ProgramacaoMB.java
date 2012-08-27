@@ -20,7 +20,7 @@ public class ProgramacaoMB {
 	private static final String CREATE_PROGRAMACAO = "createProgramacao";
 	private static final String DELETE_PROGRAMACAO = "deleteProgramacao"; 
 	private static final String UPDATE_PROGRAMACAO = "updateProgramacao";
-	private static final String LIST_ALL_PROGRAMACAOS = "listAllProgramacaos";	
+	private static final String LIST_ALL_PROGRAMACOES = "listAllProgramacaos";	
 	private static final String STAY_IN_THE_SAME_PAGE = null;
 
 	@EJB
@@ -40,7 +40,7 @@ public class ProgramacaoMB {
 		this.programacao = programacao;
 	}
 	
-	public List<Programacao> getAllProgramacaos() {
+	public List<Programacao> getAllProgramacoes() {
 		return programacaoFacade.findAll();
 	}
 	
@@ -61,7 +61,7 @@ public class ProgramacaoMB {
 		}
 		
 		sendInfoMessageToUser("Operação realizada com sucesso: Programacao Atualizada");
-		return LIST_ALL_PROGRAMACAOS;
+		return LIST_ALL_PROGRAMACOES;
 	}
 	
 	public String deleteProgramacaoStart(){
@@ -80,7 +80,7 @@ public class ProgramacaoMB {
 		
 		sendInfoMessageToUser("Operação realizada com sucesso: Programacao Excluida");
 		
-		return LIST_ALL_PROGRAMACAOS;
+		return LIST_ALL_PROGRAMACOES;
 	}
 	
 	public String createProgramacaoStart(){
@@ -100,7 +100,7 @@ public class ProgramacaoMB {
 		
 		sendInfoMessageToUser("Operação realizada com sucesso: Programacao Criada");
 		
-		return LIST_ALL_PROGRAMACAOS;
+		return LIST_ALL_PROGRAMACOES;
 	}
 	
 	public List<Programacao> listProgramacaosByNome(String nome){
@@ -110,7 +110,7 @@ public class ProgramacaoMB {
 	}
 	
 	public String listAllProgramacaos(){
-		return LIST_ALL_PROGRAMACAOS;
+		return LIST_ALL_PROGRAMACOES;
 	}	
 	
 	private void sendInfoMessageToUser(String message){

@@ -42,40 +42,22 @@ public class Taxa implements Serializable{
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Taxa))
-			return false;
-		Taxa other = (Taxa) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (valor == null) {
-			if (other.valor != null)
-				return false;
-		} else if (!valor.equals(other.valor))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Taxa [id=" + id + ", valor=" + valor + "]";
+	public int hashCode(){
+		return Integer.parseInt(id.toString());
 	}
 	
+	@Override
+	public boolean equals(Object obj){
+		if(obj instanceof Taxa){
+			Taxa taxa = (Taxa)obj;
+			return taxa.getId() == id;
+		}
+		return false;
+	}
+	
+	@Override
+	public String toString(){
+		return valor.toString();
+	}
 	
 }

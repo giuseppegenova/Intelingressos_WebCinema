@@ -69,53 +69,22 @@ public class Filme implements Serializable{
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((sinopse == null) ? 0 : sinopse.hashCode());
-		result = prime * result
-				+ ((siteOficial == null) ? 0 : siteOficial.hashCode());
-		return result;
+		return Integer.parseInt(id.toString());
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Filme other = (Filme) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (sinopse == null) {
-			if (other.sinopse != null)
-				return false;
-		} else if (!sinopse.equals(other.sinopse))
-			return false;
-		if (siteOficial == null) {
-			if (other.siteOficial != null)
-				return false;
-		} else if (!siteOficial.equals(other.siteOficial))
-			return false;
-		return true;
+		if(obj instanceof Filme){
+			Filme filme = (Filme) obj;
+			return filme.getId() == id;
+		}
+		return false;
 	}
 
 	@Override
 	public String toString() {
-		return "Filme [id=" + id + ", nome=" + nome + ", sinopse=" + sinopse
-				+ ", siteOficial=" + siteOficial + "]";
+		return nome;
 	}
 
-	
+
 }
