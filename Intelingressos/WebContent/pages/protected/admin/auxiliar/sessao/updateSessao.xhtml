@@ -25,11 +25,11 @@
 				</p:calendar>
 				
 				<h:outputLabel value="#{msgs.SessaoHora}" for="sessaoHora" />
-				<p:inputMask mask="99:99:99" id="sessaoHora" value="#{sessaoMB.sessao.hora}"
+				<p:calendar pattern="HH:mm:ss" id="sessaoHora" value="#{sessaoMB.sessao.hora}"
 					required="true" requiredMessage="#{mesgs.SessaoHoraRequired}" size="7"
-					convert="num">
-						
-				</p:inputMask>
+					timeOnly="true">
+				<f:convertDateTime pattern="HH:mm:ss" />		
+				</p:calendar>
 						
 
 				</h:panelGrid>

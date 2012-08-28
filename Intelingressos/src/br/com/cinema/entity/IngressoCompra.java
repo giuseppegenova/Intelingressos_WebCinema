@@ -1,6 +1,7 @@
 package br.com.cinema.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,13 +18,24 @@ public class IngressoCompra {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
 	
+	@Column(nullable = false)
+	private Integer quantidade;
+	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ingresso_id", unique = true)
+	@JoinColumn()
 	private Ingresso ingresso;	
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ingressoTipo_id", unique = true)
 	private IngressoTipo ingressoTipo;
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
 
 	public Long getId() {
 		return id;

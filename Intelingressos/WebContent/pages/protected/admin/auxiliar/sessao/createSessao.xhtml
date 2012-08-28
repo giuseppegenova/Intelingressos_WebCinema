@@ -21,17 +21,15 @@
 				<p:calendar 
 				pattern="dd/MM/yyyy" value="#{sessaoMB.sessao.data}" size="7"
 				id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
-				<f:convertDateTime/>
-				</p:calendar>
+				<f:convertDateTime Pattern="yyyy/MM/dd"/>
+				</p:calendar>			
 				
-				<h:outputLabel value="#{msgs.SessaoHora}" for="sessaoHora" />
-				<p:inputMask mask="99:99:99" id="sessaoHora" value="#{sessaoMB.sessao.hora}"
-					required="true" requiredMessage="#{mesgs.SessaoHoraRequired}" size="7"
-					convert="num">
-						
-				</p:inputMask>
-
-				
+				<h:outputLabel for="sessaoHora" value="#{msgs.SessaoHora}" />
+				<p:inputMask 
+				mask="99:99:99" value="#{sessaoMB.sessao.hora}" size="7"
+				id="sessaoHora"	required="true" requiredMessage="#{msgs.SessaoHoraRequired}"
+				>				
+				</p:inputMask >			
 
 			</h:panelGrid>
 

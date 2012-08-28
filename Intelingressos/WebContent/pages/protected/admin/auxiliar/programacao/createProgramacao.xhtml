@@ -34,7 +34,21 @@
 		            	itemLabel="#{sala.nome}" itemValue="#{sala}"
 		            	styleClass="ui-widget ui-widget-header"/> 
 		            	
-				</p:selectOneMenu>					
+				</p:selectOneMenu>	
+				
+				<h:commandButton action="#{salaMB.createSalaStart()}" value="#{msgs.create}" immediate="true"/> 	
+				
+				<h:outputLabel for="programacaoSessao" value="#{msgs.ProgramacaoSessao}" />
+				<p:selectOneMenu id="programacaoSessao" value="#{programacaoMB.programacao.sessao}">  
+		            <f:selectItem itemLabel="Select One" itemValue="null" />  
+		            <f:selectItems value="#{sessaoMB.getAllSessoes()}" var="sessao" 
+		            	itemLabel="#{sessao.data}" itemValue="#{sessao}"
+		            	styleClass="ui-widget ui-widget-header"/> 
+		            	
+				</p:selectOneMenu>	
+				
+				<h:commandButton action="#{sessaoMB.createSessaoStart()}" value="#{msgs.create}" immediate="true"/> 				
+							
 
 			</h:panelGrid>
 

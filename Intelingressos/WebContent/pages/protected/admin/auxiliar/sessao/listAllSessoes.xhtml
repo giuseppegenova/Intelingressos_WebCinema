@@ -4,16 +4,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<h:outputStylesheet library="css" name="main.css" />
 </h:head>
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 	<ui:define name="centro">
 	<h:form>
-		<h3>#{msgs.sessaoTitleCadastro}</h3>	
+ 		<h3>#{msgs.sessaoTitleCadastro}</h3>	
 		<h:messages />
-		<h:dataTable value="#{sessaoMB.getAllSessoes()}" var="sessao" 
+	<h:dataTable value="#{sessaoMB.getAllSessoes()}" var="sessao" 
 		styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" 
 		border="1">
 			<h:column>
@@ -23,14 +24,17 @@
 				
 				#{sessao.data}
 				
-			</h:column>
+			</h:column>	
+			
 			<h:column>
-				<f:facet name="header">
+				<f:facet name="header" >
 					#{msgs.SessaoHora}
 				</f:facet>
 				
 				#{sessao.hora}
-			</h:column>
+				
+			</h:column>				
+			
 			<h:column>
 				<f:facet name="header">
 					#{msgs.SessaoIngressosDisponiveis}
@@ -52,7 +56,7 @@
 				</f:facet>
 				<h:panelGrid columns="2" >
 				
-					<!-- Always save the id as hidden when you use a request scope MB -->
+					
 					<h:inputHidden value="#{sessao.id}" />
 					
 					
@@ -67,8 +71,9 @@
 				</h:panelGrid>
 			</h:column>
 		</h:dataTable>
-		<!-- This button is displayed to the sessao, just to you see the error msg  -->
-		<h:commandButton action="#{sessaoMB.createSessaoStart()}" value="#{msgs.create} #{msgs.Sessao}" />
+		
+		<h:commandButton action="#{sessaoMB.createSessaoStart()}" value="#{msgs.create} #{msgs.Sessao}" /> 
+					
 	</h:form>
 </ui:define>
 </ui:decorate>

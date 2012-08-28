@@ -22,7 +22,11 @@ public class Cliente extends Usuario implements Serializable{
 	private static final long serialVersionUID = -8089433058728405137L;
 
 	public static final String FIND_BY_NOME = "Cliente.findByNome";
-	
+		
+	public Cliente() {
+		super();		
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -31,7 +35,7 @@ public class Cliente extends Usuario implements Serializable{
 	private String cpf;	
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ingressoCompra_id", unique = true)
+	@JoinColumn(name = "id", unique = true)
 	private List<IngressoCompra> ingressoCompra;
 
 	public Long getId() {

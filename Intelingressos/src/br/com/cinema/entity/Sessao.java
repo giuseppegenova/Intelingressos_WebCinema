@@ -22,7 +22,7 @@ public class Sessao {
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	
-	@Column(length = 8)
+	@Column(nullable = false)
 	private String hora;
 	
 	private int ingressosVendidos;
@@ -86,6 +86,6 @@ public class Sessao {
 	
 	@Override
 	public String toString(){
-		return hora;
+		return data.toString();
 	}
 }
