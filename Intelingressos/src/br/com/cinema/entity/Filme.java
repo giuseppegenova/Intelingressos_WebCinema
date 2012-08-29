@@ -83,8 +83,10 @@ public class Filme implements Serializable{
 
 	@Override
 	public String toString() {
-		return nome;
+		return "Filme [id=" + id + ", nome=" + nome + ", sinopse=" + sinopse
+				+ ", siteOficial=" + siteOficial + "]";
 	}
 
+	
 
 }

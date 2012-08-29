@@ -18,18 +18,19 @@
 				rowClasses="panelFirstLine,panelNextLine">
 
 				<h:outputLabel for="programacaoFilme" value="#{msgs.ProgramacaoFilme}" />
-				<p:selectOneMenu id="programacaoFilme" value="#{programacaoMB.programacao.filme}" >  
-		            <f:selectItem itemLabel="Select One" itemValue="null" />  
+				<p:selectOneMenu id="programacaoFilme" value="#{programacaoMB.filme}" converter="filmeConverter">
+					<f:selectItem itemLabel="Selecione"/>				 
 		            <f:selectItems value="#{filmeMB.getAllFilmes()}" var="filme" 
-		            	itemLabel="#{filme.nome}" itemValue="#{filme}" 
-		            	styleClass="ui-widget ui-widget-header"/>  
+		            	itemLabel="#{filme.nome}" itemValue="#{filme}"
+		            	styleClass="ui-widget ui-widget-header" />  
+		           	
 				</p:selectOneMenu>
 				
 				<h:commandButton action="#{filmeMB.createFilmeStart()}" value="#{msgs.create}" immediate="true"/> 
 				
 				<h:outputLabel for="programacaoSala" value="#{msgs.ProgramacaoSala}" />
-				<p:selectOneMenu id="programacaoSala" value="#{programacaoMB.programacao.sala}">  
-		            <f:selectItem itemLabel="Select One" itemValue="null" />  
+				<p:selectOneMenu id="programacaoSala" value="#{programacaoMB.sala}">  
+		            <f:selectItem itemLabel="Selecione" itemValue="null" />  
 		            <f:selectItems value="#{salaMB.getAllSalas()}" var="sala" 
 		            	itemLabel="#{sala.nome}" itemValue="#{sala}"
 		            	styleClass="ui-widget ui-widget-header"/> 
@@ -39,12 +40,12 @@
 				<h:commandButton action="#{salaMB.createSalaStart()}" value="#{msgs.create}" immediate="true"/> 	
 				
 				<h:outputLabel for="programacaoSessao" value="#{msgs.ProgramacaoSessao}" />
-				<p:selectOneMenu id="programacaoSessao" value="#{programacaoMB.programacao.sessao}">  
-		            <f:selectItem itemLabel="Select One" itemValue="null" />  
+				<p:selectOneMenu id="programacaoSessao" value="#{programacaoMB.sessao.data}" >  
+		            <f:selectItem itemLabel="Selecione" itemValue="null" />  
 		            <f:selectItems value="#{sessaoMB.getAllSessoes()}" var="sessao" 
 		            	itemLabel="#{sessao.data}" itemValue="#{sessao}"
-		            	styleClass="ui-widget ui-widget-header"/> 
-		            	
+		            	styleClass="ui-widget ui-widget-header" /> 
+		           	
 				</p:selectOneMenu>	
 				
 				<h:commandButton action="#{sessaoMB.createSessaoStart()}" value="#{msgs.create}" immediate="true"/> 				

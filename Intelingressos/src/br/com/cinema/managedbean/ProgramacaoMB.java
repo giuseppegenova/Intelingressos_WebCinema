@@ -10,7 +10,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import br.com.cinema.entity.Filme;
 import br.com.cinema.entity.Programacao;
+import br.com.cinema.entity.Sala;
+import br.com.cinema.entity.Sessao;
 import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
 
 @ManagedBean
@@ -28,11 +31,20 @@ public class ProgramacaoMB {
 	
 	private Programacao programacao;	
 	
+	private Filme filme;
+	
+	private Sala sala;
+	
+	private Sessao sessao;
+	
 	public ProgramacaoMB() {
 		programacao = new Programacao();		
 	}
 
 	public Programacao getProgramacao() {
+		if(programacao == null){
+			programacao = new Programacao();
+		}
 		return programacao;
 	}
 
@@ -44,6 +56,39 @@ public class ProgramacaoMB {
 		return programacaoFacade.findAll();
 	}
 	
+	public Filme getFilme() {
+		if(filme == null){
+			filme = new Filme();
+		}
+		return filme;
+	}
+
+	public void setFilme(Filme filme) {
+		this.filme = filme;
+	}
+
+	public Sala getSala() {
+		if(sala == null){
+			sala = new Sala();
+		}
+		return sala;
+	}
+
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+
+	public Sessao getSessao() {
+		if(sessao == null){
+			sessao = new Sessao();
+		}
+		return sessao;
+	}
+
+	public void setSessao(Sessao sessao) {
+		this.sessao = sessao;
+	}
+
 	public Programacao findProgramacaoByFilme(){
 		return null;
 	}
@@ -109,7 +154,7 @@ public class ProgramacaoMB {
 		return programacaos;
 	}
 	
-	public String listAllProgramacaos(){
+	public String listAllProgramacoes(){
 		return LIST_ALL_PROGRAMACOES;
 	}	
 	

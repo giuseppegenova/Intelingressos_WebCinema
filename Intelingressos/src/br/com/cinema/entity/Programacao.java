@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "programacao")
@@ -23,9 +25,11 @@ public class Programacao implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Date inicio;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Date fim;
 	

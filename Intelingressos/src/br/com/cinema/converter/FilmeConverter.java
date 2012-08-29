@@ -1,6 +1,7 @@
 package br.com.cinema.converter;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -12,34 +13,56 @@ import br.com.cinema.entity.Filme;
 import br.com.cinema.facade.local.FilmeFacadeLocal;
 
 @FacesConverter(value="filmeConverter")
+@Stateless
 public class FilmeConverter implements Converter {
 	
+	private Filme filme;
+	
+	public Filme getFilme() {
+		return filme;
+	}
+
+	public void setFilme(Filme filme) {
+		this.filme = filme;
+	}
+
+	public FilmeConverter() {
+		filme = new Filme();
+	}
+
 	@EJB
 	private FilmeFacadeLocal filmeFacade;
-	
-
-	@Override
-	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
-		
-		
-		Long filmeId;
-
-		try {
-			filmeId = Long.parseLong(arg2);
+	  
+    public Object getAsObject(FacesContext facesContext, UIComponent uicomp, String value) {  
+    	
+    	long filmeId;
+    	
+		try {		
+			filmeId = Long.parseLong(value);
+			return filmeFacade.find(filmeId);
 		} catch (NumberFormatException exception) {
-			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Type the name of a Dog and select it (or use the dropdow)", "Type the name of a Dog and select it (or use the dropdow)"));
+			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de converção", "Erro ao selecionar este item"));
 		}
 
-		return filmeFacade.find(filmeId);
-	}
-
-	@Override
-	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-
-		if (arg2 == null) {
-			return "";
+		
+    }  
+  
+    public String getAsString(FacesContext facesContext, UIComponent uicomp, Object value) {  
+    	
+    	try {
+    		
+    		if (value == null || value.equals("")) {
+    			return "";
+    		}	
+    		
+    		filme = (Filme) value;
+    		
+    		if (filme.getId() == 0){
+    			return "";
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		Filme filme = (Filme) arg2;
-		return String.valueOf(filme.getId());
-	}
+    	return filme.getId().toString();
+    }    
 }
