@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+		<h1 align="center">#{msgs.programacaoTitleCadastro}</h1>
+		<h:form>
+
+			<h:messages />
+
+			<h:panelGrid columns="3" styleClass="panelGrid"
+				rowClasses="panelFirstLine,panelNextLine">
+
+				<p:selectOneMenu value="#{programacaoMB.filme}" converter="filme" var="f">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{filmeMB.filmes}" var="filme"
+					itemLabel="#{filme.name}" itemValue="#{filme}"/>
+					<p:column>
+					<!--  <p:graphicImage value="/images/barca/#{p.photo}" width="40" height="50"/>-->
+					</p:column>
+					<p:column>
+					#{f.name} - #{f.sinopse}
+					</p:column>
+				</p:selectOneMenu>				
+							
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="2">
+
+				<h:commandButton action="#{programacaoMB.createProgramacaoEnd()}"
+					value="#{msgs.create}" />
+				<h:commandButton action="#{programacaoMB.listAllProgramacoes()}"
+					value="#{msgs.cancel}" immediate="true" />
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:decorate>
+</html>
