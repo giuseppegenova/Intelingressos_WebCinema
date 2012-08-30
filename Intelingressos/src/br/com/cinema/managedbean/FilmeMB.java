@@ -28,15 +28,17 @@ public class FilmeMB {
 	
 	private Filme filme;
 	
-	private List<Filme> filmes;
+	private List<Filme> filmes = new ArrayList<Filme>();
 	
 	public FilmeMB() {
 		filme = new Filme();
-		filmes = new ArrayList<Filme>();
-		filmes = getAllFilmes();
+		filmes = filmeFacade.findAll();
 	}
 
 	public Filme getFilme() {
+		if(filme == null){
+			filme = new Filme();
+		}
 		return filme;
 	}
 
@@ -45,6 +47,9 @@ public class FilmeMB {
 	}
 	
 	public List<Filme> getFilmes() {
+		if(filmes == null){
+			filmes = filmeFacade.findAll();
+		}
 		return filmes;
 	}
 
