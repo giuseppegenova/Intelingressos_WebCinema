@@ -22,7 +22,7 @@ public class IngressoCompra {
 	private Integer quantidade;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn()
+	@JoinColumn(name = "ingresso_id")
 	private Ingresso ingresso;	
 	
 	@OneToOne(cascade = CascadeType.ALL)

@@ -1,33 +1,68 @@
 package br.com.cinema.converter;
-import java.util.ArrayList;
-import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UISelectItems;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
-import javax.faces.model.SelectItem;
-  
-@FacesConverter(value = "EstadoConverter")  
-public class EstadoConverter implements Converter {  
-  
-    private int index;  
-  
-    @SuppressWarnings("unchecked")
-	public Object getAsObject(FacesContext facesContext, UIComponent uicomp, String value) {  
-        List<SelectItem> items = new ArrayList<SelectItem>();  
-        List<UIComponent> uicompList = uicomp.getChildren();  
-        for(UIComponent comp: uicompList){  
-            if(comp instanceof UISelectItems){  
-                items.addAll((List<SelectItem>) ((UISelectItems)comp).getValue());  
-            }  
-        }  
-        return "-1".equals(value) ? null :  items.get(Integer.valueOf(value)).getValue();  
+
+import br.com.cinema.entity.Estado;
+import br.com.cinema.facade.local.EstadoFacadeLocal;
+
+@FacesConverter(value="estadoConverter")
+@Stateless
+public class EstadoConverter implements Converter {
+	
+	private Estado estado;
+	
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public EstadoConverter() {
+		estado = new Estado();
+	}
+
+	@EJB
+	private EstadoFacadeLocal estadoFacade;
+	  
+    public Object getAsObject(FacesContext facesContext, UIComponent uicomp, String value) {  
+    	
+    	long estadoId;
+    	
+		try {		
+			estadoId = Long.parseLong(value);
+			return estadoFacade.find(estadoId);
+		} catch (NumberFormatException exception) {
+			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de converção", "Erro ao selecionar este item"));
+		}
+
+		
     }  
   
-    public String getAsString(FacesContext facesContext, UIComponent uicomp, Object entity) {  
-        return entity == null ? "-1" : String.valueOf(index++);  
-    }  
-  
-}  
+    public String getAsString(FacesContext facesContext, UIComponent uicomp, Object value) {  
+    	
+    	try {
+    		
+    		if (value == null || value.equals("")) {
+    			return "";
+    		}	
+    		
+    		estado = (Estado) value;
+    		
+    		if (estado.getId() == 0){
+    			return "";
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return String.valueOf(estado.getId());
+    }    
+}

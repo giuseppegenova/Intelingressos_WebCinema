@@ -15,40 +15,54 @@ import br.com.cinema.facade.local.ClienteFacadeLocal;
 @FacesConverter(value="clienteConverter")
 @Stateless
 public class ClienteConverter implements Converter {
-
-	public ClienteConverter() {}
-
 	
+	private Cliente cliente;
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public ClienteConverter() {
+		cliente = new Cliente();
+	}
+
 	@EJB
 	private ClienteFacadeLocal clienteFacade;
-	
-	public Object getAsObject(FacesContext context, UIComponent component,
-			String value) {
-		if (value == null || value.equals("")) {
-			return value;
-		}
-		Cliente c = new Cliente();
-		try {
-			c = clienteFacade.find(Long.valueOf(value)) ;
-		}catch(NumberFormatException exception) {	 
-            throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de conversão!", "Cliente Inválido"));
-		}		
-		return c;
-}
-
-	public String getAsString(FacesContext context, UIComponent component,
-			Object value) {
-		if (value == null || value.equals("")) {
-			return "";
+	  
+    public Object getAsObject(FacesContext facesContext, UIComponent uicomp, String value) {  
+    	
+    	long clienteId;
+    	
+		try {		
+			clienteId = Long.parseLong(value);
+			return clienteFacade.find(clienteId);
+		} catch (NumberFormatException exception) {
+			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de converção", "Erro ao selecionar este item"));
 		}
 
-		Cliente cliente = (Cliente) value;
 		
-		if (cliente.getId() == 0){
-			return "";
+    }  
+  
+    public String getAsString(FacesContext facesContext, UIComponent uicomp, Object value) {  
+    	
+    	try {
+    		
+    		if (value == null || value.equals("")) {
+    			return "";
+    		}	
+    		
+    		cliente = (Cliente) value;
+    		
+    		if (cliente.getId() == 0){
+    			return "";
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		return String.valueOf(cliente.getId());
-
-	}
+    	return String.valueOf(cliente.getId());
+    }    
 }

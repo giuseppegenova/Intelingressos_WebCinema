@@ -12,42 +12,56 @@ import javax.faces.convert.FacesConverter;
 import br.com.cinema.entity.Programacao;
 import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
 
-@Stateless
 @FacesConverter(value="programacaoConverter")
+@Stateless
 public class ProgramacaoConverter implements Converter {
+	
+	private Programacao programacao;
+	
+	public Programacao getProgramacao() {
+		return programacao;
+	}
+
+	public void setProgramacao(Programacao programacao) {
+		this.programacao = programacao;
+	}
 
 	public ProgramacaoConverter() {
+		programacao = new Programacao();
 	}
-	
+
 	@EJB
-	ProgramacaoFacadeLocal programacaoFacade;
-
-	public Object getAsObject(FacesContext context, UIComponent component,
-			String value) {
-		if (value == null || value.equals("")) {
-			return value;
-		}
-		Programacao c = new Programacao();
-		try {
-			c = programacaoFacade.find(Long.valueOf(value)) ;
-		}catch(NumberFormatException exception) {	 
-            throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de conversão!", "Programacao Inválida"));
-		}		
-		return c;
-}
-
-	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (value == null || value.equals("")) {
-			return "";
-		}
-
-		Programacao programacao = (Programacao) value;
-		
-		if (programacao.getId() == 0){
-			return "";
+	private ProgramacaoFacadeLocal programacaoFacade;
+	  
+    public Object getAsObject(FacesContext facesContext, UIComponent uicomp, String value) {  
+    	
+    	long programacaoId;
+    	
+		try {		
+			programacaoId = Long.parseLong(value);
+			return programacaoFacade.find(programacaoId);
+		} catch (NumberFormatException exception) {
+			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de converção", "Erro ao selecionar este item"));
 		}
 		
-		return programacao.getId().toString();
-
-	}
+    }  
+  
+    public String getAsString(FacesContext facesContext, UIComponent uicomp, Object value) {  
+    	
+    	try {
+    		
+    		if (value == null || value.equals("")) {
+    			return "";
+    		}	
+    		
+    		programacao = (Programacao) value;
+    		
+    		if (programacao.getId() == 0){
+    			return "";
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return String.valueOf(programacao.getId());
+    }    
 }

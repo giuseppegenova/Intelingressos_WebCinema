@@ -1,7 +1,6 @@
 package br.com.cinema.converter;
 
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -12,28 +11,15 @@ import javax.faces.convert.FacesConverter;
 import br.com.cinema.entity.Filme;
 import br.com.cinema.facade.local.FilmeFacadeLocal;
 
-@FacesConverter(value="filmeConverter")
-@Stateless
-public class FilmeConverter implements Converter {
-	
-	private Filme filme;
-	
-	public Filme getFilme() {
-		return filme;
-	}
+@FacesConverter(value="filmeConverter", forClass = Filme.class)
 
-	public void setFilme(Filme filme) {
-		this.filme = filme;
-	}
-
-	public FilmeConverter() {
-		filme = new Filme();
-	}
-
+public class FilmeConverter implements Converter {		  
+   
 	@EJB
 	private FilmeFacadeLocal filmeFacade;
-	  
-    public Object getAsObject(FacesContext facesContext, UIComponent uicomp, String value) {  
+	 
+		@Override
+	    public Object getAsObject(FacesContext facesContext, UIComponent uicomp, String value) {  
     	
     	long filmeId;
     	
@@ -46,23 +32,9 @@ public class FilmeConverter implements Converter {
 
 		
     }  
-  
-    public String getAsString(FacesContext facesContext, UIComponent uicomp, Object value) {  
-    	
-    	try {
-    		
-    		if (value == null || value.equals("")) {
-    			return "";
-    		}	
-    		
-    		filme = (Filme) value;
-    		
-    		if (filme.getId() == 0){
-    			return "";
-    		}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	return filme.getId().toString();
-    }    
+        @Override
+        public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
+            return arg2.toString();
+        }		
+   
 }

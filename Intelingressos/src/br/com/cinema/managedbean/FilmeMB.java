@@ -26,10 +26,14 @@ public class FilmeMB {
 	@EJB
 	private FilmeFacadeLocal filmeFacade;
 	
-	private Filme filme;	
+	private Filme filme;
+	
+	private List<Filme> filmes;
 	
 	public FilmeMB() {
-		filme = new Filme();		
+		filme = new Filme();
+		filmes = new ArrayList<Filme>();
+		filmes = getAllFilmes();
 	}
 
 	public Filme getFilme() {
@@ -40,8 +44,20 @@ public class FilmeMB {
 		this.filme = filme;
 	}
 	
+	public List<Filme> getFilmes() {
+		return filmes;
+	}
+
+	public void setFilmes(List<Filme> filmes) {
+		this.filmes = filmes;
+	}
+
 	public List<Filme> getAllFilmes() {
 		return filmeFacade.findAll();
+	}
+	
+	public Filme getFilmeByNome(String nome){
+		return filmeFacade.findFilmeByNome(nome);
 	}
 	
 	public String updateFilmeStart(){
