@@ -25,35 +25,19 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					#{msgs.cidadeCpf}
+					#{msgs.Endereco}
 				</f:facet>
 				
-				#{cidade.cpf}
+				#{cidade.endereco}
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">
-					#{msgs.Email}
+					#{msgs.EstadoNome}
 				</f:facet>
 				
-				#{cidade.email}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">
-					#{msgs.Celular}
-				</f:facet>
-				
-				#{cidade.celular}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">
-					#{msgs.Telefone}
-				</f:facet>
-				
-				#{cidade.telefone}
-			</h:column>
+				#{cidade.estado.nome}
+			</h:column>			
 			
 			<h:column>
 				<h:panelGrid columns="2" >
@@ -74,7 +58,7 @@
 			</h:column>
 		</h:dataTable>
 		<!-- This button is displayed to the cidade, just to you see the error msg  -->
-		<h:commandButton action="#{cidadeMB.createCidadeStart()}" value="#{msgs.create} #{msgs.cidadeNome}" />
+		<h:commandButton action="#{cidadeMB.createCidadeStart()}" value="#{msgs.create} #{msgs.CidadeNome}" />
 	</h:form>
 </ui:define>
 </ui:decorate>

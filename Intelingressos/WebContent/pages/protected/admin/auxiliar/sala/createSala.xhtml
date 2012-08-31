@@ -23,10 +23,8 @@
 
 
 				<h:outputLabel value="#{msgs.SalaCapacidade}" for="salaCapacidade" />
-				<h:inputTextarea id="salaCapacidade" value="#{salaMB.sala.capacidade}"
-					maxlength="5000" required="true"
-					requiredMessage="#{mesgs.SalaCapacidadeRequired}" />
-				
+				<h:inputText id="salaCapacidade" value="#{salaMB.sala.capacidade}"
+					required="true"	requiredMessage="#{mesgs.SalaCapacidadeRequired}" />				
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">

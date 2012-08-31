@@ -23,7 +23,7 @@ public class ProgramacaoMB {
 	private static final String CREATE_PROGRAMACAO = "createProgramacao";
 	private static final String DELETE_PROGRAMACAO = "deleteProgramacao"; 
 	private static final String UPDATE_PROGRAMACAO = "updateProgramacao";
-	private static final String LIST_ALL_PROGRAMACOES = "listAllProgramacaos";	
+	private static final String LIST_ALL_PROGRAMACOES = "listAllProgramacoes";	
 	private static final String STAY_IN_THE_SAME_PAGE = null;
 
 	@EJB
@@ -38,23 +38,11 @@ public class ProgramacaoMB {
 	private Sessao sessao;
 	
 	public ProgramacaoMB() {
-		programacao = new Programacao();		
-	}
-
-	public Programacao getProgramacao() {
-		if(programacao == null){
-			programacao = new Programacao();
-		}
-		return programacao;
-	}
-
-	public void setProgramacao(Programacao programacao) {
-		this.programacao = programacao;
-	}
-	
-	public List<Programacao> getAllProgramacoes() {
-		return programacaoFacade.findAll();
-	}
+		programacao = new Programacao();
+		filme = new Filme();
+		sala = new Sala();
+		sessao = new Sessao();		
+	}	
 	
 	public Filme getFilme() {
 		if(filme == null){
@@ -88,8 +76,23 @@ public class ProgramacaoMB {
 	public void setSessao(Sessao sessao) {
 		this.sessao = sessao;
 	}
+	
+	public Programacao getProgramacao() {
+		if(programacao == null){
+			programacao = new Programacao();			
+		}
+		return programacao;
+	}
 
-	public Programacao findProgramacaoByFilme(){
+	public void setProgramacao(Programacao programacao) {		
+		this.programacao = programacao;
+	}
+	
+	public List<Programacao> getAllProgramacoes() {
+		return programacaoFacade.findAll();
+	}	
+
+	public Programacao findProgramacaoByFilme(Filme filme){
 		return null;
 	}
 	
@@ -135,6 +138,9 @@ public class ProgramacaoMB {
 	
 	public String createProgramacaoEnd(){
 		try {
+			programacao.setFilme(filme);
+			programacao.setSala(sala);
+			programacao.setSessao(sessao);			
 			programacaoFacade.save(programacao);
 			
 		} catch (EJBException e) {
