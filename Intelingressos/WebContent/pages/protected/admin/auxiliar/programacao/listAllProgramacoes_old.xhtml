@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+	<h:form>
+		<h3>#{msgs.programacaoTitleCadastro}</h3>	
+		<h:messages />
+		<h:dataTable value="#{programacaoMB.getAllProgramacoes()}" var="programacao" 
+		styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" 
+		border="1">
+			<h:column>
+				<f:facet name="header" >
+					#{msgs.ProgramacaoFilme}
+				</f:facet>
+				
+				#{programacao.filme.nome}
+				
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					#{msgs.ProgramacaoHora}
+				</f:facet>
+				
+				#{programacao.sessao.hora}
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					#{msgs.ProgramacaoIngressosDisponiveis}
+				</f:facet>
+				
+				#{programacao.sessao.ingressosDisponiveis}
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					#{msgs.ProgramacaoIngressosVendidos}
+				</f:facet>
+				
+				#{programacao.sessao.ingressosVendidos}
+			</h:column>
+						
+			<h:column>
+				<f:facet name="header">
+					#{msgs.opcoes}
+				</f:facet>
+				<h:panelGrid columns="2" >
+				
+					<!-- Always save the id as hidden when you use a request scope MB -->
+					<h:inputHidden value="#{programacao.id}" />
+					
+					
+					<h:commandButton action="#{programacaoMB.updateProgramacaoStart()}" value="#{msgs.update}" immediate="true">
+						<f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
+					</h:commandButton>
+					
+					<h:commandButton action="#{programacaoMB.deleteProgramacaoStart()}" value="#{msgs.delete}">
+						<f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
+					</h:commandButton>
+					
+				</h:panelGrid>
+			</h:column>
+		</h:dataTable>
+		<!-- This button is displayed to the programacao, just to you see the error msg  -->
+		<h:commandButton action="#{programacaoMB.createProgramacaoStart()}" value="#{msgs.create} #{msgs.Programacao}" />
+	</h:form>
+</ui:define>
+</ui:decorate>
+</html>

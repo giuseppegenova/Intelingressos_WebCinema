@@ -20,10 +20,12 @@ public class Sessao {
 	private Long id;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date data;
 	
+	@Temporal(TemporalType.TIME)
 	@Column(nullable = false)
-	private String hora;
+	private Date hora;
 	
 	private int ingressosVendidos;
 	
@@ -46,11 +48,11 @@ public class Sessao {
 		this.data = data;
 	}
 
-	public String getHora() {
+	public Date getHora() {
 		return hora;
 	}
 
-	public void setHora(String hora) {
+	public void setHora(Date hora) {
 		this.hora = hora;
 	}
 

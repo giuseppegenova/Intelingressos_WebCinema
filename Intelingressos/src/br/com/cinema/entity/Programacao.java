@@ -65,8 +65,8 @@ public class Programacao implements Serializable{
 		return fim;
 	}
 
-	public void setFim(Date fim) {
-		this.fim = fim;
+	public void setFim(Date fim) {		
+		this.fim = fim;			
 	}
 
 	public Filme getFilme() {

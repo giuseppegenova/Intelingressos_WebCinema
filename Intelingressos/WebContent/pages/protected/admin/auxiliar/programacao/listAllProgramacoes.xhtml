@@ -4,72 +4,70 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<h:outputStylesheet library="css" name="main.css" />
 </h:head>
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 	<ui:define name="centro">
-	<h:form>
-		<h3>#{msgs.programacaoTitleCadastro}</h3>	
-		<h:messages />
-		<h:dataTable value="#{programacaoMB.getAllProgramacoes()}" var="programacao" 
-		styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" 
-		border="1">
-			<h:column>
-				<f:facet name="header" >
-					#{msgs.ProgramacaoFilme}
-				</f:facet>
-				
-				#{programacao.filme.nome}
-				
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					#{msgs.ProgramacaoHora}
-				</f:facet>
-				
-				#{programacao.sessao.hora}
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					#{msgs.ProgramacaoIngressosDisponiveis}
-				</f:facet>
-				
-				#{programacao.sessao.ingressosDisponiveis}
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					#{msgs.ProgramacaoIngressosVendidos}
-				</f:facet>
-				
-				#{programacao.sessao.ingressosVendidos}
-			</h:column>
-						
-			<h:column>
+	
+		
+		<h:form prependId="false">
+
+    <p:dataTable id="dataTable" var="programacao" value="#{programacaoMB.getAllProgramacoes()}"
+                 paginator="true" rows="10"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5,10,15">
+        <f:facet name="header">
+            #{msgs.ProgramacaoListagem}
+        </f:facet>
+        
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="#{msgs.ProgramacaoFilme}" />
+            </f:facet>
+            <h:outputText value="#{programacao.filme.getNome()}" />
+        </p:column> 
+
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="#{msgs.ProgramacaoInicio}" />
+            </f:facet>
+            <h:outputText value="#{programacao.inicio}" />
+        </p:column>   
+        
+         <p:column>
+            <f:facet name="header">
+                <h:outputText value="#{msgs.ProgramacaoFim}" />
+            </f:facet>
+            <h:outputText value="#{programacao.fim}" />
+        </p:column>       
+
+        <p:column>
 				<f:facet name="header">
 					#{msgs.opcoes}
 				</f:facet>
-				<h:panelGrid columns="2" >
+				<p:panelGrid columns="2" >
 				
 					<!-- Always save the id as hidden when you use a request scope MB -->
 					<h:inputHidden value="#{programacao.id}" />
 					
 					
-					<h:commandButton action="#{programacaoMB.updateProgramacaoStart()}" value="#{msgs.update}" immediate="true">
+					<p:commandButton action="#{programacaoMB.updateProgramacaoStart()}" value="#{msgs.update}" immediate="true" >
 						<f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
-					</h:commandButton>
+					</p:commandButton>
 					
-					<h:commandButton action="#{programacaoMB.deleteProgramacaoStart()}" value="#{msgs.delete}">
+					<p:commandButton action="#{programacaoMB.deleteProgramacaoStart()}" value="#{msgs.delete}">
 						<f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
-					</h:commandButton>
+					</p:commandButton>
 					
-				</h:panelGrid>
-			</h:column>
-		</h:dataTable>
-		<!-- This button is displayed to the programacao, just to you see the error msg  -->
-		<h:commandButton action="#{programacaoMB.createProgramacaoStart()}" value="#{msgs.create} #{msgs.Programacao}" />
-	</h:form>
+				</p:panelGrid>
+			</p:column>
+    </p:dataTable>
+   	<br />
+					<p:commandButton action="#{programacaoMB.createProgramacaoStart()}" value="#{msgs.create} #{msgs.Programacao}" />
+</h:form>  
 </ui:define>
 </ui:decorate>
 </html>

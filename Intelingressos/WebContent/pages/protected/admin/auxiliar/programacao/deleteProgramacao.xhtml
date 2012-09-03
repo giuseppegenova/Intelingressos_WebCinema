@@ -9,12 +9,12 @@
 	<h:form>
 		<h:messages/>
 		
-		<h3>#{msgs.ProgramacaoDeleteHeader}: #{programacaoMB.programacao.filme.nome}</h3>
+		<h3>#{msgs.ProgramacaoDeleteHeader}: #{programacaoMB.programacao.filme.getNome()}</h3>
 		<h:inputHidden value="#{programacaoMB.programacao.id}" />
 		<h:panelGrid columns="2">
 			
 			<h:commandButton action="#{programacaoMB.deleteProgramacaoEnd()}" value="#{msgs.delete}" />
-			<h:commandButton action="#{programacaoMB.listAllSessoes()}" value="#{msgs.cancel}" immediate="true" />
+			<h:commandButton action="#{programacaoMB.listAllProgramacoes()}" value="#{msgs.cancel}" immediate="true" />
 		</h:panelGrid>
 		<br/>
 	</h:form>

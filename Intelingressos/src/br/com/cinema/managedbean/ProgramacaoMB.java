@@ -14,7 +14,10 @@ import br.com.cinema.entity.Filme;
 import br.com.cinema.entity.Programacao;
 import br.com.cinema.entity.Sala;
 import br.com.cinema.entity.Sessao;
+import br.com.cinema.facade.local.FilmeFacadeLocal;
 import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
+import br.com.cinema.facade.local.SalaFacadeLocal;
+import br.com.cinema.facade.local.SessaoFacadeLocal;
 
 @ManagedBean
 @RequestScoped
@@ -28,6 +31,15 @@ public class ProgramacaoMB {
 
 	@EJB
 	private ProgramacaoFacadeLocal programacaoFacade;
+	
+	@EJB
+	private FilmeFacadeLocal  filmeFacade;
+	
+	@EJB
+	private SalaFacadeLocal salaFacade;
+	
+	@EJB
+	private SessaoFacadeLocal sessaoFacade;
 	
 	private Programacao programacao;	
 	
@@ -84,10 +96,11 @@ public class ProgramacaoMB {
 		return programacao;
 	}
 
-	public void setProgramacao(Programacao programacao) {		
-		this.programacao = programacao;
+	public void setProgramacao(Programacao programacao) {
+		this.programacao = programacao;		
 	}
 	
+		
 	public List<Programacao> getAllProgramacoes() {
 		return programacaoFacade.findAll();
 	}	
@@ -119,8 +132,10 @@ public class ProgramacaoMB {
 	
 	public String deleteProgramacaoEnd(){
 		try {			
-			programacaoFacade.delete(programacao);			
-			
+			programacaoFacade.delete(programacao);
+			filmeFacade.delete(filme);
+			salaFacade.delete(sala);
+			sessaoFacade.delete(sessao);			
 		} catch (EJBException e) {
 			sendErrorMessageToUser("Houve um erro. Procure o administrador do sistema");
 			return STAY_IN_THE_SAME_PAGE;
@@ -138,14 +153,20 @@ public class ProgramacaoMB {
 	
 	public String createProgramacaoEnd(){
 		try {
+			if(programacao.getInicio().before(programacao.getFim())){
 			programacao.setFilme(filme);
 			programacao.setSala(sala);
-			programacao.setSessao(sessao);			
+			programacao.setSessao(sessao);
 			programacaoFacade.save(programacao);
+			}
+			else{
+				programacao.setFim(null);
+				sendErrorMessageToUser("A data de finalização da programação deve ser posterior a data de início");
+				return STAY_IN_THE_SAME_PAGE;
+			}
 			
 		} catch (EJBException e) {
-			sendErrorMessageToUser("Houve um erro! Procure o administrador do sistema");
-			
+			sendErrorMessageToUser("Houve um erro! Procure o administrador do sistema");			
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
