@@ -10,115 +10,121 @@
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 
 	<ui:define name="centro">
-		<h1 align="center">#{msgs.clienteTitleCadastro}</h1>
-		
-		<fieldset>
-			<legend>#{msgs.clienteCreateFieldset}</legend>
+		<p:panel id="panelTitulo" header="#{msgs.ClienteTitleCadastro}"
+			style="margin-bottom:10px;">
 			<h:form>
-			<h:messages />
-				<h:panelGrid columns="2" styleClass="panelGrid"
-					rowClasses="panelFirstLine,panelNextLine">
-					
-					<h:outputLabel for="clienteEmail" value="#{msgs.Email}" />
-					<h:inputText id="clienteEmail" value="#{clienteMB.cliente.email}"
-						required="true" requiredMessage="#{msgs.EmailRequired}" />
+			<p:panel id="panelCadastroLogin" header="#{msgs.ClienteCreateFieldset}"
+			style="margin-bottom:10px;">
+				<h:messages style="color: red"/>
+				<h:panelGrid columns="3" styleClass="panelGrid"
+						rowClasses="panelFirstLine,panelNextLine" >
 
-					<h:outputLabel for="clienteSenha" value="#{msgs.Senha}" />
-					<h:inputSecret redisplay="false" id="clienteSenha"
+					<p:outputLabel for="clienteEmail" value="#{msgs.Email}" style="color: blue;"/>
+					<p:inputText id="clienteEmail" value="#{clienteMB.cliente.email}"
+						required="true" requiredMessage="#{msgs.EmailRequired}" />
+					<h:messages severity="info,warn" for="clienteEmail" style="color: red"/>
+
+					<p:outputLabel for="clienteSenha" value="#{msgs.Senha}" style="color: blue;"/>					
+					<p:password redisplay="false" id="clienteSenha" feedback="true" inline="true" 
 						value="#{clienteMB.cliente.senha}" required="true"
 						requiredMessage="#{msgs.SenhaRequired}" />
+					<h:messages severity="info,warn" for="clienteSenha" style="color: red"/>	
+									
 				</h:panelGrid>
+				</p:panel>
+				<p:panel id="panelCadastroPessoal" header="#{msgs.ClienteCreateFieldsetPessoal}" 
+						style="margin-bottom:10px;">
+					<h:panelGrid columns="3" styleClass="panelGrid"
+						rowClasses="panelFirstLine,panelNextLine">
+						<h:messages />
+
+						<p:outputLabel for="clienteNome" value="#{msgs.Nome}" style="color: blue;"/>
+						<p:inputText id="clienteNome" value="#{clienteMB.cliente.nome}"
+							required="true" requiredMessage="#{msgs.NomeRequired}" />
+						<h:messages severity="info,warn" for="clienteNome" style="color: red"/>
+						
+						<p:outputLabel for="clienteCpf" value="#{msgs.ClienteCpf}" style="color: blue;"/>
+						<p:inputMask mask="999.999.999-99" id="clienteCpf"
+							value="#{clienteMB.cliente.cpf}" required="true"
+							requiredMessage="#{msgs.CpfRequired}" size="14" />
+						<h:messages severity="info,warn" for="clienteCpf" style="color: red"/>
+
+						<p:outputLabel for="clienteCelular" value="#{msgs.Celular}" style="color: blue;"/>
+						<p:inputMask mask="(99)9999-9999" id="clienteCelular"
+							value="#{clienteMB.cliente.celular}" required="true"
+							requiredMessage="#{msgs.CelularRequired}" />
+						<h:messages severity="info,warn" for="clienteCelular" style="color: red"/>
+
+						<p:outputLabel for="clienteTelefone" value="#{msgs.Telefone}" style="color: blue;"/>
+						<p:inputMask mask="(99)9999-9999" id="clienteTelefone"
+							value="#{clienteMB.cliente.telefone}" required="true"
+							requiredMessage="#{msgs.TelefoneRequired}" />
+						<h:messages severity="info,warn" for="clienteTelefone" style="color: red"/>
+
+						<p:outputLabel for="clienteEnderecoLogradouro"
+							value="#{msgs.EnderecoLogradouro}" style="color: blue;"/>
+						<p:inputText id="clienteEnderecoLogradouro"
+							value="#{clienteMB.endereco.logradouro}" required="true"
+							requiredMessage="#{msgs.LogradouroRequired}" />
+						<h:messages severity="info,warn" for="clienteEnderecoLogradouro" style="color: red"/>
+
+						<p:outputLabel for="clienteEnderecoNumero"
+							value="#{msgs.EnderecoNumero}" style="color: blue;"/>
+						<p:inputText id="clienteEnderecoNumero"
+							value="#{clienteMB.endereco.numero}" required="false"
+							requiredMessage="#{msgs.NumeroRequired}" />
+						<h:messages severity="info,warn" for="clienteEnderecoNumero" style="color: red"/>
+
+						<p:outputLabel for="clienteEnderecoComplemento"
+							value="#{msgs.EnderecoComplemento}" style="color: blue;"/>
+						<p:inputText id="clienteEnderecoComplemento"
+							value="#{clienteMB.endereco.complemento}" required="true"
+							requiredMessage="#{msgs.ComplementoRequired}" />
+						<h:messages severity="info,warn" for="clienteEnderecoComplemento" style="color: red"/>
+
+						<p:outputLabel for="clienteEnderecoCep"
+							value="#{msgs.EnderecoCep}" style="color: blue;"/>
+						<p:inputMask mask="999.999-99" id="clienteEnderecoCep"
+							value="#{clienteMB.endereco.cep}" required="true"
+							requiredMessage="#{msgs.CepRequired}" />
+						<h:messages severity="info,warn" for="clienteEnderecoCep" style="color: red"/>
+
+						<p:outputLabel value="Estado:" for="estado" style="color: blue;"/>
+						<p:selectOneMenu id="estado" value="#{clienteMB.estado}">
+							<f:selectItem itemLabel="-- Selecionar Estado --"
+								itemValue="null" />
+							<f:selectItems value="#{clienteMB.listAllEstados()}" var="estado"
+								itemLabel="#{estado.nome}" itemValue="#{estado}"
+								styleClass="ui-widget ui-widget-header" />
+							<f:ajax render="cidade"
+								listener="#{clienteMB.atualizaCidades}" event="change"/> 
+						</p:selectOneMenu>
+						<h:messages severity="info,warn" for="estado" style="color: red"/>
+
+						<p:outputLabel value="Cidade:" for="cidade" style="color: blue;"/>
+						<p:selectOneMenu id="cidade" value="#{clienteMB.cidade}">
+							<f:selectItem itemLabel="-- Selecionar Cidade --" itemValue="" />
+							<f:selectItems value="#{clienteMB.cidades}" var="cidade"
+								itemLabel="#{cidade.nome}" itemValue="#{cidade.id}"
+								styleClass="ui-widget ui-widget-header" />
+						</p:selectOneMenu>
+						<h:messages severity="info,warn" for="cidade" style="color: red"/>
+					</h:panelGrid>
+				</p:panel>
 			</h:form>
-		</fieldset>
+		</p:panel>
+		<h:panelGrid columns="2">
 
-		<fieldset>
-			<legend>#{msgs.clienteCreateFieldsetPessoal}</legend>
-			<h:form>
-			<h:messages />
+			<p:commandButton action="#{clienteMB.createClienteEnd()}"
+				value="#{msgs.create}" />
 
-				<h:panelGrid columns="2" styleClass="panelGrid"
-					rowClasses="panelFirstLine,panelNextLine">
+			<p:commandButton action="#{clienteMB.listAllClientes()}"
+				value="#{msgs.cancel}" immediate="true" />
 
-					
-
-					<h:outputLabel for="clienteNome" value="#{msgs.Nome}" />
-					<h:inputText id="clienteNome" value="#{clienteMB.cliente.nome}"
-						required="true" requiredMessage="#{msgs.NomeRequired}" />
-
-					<h:outputLabel id="clienteCpfLabel" value="#{msgs.clienteCpf}" />
-					<p:inputMask mask="999.999.999-99" id="clienteCpf"
-						value="#{clienteMB.cliente.cpf}" required="true"
-						requiredMessage="#{msgs.CpfRequired}" size="14" />
-
-					<h:outputLabel id="clienteCelularLabel" value="#{msgs.Celular}" />
-					<p:inputMask mask="(99)9999-9999" id="clienteCelular"
-						value="#{clienteMB.cliente.celular}" required="true"
-						requiredMessage="#{msgs.CelularRequired}" />
-
-					<h:outputLabel id="clienteTelefoneLabel" value="#{msgs.Telefone}" />
-					<p:inputMask mask="(99)9999-9999" id="clienteTelefone"
-						value="#{clienteMB.cliente.telefone}" required="true"
-						requiredMessage="#{msgs.TelefoneRequired}" />
-
-					<h:outputLabel for="clienteEnderecoLogradouro"
-						value="#{msgs.EnderecoLogradouro}" />
-					<h:inputText id="clienteEnderecoLogradouro"
-						value="#{clienteMB.endereco.logradouro}" required="true"
-						requiredMessage="#{msgs.LogradouroRequired}" />
-
-					<h:outputLabel for="clienteEnderecoNumero"
-						value="#{msgs.EnderecoNumero}" />
-					<h:inputText id="clienteEnderecoNumero"
-						value="#{clienteMB.endereco.numero}" required="false"
-						requiredMessage="#{msgs.NumeroRequired}" />
-
-					<h:outputLabel for="clienteEnderecoComplemento"
-						value="#{msgs.EnderecoComplemento}" />
-					<h:inputText id="clienteEnderecoComplemento"
-						value="#{clienteMB.endereco.complemento}" required="true"
-						requiredMessage="#{msgs.ComplementoRequired}" />
-
-					<h:outputLabel for="clienteEnderecoCep" value="#{msgs.EnderecoCep}" />
-					<p:inputMask mask="999.999-99" id="clienteEnderecoCep"
-						value="#{clienteMB.endereco.cep}" required="true"
-						requiredMessage="#{msgs.CepRequired}" />
-
-					<h:outputLabel value="Estado:" for="estado" />
-					<h:selectOneMenu id="estado" value="#{clienteMB.estado}" >
-						<f:selectItem itemLabel="-- Selecionar Estado --" itemValue="null" />
-						<f:selectItems value="#{clienteMB.listAllEstados()}" var="estado"
-							itemLabel="#{estado.nome}" itemValue="#{estado.id}"
-							styleClass="ui-widget ui-widget-header" />
-					<f:ajax event="change" render="cidade" listener="#{clienteMB.atualizarCidades(estado.nome)}"/> 					
-					</h:selectOneMenu>
-
-					<h:outputLabel value="Cidade:" for="cidade" />
-					<h:selectOneMenu id="cidade" value="#{clienteMB.cidade}">
-						<f:selectItem itemLabel="-- Selecionar Cidade --" itemValue="" />
-						<f:selectItems value="#{cidadeMB.cidades}" var="cidade"
-							itemLabel="#{cidade.nome}" itemValue="#{cidade.id}"
-							styleClass="ui-widget ui-widget-header" />						
-					</h:selectOneMenu>
-
-				</h:panelGrid>
-			</h:form>
-		</fieldset>		
-		<h:form>
-			<fieldset>
-			<h:panelGrid columns="2">
-
-				<h:commandButton action="#{clienteMB.createClienteEnd()}"
-					value="#{msgs.create}" />
-
-				<h:commandButton action="#{clienteMB.listAllClientes()}"
-					value="#{msgs.cancel}" immediate="true" />
-
-			</h:panelGrid>
-		</fieldset>
-		</h:form>
+		</h:panelGrid>
 
 	</ui:define>
-
 </ui:decorate>
+
 
 </html>

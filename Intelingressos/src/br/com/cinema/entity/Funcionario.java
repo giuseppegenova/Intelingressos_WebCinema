@@ -17,6 +17,13 @@ import javax.persistence.Table;
 @Table(name = "funcionario")
 public class Funcionario extends Usuario implements Serializable{
 
+	public Funcionario(String nome, String email, String telefone,
+			String celular, String senha) {
+		super(nome, email, telefone, celular, senha);		
+	}
+	
+	public Funcionario(){}
+
 	/**
 	 * 
 	 */

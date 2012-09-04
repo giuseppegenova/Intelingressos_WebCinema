@@ -133,9 +133,9 @@ public class ProgramacaoMB {
 	public String deleteProgramacaoEnd(){
 		try {			
 			programacaoFacade.delete(programacao);
-			filmeFacade.delete(filme);
+			/*filmeFacade.find(filme.getId());
 			salaFacade.delete(sala);
-			sessaoFacade.delete(sessao);			
+			sessaoFacade.delete(sessao);	*/		
 		} catch (EJBException e) {
 			sendErrorMessageToUser("Houve um erro. Procure o administrador do sistema");
 			return STAY_IN_THE_SAME_PAGE;

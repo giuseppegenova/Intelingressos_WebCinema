@@ -42,7 +42,7 @@ public class Endereco implements Serializable{
 	private String cep;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="cidade_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name="cidade_id", nullable = false)
 	private Cidade cidade;
 	
 	public Long getId() {

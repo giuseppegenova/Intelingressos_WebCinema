@@ -1,9 +1,7 @@
 package br.com.cinema.managedbean;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -53,9 +51,7 @@ public class ClienteMB {
 	
 	private Estado estado;
 	
-	private List<Estado> estados;
-	
-	private Map<String,String> estadosMapeados = new HashMap<String, String>();
+	private List<Estado> estados;	
 	
 	public ClienteMB() {
 		
@@ -65,6 +61,7 @@ public class ClienteMB {
 		cidades = new ArrayList<Cidade>(0);
 		estado = new Estado();
 		estados = new ArrayList<Estado>(0);
+		atualizaCidades();
 	}
 
 	public Cliente getCliente() {
@@ -113,14 +110,7 @@ public class ClienteMB {
 	public List<Estado> getEstados() {
 		return estados;
 	}
-
-	public Map<String, String> getEstadosMapeados() {
-		return estadosMapeados;
-	}
-
-	public void setEstadosMapeados(Map<String, String> estadosMapeados) {
-		this.estadosMapeados = estadosMapeados;
-	}
+	
 
 	public void setEstados(List<Estado> estados) {
 		this.estados = estados;
@@ -132,10 +122,10 @@ public class ClienteMB {
 	
 	
 
-	public List<Cidade> atualizaCidades(String nome){
-		Estado estadoTP = estadoFacade.findEstadoByNome(nome);
-		cidades = (List<Cidade>) estadoTP.getCidades();
-		return cidades;
+	@SuppressWarnings("unchecked")
+	public void atualizaCidades(){
+		Estado estadoTP = estadoFacade.findEstadoByNome(this.estado.getNome());
+		this.cidades = (List<Cidade>) cidadeFacade.findCidadeByNome(estadoTP.getNome());		
 	}
 	
 	public List<Estado> listAllEstados(){

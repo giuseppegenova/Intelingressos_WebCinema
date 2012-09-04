@@ -1,7 +1,7 @@
 package br.com.cinema.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,7 +34,7 @@ public class Estado implements Serializable{
 	private String sigla;
 	
 	@OneToMany(mappedBy="estado", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)  
-	private Collection<Cidade> cidades;
+	private List<Cidade> cidades;
 
 	public Long getId() {
 		return id;
@@ -61,30 +61,49 @@ public class Estado implements Serializable{
 	}
 
 	
-	public Collection<Cidade> getCidades() {
+	public List<Cidade> getCidades() {
 		return cidades;
 	}
 
-	public void setCidades(Collection<Cidade> cidades) {
+	public void setCidades(List<Cidade> cidades) {
 		this.cidades = cidades;
 	}
 
 	@Override
-	public int hashCode(){
-		return Integer.parseInt(id.toString());
+	public String toString() {
+		return "Estado [id=" + id + "]";
 	}
-	
+
 	@Override
-	public boolean equals(Object obj){
-		if(obj instanceof Estado){
-			Estado estado = (Estado)obj;
-			return estado.getId() == id;
-		}
-		return false;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cidades == null) ? 0 : cidades.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
-	
+
 	@Override
-	public String toString(){
-		return nome;
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Estado))
+			return false;
+		Estado other = (Estado) obj;
+		if (cidades == null) {
+			if (other.cidades != null)
+				return false;
+		} else if (!cidades.equals(other.cidades))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
+
+	
 }
