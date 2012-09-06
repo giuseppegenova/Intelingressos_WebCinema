@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import br.com.cinema.entity.Cidade;
 import br.com.cinema.entity.Cliente;
@@ -60,8 +61,7 @@ public class ClienteMB {
 		cidade = new Cidade();
 		cidades = new ArrayList<Cidade>(0);
 		estado = new Estado();
-		estados = new ArrayList<Estado>(0);
-		atualizaCidades();
+		estados = new ArrayList<Estado>(0);		
 	}
 
 	public Cliente getCliente() {
@@ -122,10 +122,14 @@ public class ClienteMB {
 	
 	
 
-	@SuppressWarnings("unchecked")
-	public void atualizaCidades(){
-		Estado estadoTP = estadoFacade.findEstadoByNome(this.estado.getNome());
-		this.cidades = (List<Cidade>) cidadeFacade.findCidadeByNome(estadoTP.getNome());		
+	
+	public void atualizaCidades(AjaxBehaviorEvent event){
+		String id  = (String) event.getComponent().getAttributes().get("value");
+		if(id != null) {
+	           Estado estadoTP = estadoFacade.find(Long.parseLong(id));
+	           this.cidades = estadoTP.getCidades();
+	           System.out.println("\n" + cidades);
+		}		
 	}
 	
 	public List<Estado> listAllEstados(){

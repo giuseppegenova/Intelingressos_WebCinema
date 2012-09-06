@@ -10,12 +10,17 @@
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 
 	<ui:define name="centro">
+	
 		<p:panel id="panelTitulo" header="#{msgs.ClienteTitleCadastro}"
 			style="margin-bottom:10px;">
+			
 			<h:form>
+			
 			<p:panel id="panelCadastroLogin" header="#{msgs.ClienteCreateFieldset}"
 			style="margin-bottom:10px;">
+			
 				<h:messages style="color: red"/>
+				
 				<h:panelGrid columns="3" styleClass="panelGrid"
 						rowClasses="panelFirstLine,panelNextLine" >
 
@@ -31,11 +36,15 @@
 					<h:messages severity="info,warn" for="clienteSenha" style="color: red"/>	
 									
 				</h:panelGrid>
+				
 				</p:panel>
+				
 				<p:panel id="panelCadastroPessoal" header="#{msgs.ClienteCreateFieldsetPessoal}" 
 						style="margin-bottom:10px;">
+						
 					<h:panelGrid columns="3" styleClass="panelGrid"
 						rowClasses="panelFirstLine,panelNextLine">
+						
 						<h:messages />
 
 						<p:outputLabel for="clienteNome" value="#{msgs.Nome}" style="color: blue;"/>
@@ -90,29 +99,33 @@
 						<h:messages severity="info,warn" for="clienteEnderecoCep" style="color: red"/>
 
 						<p:outputLabel value="Estado:" for="estado" style="color: blue;"/>
-						<p:selectOneMenu id="estado" value="#{clienteMB.estado}">
-							<f:selectItem itemLabel="-- Selecionar Estado --"
+						<p:selectOneMenu id="estado" value="#{clienteMB.estado}" required="true" 
+						requiredMessage="#{msgs.EstadoSelectRequired}" immediate="true">
+							<f:selectItem itemLabel=" Selecionar Estado "
 								itemValue="null" />
 							<f:selectItems value="#{clienteMB.listAllEstados()}" var="estado"
-								itemLabel="#{estado.nome}" itemValue="#{estado}"
-								styleClass="ui-widget ui-widget-header" />
-							<f:ajax render="cidade"
-								listener="#{clienteMB.atualizaCidades}" event="change"/> 
+								itemLabel="#{estado.nome}" styleClass="ui-widget ui-widget-header" />
+							<f:ajax event="change" listener="#{clienteMB.atualizaCidades()}" execute="estado" render="cidade"/> 
 						</p:selectOneMenu>
 						<h:messages severity="info,warn" for="estado" style="color: red"/>
 
 						<p:outputLabel value="Cidade:" for="cidade" style="color: blue;"/>
-						<p:selectOneMenu id="cidade" value="#{clienteMB.cidade}">
-							<f:selectItem itemLabel="-- Selecionar Cidade --" itemValue="" />
-							<f:selectItems value="#{clienteMB.cidades}" var="cidade"
-								itemLabel="#{cidade.nome}" itemValue="#{cidade.id}"
+						<p:selectOneMenu id="cidade" value="#{clienteMB.cidade}" required="true" requiredMessage="#{msgs.CidadeSelectRequired}">
+							<f:selectItem itemLabel=" Selecionar Cidade " itemValue="" />
+							<f:selectItems value="#{clienteMB.getCidades()}" var="cidades"
+								itemLabel="#{cidades.nome}" itemValue="#{cidades.id}"
 								styleClass="ui-widget ui-widget-header" />
 						</p:selectOneMenu>
-						<h:messages severity="info,warn" for="cidade" style="color: red"/>
+						<h:messages severity="info,warn" for="cidade" style="color: red"/> 
+						
 					</h:panelGrid>
+					
 				</p:panel>
+				
 			</h:form>
+			
 		</p:panel>
+		
 		<h:panelGrid columns="2">
 
 			<p:commandButton action="#{clienteMB.createClienteEnd()}"
@@ -124,7 +137,7 @@
 		</h:panelGrid>
 
 	</ui:define>
+	
 </ui:decorate>
-
 
 </html>
