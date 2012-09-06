@@ -1,16 +1,5 @@
 package br.com.cinema.managedbean;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
-
 import br.com.cinema.entity.Cidade;
 import br.com.cinema.entity.Cliente;
 import br.com.cinema.entity.Endereco;
@@ -19,6 +8,15 @@ import br.com.cinema.facade.local.CidadeFacadeLocal;
 import br.com.cinema.facade.local.ClienteFacadeLocal;
 import br.com.cinema.facade.local.EnderecoFacadeLocal;
 import br.com.cinema.facade.local.EstadoFacadeLocal;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 @ManagedBean
 @SessionScoped
@@ -54,14 +52,12 @@ public class ClienteMB {
 	
 	private List<Estado> estados;	
 	
-	public ClienteMB() {
-		
-		endereco = new Endereco();
-		cliente = new Cliente();
-		cidade = new Cidade();
-		cidades = new ArrayList<Cidade>(0);
-		estado = new Estado();
-		estados = new ArrayList<Estado>(0);		
+	public ClienteMB() {		
+                cliente = new Cliente();
+                endereco = new Endereco();
+                cidade = new Cidade();
+                estado = new Estado();
+                carregaEstados();
 	}
 
 	public Cliente getCliente() {
@@ -88,7 +84,10 @@ public class ClienteMB {
 	}	
 
 	public Cidade getCidade() {
-		return cidade;
+            if(cidade == null){
+                cidade = new Cidade();
+            }
+            return cidade;
 	}
 
 	public void setCidade(Cidade cidade) {
@@ -96,6 +95,9 @@ public class ClienteMB {
 	}
 	
 	public List<Cidade> getCidades() {
+            if(cidades == null){
+                cidades = new ArrayList<Cidade>(0);
+            }
 		return cidades;
 	}	
 
@@ -108,6 +110,9 @@ public class ClienteMB {
 	}
 
 	public List<Estado> getEstados() {
+            if(estados == null){
+                estados = new ArrayList<Estado>(0);
+            }
 		return estados;
 	}
 	
@@ -158,7 +163,7 @@ public class ClienteMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Cliente Atualizado");
+		sendInfoMessageToUser("Operaï¿½ï¿½o realizada com sucesso: Cliente Atualizado");
 		return LIST_ALL_CLIENTES;
 	}
 	
@@ -178,7 +183,7 @@ public class ClienteMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Cliente Excluido");
+		sendInfoMessageToUser("Operaï¿½ï¿½o realizada com sucesso: Cliente Excluido");
 		
 		return LIST_ALL_CLIENTES;
 	}
@@ -200,7 +205,7 @@ public class ClienteMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Cliente Criado");
+		sendInfoMessageToUser("Operaï¿½ï¿½o realizada com sucesso: Cliente Criado");
 		
 		return LIST_ALL_CLIENTES;
 	}
@@ -235,5 +240,12 @@ public class ClienteMB {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();		
 		return STAY_IN_THE_SAME_PAGE;
 	}
+        
+        private void carregaEstados(){
+            if(estados == null){
+                estados = new ArrayList<Estado>(0);
+            }
+            this.estados = estadoFacade.findAll();
+        }
 	
 }
