@@ -1,18 +1,16 @@
 package br.com.cinema.managedbean;
 
+import br.com.cinema.entity.Cidade;
+import br.com.cinema.entity.Estado;
+import br.com.cinema.facade.local.EstadoFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
-import br.com.cinema.entity.Cidade;
-import br.com.cinema.entity.Estado;
-import br.com.cinema.facade.local.EstadoFacadeLocal;
 
 @ManagedBean
 @RequestScoped
@@ -106,7 +104,7 @@ public class EstadoMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Estado Atualizada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Estado Atualizada");
 		return LIST_ALL_ESTADOS;
 	}
 	
@@ -124,7 +122,7 @@ public class EstadoMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Estado Excluida");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Estado Excluida");
 		
 		return LIST_ALL_ESTADOS;
 	}
@@ -145,7 +143,7 @@ public class EstadoMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Estado Criada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Estado Criada");
 		
 		return LIST_ALL_ESTADOS;
 	}

@@ -2,7 +2,6 @@ package br.com.cinema.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +13,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ *
+ * @author lgenova
+ */
 @Entity
 @Table(name="cliente")
 @NamedQuery(name="Cliente.findByNome", query="select c from Cliente c where c.nome = :nome")
@@ -66,58 +69,42 @@ public class Cliente extends Usuario implements Serializable{
 		this.ingressoCompra = ingressoCompra;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((ingressoCompra == null) ? 0 : ingressoCompra.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 61 * hash + (this.cpf != null ? this.cpf.hashCode() : 0);
+        hash = 61 * hash + (this.ingressoCompra != null ? this.ingressoCompra.hashCode() : 0);
+        return hash;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!super.equals(obj)) {
-			return false;
-		}
-		if (!(obj instanceof Cliente)) {
-			return false;
-		}
-		Cliente other = (Cliente) obj;
-		if (cpf == null) {
-			if (other.cpf != null) {
-				return false;
-			}
-		} else if (!cpf.equals(other.cpf)) {
-			return false;
-		}
-		if (id == null) {
-			if (other.id != null) {
-				return false;
-			}
-		} else if (!id.equals(other.id)) {
-			return false;
-		}
-		if (ingressoCompra == null) {
-			if (other.ingressoCompra != null) {
-				return false;
-			}
-		} else if (!ingressoCompra.equals(other.ingressoCompra)) {
-			return false;
-		}
-		return true;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.cpf == null) ? (other.cpf != null) : !this.cpf.equals(other.cpf)) {
+            return false;
+        }
+        if (this.ingressoCompra != other.ingressoCompra && (this.ingressoCompra == null || !this.ingressoCompra.equals(other.ingressoCompra))) {
+            return false;
+        }
+        return true;
+    }
 
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", cpf=" + cpf + ", ingressoCompra="
-				+ ingressoCompra + "]";
-	}
+    @Override
+    public String toString() {
+        return "Cliente{" + "id=" + id + ", cpf=" + cpf + ", ingressoCompra=" + ingressoCompra + '}';
+    }
+
+	
 
 	
 }

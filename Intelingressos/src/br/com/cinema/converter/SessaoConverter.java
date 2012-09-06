@@ -1,5 +1,7 @@
 package br.com.cinema.converter;
 
+import br.com.cinema.entity.Sessao;
+import br.com.cinema.facade.local.SessaoFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
@@ -8,9 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
-
-import br.com.cinema.entity.Sessao;
-import br.com.cinema.facade.local.SessaoFacadeLocal;
 
 @FacesConverter(value="sessaoConverter")
 @Stateless
@@ -33,6 +32,7 @@ public class SessaoConverter implements Converter {
 	@EJB
 	private SessaoFacadeLocal sessaoFacade;
 	  
+    @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uicomp, String value) {  
     	
     	long sessaoId;
@@ -41,12 +41,13 @@ public class SessaoConverter implements Converter {
 			sessaoId = Long.parseLong(value);
 			return sessaoFacade.find(sessaoId);
 		} catch (NumberFormatException exception) {
-			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de converção", "Erro ao selecionar este item"));
+			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de converï¿½ï¿½o", "Erro ao selecionar este item"));
 		}
 
 		
     }  
   
+    @Override
     public String getAsString(FacesContext facesContext, UIComponent uicomp, Object value) {  
     	
     	try {
@@ -61,7 +62,7 @@ public class SessaoConverter implements Converter {
     			return "";
     		}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
     	return String.valueOf(sessao.getId());
     }    

@@ -1,13 +1,11 @@
 package br.com.cinema.facade;
 
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-
 import br.com.cinema.dao.FilmeDAO;
 import br.com.cinema.entity.Filme;
 import br.com.cinema.facade.local.FilmeFacadeLocal;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 @Stateless
 public class FilmeFacade implements FilmeFacadeLocal{

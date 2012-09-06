@@ -1,10 +1,8 @@
 package br.com.cinema.facade.local;
 
-import java.util.List;
-
-import javax.ejb.Local;
-
 import br.com.cinema.entity.Estado;
+import java.util.List;
+import javax.ejb.Local;
 
 @Local
 public interface EstadoFacadeLocal {

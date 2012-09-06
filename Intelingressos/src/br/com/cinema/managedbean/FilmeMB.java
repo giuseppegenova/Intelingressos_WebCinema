@@ -1,17 +1,15 @@
 package br.com.cinema.managedbean;
 
+import br.com.cinema.entity.Filme;
+import br.com.cinema.facade.local.FilmeFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
-import br.com.cinema.entity.Filme;
-import br.com.cinema.facade.local.FilmeFacadeLocal;
 
 @ManagedBean
 @RequestScoped
@@ -64,7 +62,7 @@ public class FilmeMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Filme Atualizada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Filme Atualizada");
 		return LIST_ALL_FILMES;
 	}
 	
@@ -82,7 +80,7 @@ public class FilmeMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Filme Excluida");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Filme Excluida");
 		
 		return LIST_ALL_FILMES;
 	}
@@ -102,7 +100,7 @@ public class FilmeMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Filme Criada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Filme Criada");
 		
 		return LIST_ALL_FILMES;
 	}

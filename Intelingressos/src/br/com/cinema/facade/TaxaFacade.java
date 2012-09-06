@@ -1,13 +1,11 @@
 package br.com.cinema.facade;
 
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-
 import br.com.cinema.dao.TaxaDAO;
 import br.com.cinema.entity.Taxa;
 import br.com.cinema.facade.local.TaxaFacadeLocal;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 @Stateless
 public class TaxaFacade implements TaxaFacadeLocal{

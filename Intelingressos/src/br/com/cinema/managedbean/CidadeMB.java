@@ -1,18 +1,16 @@
 package br.com.cinema.managedbean;
 
+import br.com.cinema.entity.Cidade;
+import br.com.cinema.entity.Estado;
+import br.com.cinema.facade.local.CidadeFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
-import br.com.cinema.entity.Cidade;
-import br.com.cinema.entity.Estado;
-import br.com.cinema.facade.local.CidadeFacadeLocal;
 
 @ManagedBean
 @RequestScoped
@@ -79,7 +77,7 @@ public class CidadeMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Cidade Atualizada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Cidade Atualizada");
 		return LIST_ALL_CIDADES;
 	}
 	
@@ -97,7 +95,7 @@ public class CidadeMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Cidade Excluida");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Cidade Excluida");
 		
 		return LIST_ALL_CIDADES;
 	}
@@ -118,7 +116,7 @@ public class CidadeMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Cidade Criada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Cidade Criada");
 		
 		return LIST_ALL_CIDADES;
 	}

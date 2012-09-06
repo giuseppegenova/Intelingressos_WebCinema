@@ -1,7 +1,6 @@
 package br.com.cinema.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -85,22 +84,47 @@ public class Endereco implements Serializable{
 		this.cep = cep;
 	}
 
-	@Override
-	public int hashCode(){
-		return Integer.parseInt(id.toString());
-	}
-	
-	@Override
-	public boolean equals(Object obj){
-		if(obj instanceof Endereco){
-			Endereco endereco = (Endereco)obj;
-			return endereco.getId() == id;
-		}
-		return false;
-	}
-	
-	@Override
-	public String toString(){
-		return logradouro;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 89 * hash + (this.logradouro != null ? this.logradouro.hashCode() : 0);
+        hash = 89 * hash + (this.numero != null ? this.numero.hashCode() : 0);
+        hash = 89 * hash + (this.complemento != null ? this.complemento.hashCode() : 0);
+        hash = 89 * hash + (this.cep != null ? this.cep.hashCode() : 0);
+        hash = 89 * hash + (this.cidade != null ? this.cidade.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Endereco other = (Endereco) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.logradouro == null) ? (other.logradouro != null) : !this.logradouro.equals(other.logradouro)) {
+            return false;
+        }
+        if (this.numero != other.numero && (this.numero == null || !this.numero.equals(other.numero))) {
+            return false;
+        }
+        if ((this.complemento == null) ? (other.complemento != null) : !this.complemento.equals(other.complemento)) {
+            return false;
+        }
+        if ((this.cep == null) ? (other.cep != null) : !this.cep.equals(other.cep)) {
+            return false;
+        }
+        if (this.cidade != other.cidade && (this.cidade == null || !this.cidade.equals(other.cidade))) {
+            return false;
+        }
+        return true;
+    }
+
+
 }

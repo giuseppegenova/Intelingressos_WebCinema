@@ -1,17 +1,15 @@
 package br.com.cinema.managedbean;
 
+import br.com.cinema.entity.Sala;
+import br.com.cinema.facade.local.SalaFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
-import br.com.cinema.entity.Sala;
-import br.com.cinema.facade.local.SalaFacadeLocal;
 
 @ManagedBean
 @RequestScoped
@@ -56,7 +54,7 @@ public class SalaMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Sala Atualizada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Sala Atualizada");
 		return LIST_ALL_SALAS;
 	}
 	
@@ -74,7 +72,7 @@ public class SalaMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Sala Excluida");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Sala Excluida");
 		
 		return LIST_ALL_SALAS;
 	}
@@ -94,7 +92,7 @@ public class SalaMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Sala Criada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Sala Criada");
 		
 		return LIST_ALL_SALAS;
 	}

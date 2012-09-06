@@ -1,17 +1,15 @@
 package br.com.cinema.managedbean;
 
+import br.com.cinema.entity.Sessao;
+import br.com.cinema.facade.local.SessaoFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
-import br.com.cinema.entity.Sessao;
-import br.com.cinema.facade.local.SessaoFacadeLocal;
 
 @ManagedBean
 @RequestScoped
@@ -56,7 +54,7 @@ public class SessaoMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Sessao Atualizada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Sessao Atualizada");
 		return LIST_ALL_SESSOES;
 	}
 	
@@ -74,7 +72,7 @@ public class SessaoMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Sessao Excluida");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Sessao Excluida");
 		
 		return LIST_ALL_SESSOES;
 	}
@@ -94,7 +92,7 @@ public class SessaoMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Sessao Criada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Sessao Criada");
 		
 		return LIST_ALL_SESSOES;
 	}

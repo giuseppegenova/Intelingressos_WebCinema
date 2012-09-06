@@ -1,15 +1,5 @@
 package br.com.cinema.managedbean;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-
 import br.com.cinema.entity.Filme;
 import br.com.cinema.entity.Programacao;
 import br.com.cinema.entity.Sala;
@@ -18,6 +8,14 @@ import br.com.cinema.facade.local.FilmeFacadeLocal;
 import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
 import br.com.cinema.facade.local.SalaFacadeLocal;
 import br.com.cinema.facade.local.SessaoFacadeLocal;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @RequestScoped
@@ -121,7 +119,7 @@ public class ProgramacaoMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Programacao Atualizada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Programacao Atualizada");
 		return LIST_ALL_PROGRAMACOES;
 	}
 	
@@ -141,7 +139,7 @@ public class ProgramacaoMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Programacao Excluida");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Programacao Excluida");
 		
 		return LIST_ALL_PROGRAMACOES;
 	}
@@ -161,7 +159,7 @@ public class ProgramacaoMB {
 			}
 			else{
 				programacao.setFim(null);
-				sendErrorMessageToUser("A data de finalização da programação deve ser posterior a data de início");
+				sendErrorMessageToUser("A data de finalizaÃ§Ã£o da programaÃ§Ã£o deve ser posterior a data de inï¿½cio");
 				return STAY_IN_THE_SAME_PAGE;
 			}
 			
@@ -170,7 +168,7 @@ public class ProgramacaoMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Programacao Criada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Programacao Criada");
 		
 		return LIST_ALL_PROGRAMACOES;
 	}

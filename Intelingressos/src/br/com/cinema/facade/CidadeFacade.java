@@ -1,13 +1,11 @@
 package br.com.cinema.facade;
 
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-
 import br.com.cinema.dao.CidadeDAO;
 import br.com.cinema.entity.Cidade;
 import br.com.cinema.facade.local.CidadeFacadeLocal;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 @Stateless
 public class CidadeFacade implements CidadeFacadeLocal{
@@ -40,6 +38,7 @@ public class CidadeFacade implements CidadeFacadeLocal{
 		return cidadeDAO.findAll();
 	}	
 	
+        @Override
 	public Cidade findCidadeByNome(String nome){
 		return cidadeDAO.findCidadeByNome(nome);
 	}

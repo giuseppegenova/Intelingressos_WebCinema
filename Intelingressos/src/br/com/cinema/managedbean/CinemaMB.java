@@ -1,17 +1,15 @@
 package br.com.cinema.managedbean;
 
+import br.com.cinema.entity.Cinema;
+import br.com.cinema.facade.local.CinemaFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
-import br.com.cinema.entity.Cinema;
-import br.com.cinema.facade.local.CinemaFacadeLocal;
 
 @ManagedBean
 @RequestScoped
@@ -56,7 +54,7 @@ public class CinemaMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Cinema Atualizada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Cinema Atualizada");
 		return LIST_ALL_CINEMAS;
 	}
 	
@@ -74,7 +72,7 @@ public class CinemaMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Cinema Excluida");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Cinema Excluida");
 		
 		return LIST_ALL_CINEMAS;
 	}
@@ -94,7 +92,7 @@ public class CinemaMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Cinema Criada");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Cinema Criada");
 		
 		return LIST_ALL_CINEMAS;
 	}

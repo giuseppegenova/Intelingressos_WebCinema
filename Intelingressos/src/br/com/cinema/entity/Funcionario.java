@@ -2,7 +2,6 @@ package br.com.cinema.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -64,22 +63,40 @@ public class Funcionario extends Usuario implements Serializable{
 		this.cinema = cinema;
 	}
 
-	@Override
-	public int hashCode() {
-		return Integer.parseInt(id.toString());
-	}
-	
-	@Override
-	public boolean equals(Object obj){
-		if(obj instanceof Funcionario){
-			Funcionario funcionario = (Funcionario)obj;
-			return funcionario.getId() == id;			
-		}
-		return false;
-	}
-		
-	@Override
-	public String toString(){
-		return super.getNome();
-	}
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 89 * hash + (this.cargo != null ? this.cargo.hashCode() : 0);
+        hash = 89 * hash + (this.cinema != null ? this.cinema.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Funcionario other = (Funcionario) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.cargo == null) ? (other.cargo != null) : !this.cargo.equals(other.cargo)) {
+            return false;
+        }
+        if (this.cinema != other.cinema && (this.cinema == null || !this.cinema.equals(other.cinema))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" + "id=" + id + ", cargo=" + cargo + ", cinema=" + cinema + '}';
+    }
+
+
 }

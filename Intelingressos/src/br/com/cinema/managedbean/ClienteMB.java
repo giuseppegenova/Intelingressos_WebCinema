@@ -10,6 +10,7 @@ import br.com.cinema.facade.local.EnderecoFacadeLocal;
 import br.com.cinema.facade.local.EstadoFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
@@ -57,8 +58,16 @@ public class ClienteMB {
                 endereco = new Endereco();
                 cidade = new Cidade();
                 estado = new Estado();
-                carregaEstados();
+                estados = new ArrayList<Estado>(0);
+                cidades = new ArrayList<Cidade>(0);
+                
 	}
+        
+        @PostConstruct
+        public void carregaEstados(){
+            this.estados = estadoFacade.findAll();
+        }
+        
 
 	public Cliente getCliente() {
 		if(cliente == null){
@@ -163,7 +172,7 @@ public class ClienteMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Opera��o realizada com sucesso: Cliente Atualizado");
+		sendInfoMessageToUser("Operação realizada com sucesso: Cliente Atualizado");
 		return LIST_ALL_CLIENTES;
 	}
 	
@@ -183,7 +192,7 @@ public class ClienteMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Opera��o realizada com sucesso: Cliente Excluido");
+		sendInfoMessageToUser("Operação realizada com sucesso: Cliente Excluido");
 		
 		return LIST_ALL_CLIENTES;
 	}
@@ -205,7 +214,7 @@ public class ClienteMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Opera��o realizada com sucesso: Cliente Criado");
+		sendInfoMessageToUser("Operação realizada com sucesso: Cliente Criado");
 		
 		return LIST_ALL_CLIENTES;
 	}
@@ -241,11 +250,5 @@ public class ClienteMB {
 		return STAY_IN_THE_SAME_PAGE;
 	}
         
-        private void carregaEstados(){
-            if(estados == null){
-                estados = new ArrayList<Estado>(0);
-            }
-            this.estados = estadoFacade.findAll();
-        }
-	
+       
 }

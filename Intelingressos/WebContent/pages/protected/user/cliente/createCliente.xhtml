@@ -27,13 +27,13 @@
 					<p:outputLabel for="clienteEmail" value="#{msgs.Email}" style="color: blue;"/>
 					<p:inputText id="clienteEmail" value="#{clienteMB.cliente.email}"
 						required="true" requiredMessage="#{msgs.EmailRequired}" />
-					<h:messages severity="info,warn" for="clienteEmail" style="color: red"/>
+					<h:messages  for="clienteEmail" style="color: red"/>
 
 					<p:outputLabel for="clienteSenha" value="#{msgs.Senha}" style="color: blue;"/>					
 					<p:password redisplay="false" id="clienteSenha" feedback="true" inline="true" 
 						value="#{clienteMB.cliente.senha}" required="true"
 						requiredMessage="#{msgs.SenhaRequired}" />
-					<h:messages severity="info,warn" for="clienteSenha" style="color: red"/>	
+					<h:messages  for="clienteSenha" style="color: red"/>	
 									
 				</h:panelGrid>
 				
@@ -68,55 +68,55 @@
 						<p:inputMask mask="(99)9999-9999" id="clienteTelefone"
 							value="#{clienteMB.cliente.telefone}" required="true"
 							requiredMessage="#{msgs.TelefoneRequired}" />
-						<h:messages severity="info,warn" for="clienteTelefone" style="color: red"/>
+						<h:messages  for="clienteTelefone" style="color: red"/>
 
 						<p:outputLabel for="clienteEnderecoLogradouro"
 							value="#{msgs.EnderecoLogradouro}" style="color: blue;"/>
 						<p:inputText id="clienteEnderecoLogradouro"
 							value="#{clienteMB.endereco.logradouro}" required="true"
 							requiredMessage="#{msgs.LogradouroRequired}" />
-						<h:messages severity="info,warn" for="clienteEnderecoLogradouro" style="color: red"/>
+						<h:messages  for="clienteEnderecoLogradouro" style="color: red"/>
 
 						<p:outputLabel for="clienteEnderecoNumero"
 							value="#{msgs.EnderecoNumero}" style="color: blue;"/>
 						<p:inputText id="clienteEnderecoNumero"
 							value="#{clienteMB.endereco.numero}" required="false"
 							requiredMessage="#{msgs.NumeroRequired}" />
-						<h:messages severity="info,warn" for="clienteEnderecoNumero" style="color: red"/>
+						<h:messages  for="clienteEnderecoNumero" style="color: red"/>
 
 						<p:outputLabel for="clienteEnderecoComplemento"
 							value="#{msgs.EnderecoComplemento}" style="color: blue;"/>
 						<p:inputText id="clienteEnderecoComplemento"
 							value="#{clienteMB.endereco.complemento}" required="true"
 							requiredMessage="#{msgs.ComplementoRequired}" />
-						<h:messages severity="info,warn" for="clienteEnderecoComplemento" style="color: red"/>
+						<h:messages  for="clienteEnderecoComplemento" style="color: red"/>
 
 						<p:outputLabel for="clienteEnderecoCep"
 							value="#{msgs.EnderecoCep}" style="color: blue;"/>
 						<p:inputMask mask="999.999-99" id="clienteEnderecoCep"
 							value="#{clienteMB.endereco.cep}" required="true"
 							requiredMessage="#{msgs.CepRequired}" />
-						<h:messages severity="info,warn" for="clienteEnderecoCep" style="color: red"/>
+						<h:messages  for="clienteEnderecoCep" style="color: red"/>
 
 						<p:outputLabel value="Estado:" for="estado" style="color: blue;"/>
 						<p:selectOneMenu id="estado" value="#{clienteMB.estado}" required="true" 
 						requiredMessage="#{msgs.EstadoSelectRequired}" immediate="true">
 							<f:selectItem itemLabel=" Selecionar Estado "
 								itemValue="null" />
-							<f:selectItems value="#{clienteMB.listAllEstados()}" var="estado"
-								itemLabel="#{estado.nome}" styleClass="ui-widget ui-widget-header" />
-							<f:ajax event="change" listener="#{clienteMB.atualizaCidades()}" execute="estado" render="cidade"/> 
+							<f:selectItems value="#{clienteMB.estados}" var="estado"
+								itemLabel="#{estado.nome}" />
+                                                        <f:ajax event="change" listener="#{clienteMB.atualizaCidades(estado)}" execute="estado" render="cidade"/> 
 						</p:selectOneMenu>
-						<h:messages severity="info,warn" for="estado" style="color: red"/>
+						<h:messages  for="estado" style="color: red"/>
 
 						<p:outputLabel value="Cidade:" for="cidade" style="color: blue;"/>
 						<p:selectOneMenu id="cidade" value="#{clienteMB.cidade}" required="true" requiredMessage="#{msgs.CidadeSelectRequired}">
 							<f:selectItem itemLabel=" Selecionar Cidade " itemValue="" />
 							<f:selectItems value="#{clienteMB.getCidades()}" var="cidades"
 								itemLabel="#{cidades.nome}" itemValue="#{cidades.id}"
-								styleClass="ui-widget ui-widget-header" />
+								 />
 						</p:selectOneMenu>
-						<h:messages severity="info,warn" for="cidade" style="color: red"/> 
+						<h:messages  for="cidade" style="color: red"/> 
 						
 					</h:panelGrid>
 					

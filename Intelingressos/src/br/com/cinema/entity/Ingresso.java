@@ -3,7 +3,6 @@ package br.com.cinema.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "ingresso")
@@ -38,6 +38,7 @@ public class Ingresso implements Serializable{
 	private String cartaoCredito;
 	
 	@Column(nullable = false)
+        @Temporal(javax.persistence.TemporalType.DATE)
 	private Date validadeCartao;
 		
 	@OneToOne(cascade = CascadeType.ALL)
@@ -114,22 +115,60 @@ public class Ingresso implements Serializable{
 		this.ingressoTipo = ingressoTipo;
 	}
 
-	@Override
-	public int hashCode() {
-		return Integer.parseInt(id.toString());
-	}
-	
-	@Override
-	public boolean equals(Object obj){
-		if(obj instanceof Ingresso){
-			Ingresso ingresso = (Ingresso)obj;
-			return ingresso.getId() == id;			
-		}
-		return false;
-	}
-		
-	@Override
-	public String toString(){
-		return protocolo.toString();
-	}
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 19 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 19 * hash + (this.protocolo != null ? this.protocolo.hashCode() : 0);
+        hash = 19 * hash + (int) (Double.doubleToLongBits(this.valorTotal) ^ (Double.doubleToLongBits(this.valorTotal) >>> 32));
+        hash = 19 * hash + (this.cartaoCredito != null ? this.cartaoCredito.hashCode() : 0);
+        hash = 19 * hash + (this.validadeCartao != null ? this.validadeCartao.hashCode() : 0);
+        hash = 19 * hash + (this.ingressoCompra != null ? this.ingressoCompra.hashCode() : 0);
+        hash = 19 * hash + (this.ingressoTipo != null ? this.ingressoTipo.hashCode() : 0);
+        hash = 19 * hash + (this.valido ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ingresso other = (Ingresso) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.protocolo != other.protocolo && (this.protocolo == null || !this.protocolo.equals(other.protocolo))) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.valorTotal) != Double.doubleToLongBits(other.valorTotal)) {
+            return false;
+        }
+        if ((this.cartaoCredito == null) ? (other.cartaoCredito != null) : !this.cartaoCredito.equals(other.cartaoCredito)) {
+            return false;
+        }
+        if (this.validadeCartao != other.validadeCartao && (this.validadeCartao == null || !this.validadeCartao.equals(other.validadeCartao))) {
+            return false;
+        }
+        if (this.ingressoCompra != other.ingressoCompra && (this.ingressoCompra == null || !this.ingressoCompra.equals(other.ingressoCompra))) {
+            return false;
+        }
+        if (this.ingressoTipo != other.ingressoTipo && (this.ingressoTipo == null || !this.ingressoTipo.equals(other.ingressoTipo))) {
+            return false;
+        }
+        if (this.valido != other.valido) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingresso{" + "id=" + id + ", protocolo=" + protocolo + ", valorTotal=" + valorTotal + ", cartaoCredito=" + cartaoCredito + ", validadeCartao=" + validadeCartao + ", ingressoCompra=" + ingressoCompra + ", ingressoTipo=" + ingressoTipo + ", valido=" + valido + '}';
+    }
+
+
 }

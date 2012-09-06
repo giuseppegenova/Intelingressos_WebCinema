@@ -1,20 +1,18 @@
 package br.com.cinema.managedbean;
 
+import br.com.cinema.entity.Cidade;
+import br.com.cinema.entity.Cinema;
+import br.com.cinema.entity.Estado;
+import br.com.cinema.entity.Funcionario;
+import br.com.cinema.facade.local.FuncionarioFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
-import br.com.cinema.entity.Cidade;
-import br.com.cinema.entity.Cinema;
-import br.com.cinema.entity.Estado;
-import br.com.cinema.entity.Funcionario;
-import br.com.cinema.facade.local.FuncionarioFacadeLocal;
 
 @ManagedBean
 @RequestScoped
@@ -99,7 +97,7 @@ public class FuncionarioMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Funcionario Atualizado");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Funcionario Atualizado");
 		return LIST_ALL_FUNCIONARIOS;
 	}
 	
@@ -116,7 +114,7 @@ public class FuncionarioMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Funcionario Excluido");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Funcionario Excluido");
 		
 		return LIST_ALL_FUNCIONARIOS;
 	}
@@ -137,7 +135,7 @@ public class FuncionarioMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Funcionario Criado");
+		sendInfoMessageToUser("OperaÃ§Ã£o realizada com sucesso: Funcionario Criado");
 		
 		return LIST_ALL_FUNCIONARIOS;
 	}

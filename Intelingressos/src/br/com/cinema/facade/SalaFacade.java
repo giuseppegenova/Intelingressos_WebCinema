@@ -1,13 +1,11 @@
 package br.com.cinema.facade;
 
-import java.util.List;
-
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-
 import br.com.cinema.dao.SalaDAO;
 import br.com.cinema.entity.Sala;
 import br.com.cinema.facade.local.SalaFacadeLocal;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 @Stateless
 public class SalaFacade implements SalaFacadeLocal{
