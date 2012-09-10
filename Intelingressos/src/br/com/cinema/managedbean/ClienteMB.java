@@ -138,7 +138,8 @@ public class ClienteMB {
 
 	
 	public void atualizaCidades(AjaxBehaviorEvent event){
-		String id  = (String) event.getComponent().getAttributes().get("value");
+		Estado estado  = (Estado) event.getComponent().getAttributes().get("value");
+		String id = estado.toString();
 		if(id != null) {
 	           Estado estadoTP = estadoFacade.find(Long.parseLong(id));
 	           this.cidades = estadoTP.getCidades();

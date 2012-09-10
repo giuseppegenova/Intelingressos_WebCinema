@@ -100,17 +100,19 @@
 
 						<p:outputLabel value="Estado:" for="estado" style="color: blue;"/>
 						<p:selectOneMenu id="estado" value="#{clienteMB.estado}" required="true" 
-						requiredMessage="#{msgs.EstadoSelectRequired}" immediate="true">
+						requiredMessage="#{msgs.EstadoSelectRequired}">
 							<f:selectItem itemLabel=" Selecionar Estado "
 								itemValue="null" />
 							<f:selectItems value="#{clienteMB.estados}" var="estado"
 								itemLabel="#{estado.nome}" />
-                                                        <f:ajax event="change" listener="#{clienteMB.atualizaCidades(estado)}" execute="estado" render="cidade"/> 
+                         <f:ajax event="change" listener="#{clienteMB.atualizaCidades(estado)}" 
+                         execute="estado" render="cidade"/> 
 						</p:selectOneMenu>
 						<h:messages  for="estado" style="color: red"/>
 
 						<p:outputLabel value="Cidade:" for="cidade" style="color: blue;"/>
-						<p:selectOneMenu id="cidade" value="#{clienteMB.cidade}" required="true" requiredMessage="#{msgs.CidadeSelectRequired}">
+						<p:selectOneMenu id="cidade" value="#{clienteMB.cidade}" 
+						required="true" requiredMessage="#{msgs.CidadeSelectRequired}">
 							<f:selectItem itemLabel=" Selecionar Cidade " itemValue="" />
 							<f:selectItems value="#{clienteMB.getCidades()}" var="cidades"
 								itemLabel="#{cidades.nome}" itemValue="#{cidades.id}"
