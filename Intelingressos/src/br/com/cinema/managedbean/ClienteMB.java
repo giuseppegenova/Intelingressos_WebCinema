@@ -154,7 +154,15 @@ public class ClienteMB {
 
 	public List<Cliente> getAllClientes() {
 		return clienteFacade.findAll();
-	}	
+	}
+        
+        public Estado findEstadoById(Long id){
+            return estadoFacade.find(id);
+        }
+        
+        public Cidade findCidadeById(Long id){
+            return cidadeFacade.find(id);
+        }
 	
 
 	public String updateClienteStart(){

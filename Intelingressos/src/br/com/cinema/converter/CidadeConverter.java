@@ -7,16 +7,16 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(value="estadoConverter")
+@FacesConverter(value="cidadeConverter")
 @Stateless
-public class EstadoConverter implements Converter {
+public class CidadeConverter implements Converter {
 	
 @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String key) {
         FacesContext context = FacesContext.getCurrentInstance();
         ClienteMB clienteMB = (ClienteMB) context.getELContext().getELResolver().getValue(context.getELContext(), null, "clienteMB");
  
-        return clienteMB.findEstadoById(Long.parseLong(key));
+        return clienteMB.findCidadeById(Long.parseLong(key));
     }
  
     @Override
