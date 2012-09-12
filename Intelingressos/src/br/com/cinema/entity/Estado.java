@@ -1,7 +1,8 @@
 package br.com.cinema.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +34,7 @@ public class Estado implements Serializable{
 	private String sigla;
 	
 	@OneToMany(mappedBy="estado", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)  
-	private List<Cidade> cidades;
+	private Set<Cidade> cidades = new HashSet<Cidade>();;
 
 	public Long getId() {
 		return id;
@@ -59,40 +60,38 @@ public class Estado implements Serializable{
 		this.sigla = sigla;
 	}
 
-	
-	public List<Cidade> getCidades() {
-		return cidades;
-	}
+    public Set<Cidade> getCidades() {
+        return cidades;
+    }
 
-	public void setCidades(List<Cidade> cidades) {
-		this.cidades = cidades;
-	}
+    public void setCidades(Set<Cidade> cidades) {
+        this.cidades = cidades;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Estado))
-			return false;
-		Estado other = (Estado) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Estado other = (Estado) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
-  
-	
+    @Override
+    public String toString() {
+        return "br.com.cinema.entity.Estado[ id=" + id + " ]";
+    }
 }

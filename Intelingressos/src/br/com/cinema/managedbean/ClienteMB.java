@@ -9,7 +9,9 @@ import br.com.cinema.facade.local.ClienteFacadeLocal;
 import br.com.cinema.facade.local.EnderecoFacadeLocal;
 import br.com.cinema.facade.local.EstadoFacadeLocal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -41,13 +43,18 @@ public class ClienteMB {
 	@EJB
 	private EstadoFacadeLocal estadoFacade;
 	
-	private Cliente cliente;
+	
+        private Cliente cliente;
 	
 	private Endereco endereco;
 	
 	private Cidade cidade;
 	
 	private List<Cidade> cidades;
+        
+        private Map<Cidade, String> cidadeMap;
+        
+        private Map<Estado, String> estadoMap;
 	
 	private Estado estado;
 	
@@ -60,25 +67,30 @@ public class ClienteMB {
                 estado = new Estado();
                 estados = new ArrayList<Estado>(0);
                 cidades = new ArrayList<Cidade>(0);
-                
+                cidadeMap = new HashMap<Cidade, String>();
+                estadoMap = new HashMap<Estado, String>();
 	}
         
         @PostConstruct
-        public void carregaEstados(){
-            this.estados = estadoFacade.findAll();
+        public void init(){
+            carregaEstados();            
+        }  
+        
+        private void carregaEstados(){
+          estados = estadoFacade.findAll();
+          carregaSelectEstados(estados);          
         }
         
 
 	public Cliente getCliente() {
 		if(cliente == null){
 			cliente = new Cliente();
-			
 		}
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setCliente(Cliente cliente) {               
+                this.cliente = cliente;
 	}	
 
 	public Endereco getEndereco() {
@@ -109,7 +121,30 @@ public class ClienteMB {
             }
 		return cidades;
 	}	
+        
+        
+        public Map<Cidade, String> getCidadeMap() {
+            if(cidadeMap == null){
+                cidadeMap = new HashMap<Cidade, String>();
+            }
+            return cidadeMap;
+        }
 
+        public void setCidadeMap(Map<Cidade, String> cidadeMap) {
+            this.cidadeMap = cidadeMap;
+        }
+
+        public Map<Estado, String> getEstadoMap() {
+            if( estadoMap == null){
+                 estadoMap = new HashMap<Estado, String>();
+            }
+            return estadoMap;
+        }
+
+        public void setEstadoMap(Map<Estado, String> estadoMap) {
+            this.estadoMap = estadoMap;
+        }    
+    
 	public Estado getEstado() {
 		return estado;
 	}
@@ -133,11 +168,8 @@ public class ClienteMB {
 	public void setCidades(List<Cidade> cidades) {
 		this.cidades = cidades;
 	}
-	
-	
-
-	
-	public void atualizaCidades(AjaxBehaviorEvent event){
+        
+	/*public void atualizaCidades(AjaxBehaviorEvent event){
 		Estado estado  = (Estado) event.getComponent().getAttributes().get("value");
 		String id = estado.toString();
 		if(id != null) {
@@ -145,12 +177,18 @@ public class ClienteMB {
 	           this.cidades = estadoTP.getCidades();
 	           System.out.println("\n" + cidades);
 		}		
-	}
+	}*/
 	
 	public List<Estado> listAllEstados(){
 		estados = estadoFacade.findAll();		
 		return estados;
 	}
+        
+        public List<Cidade> listAllCidades(){
+                cidades = cidadeFacade.findAll();
+                return cidades;
+        }
+        
 
 	public List<Cliente> getAllClientes() {
 		return clienteFacade.findAll();
@@ -164,6 +202,11 @@ public class ClienteMB {
             return cidadeFacade.find(id);
         }
 	
+        public void carregaSelectEstados(List<Estado> est){
+            for (int i = 0; i < est.size(); i++) {
+              estadoMap.put(est.get(i), String.valueOf(i));                
+            }
+        }
 
 	public String updateClienteStart(){
 		endereco = cliente.getEndereco();
@@ -212,9 +255,10 @@ public class ClienteMB {
 	}
 	
 	public String createClienteEnd(){
-		try {			
-		
+		try {
 			cliente.setEndereco(endereco);
+                        cliente.setCidade(cidade);
+                        cliente.setEstado(estado);
 			clienteFacade.save(cliente);
 			
 		} catch (EJBException e) {

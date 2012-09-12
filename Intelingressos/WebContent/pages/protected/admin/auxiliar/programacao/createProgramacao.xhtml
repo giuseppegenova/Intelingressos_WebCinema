@@ -111,7 +111,8 @@
 
 						<h:outputLabel for="sessaoHora" value="#{msgs.SessaoHora}"
 							style="color: blue;" />
-							<p:calendar value="#{programacaoMB.sessao.hora}" pattern="HH:mm:ss" timeOnly="true" 
+							<p:calendar value="#{programacaoMB.sessao.hora}" 
+                                                                    pattern="HH:mm:ss" timeOnly="true" 
 							required="true"
 							requiredMessage="#{msgs.SessaoHoraRequired}" > 
 				                <f:convertDateTime pattern="HH:mm:ss" />  

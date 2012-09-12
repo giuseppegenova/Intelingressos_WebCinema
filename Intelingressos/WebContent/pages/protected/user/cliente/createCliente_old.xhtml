@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+
+	<ui:define name="centro">
+	
+		<p:panel id="panelTitulo" header="#{msgs.ClienteTitleCadastro}"
+			style="margin-bottom:10px;">
+			
+			<h:form>
+			
+			<p:panel id="panelCadastroLogin" header="#{msgs.ClienteCreateFieldset}"
+			style="margin-bottom:10px;">
+			
+				<h:messages style="color: red"/>
+				
+				<h:panelGrid columns="3" styleClass="panelGrid"
+						rowClasses="panelFirstLine,panelNextLine" >
+
+					<p:outputLabel for="clienteEmail" value="#{msgs.Email}" style="color: blue;"/>
+					<p:inputText id="clienteEmail" value="#{clienteMB.cliente.email}"
+						required="true" requiredMessage="#{msgs.EmailRequired}" />
+					<h:messages  for="clienteEmail" style="color: red"/>
+
+					<p:outputLabel for="clienteSenha" value="#{msgs.Senha}" style="color: blue;"/>					
+					<p:password redisplay="false" id="clienteSenha" feedback="true" inline="true" 
+						value="#{clienteMB.cliente.senha}" required="true"
+						requiredMessage="#{msgs.SenhaRequired}" />
+					<h:messages  for="clienteSenha" style="color: red"/>	
+									
+				</h:panelGrid>
+				
+				</p:panel>
+				
+				
+				
+			</h:form>
+			
+		</p:panel>
+		
+		<h:panelGrid columns="2">
+
+			<p:commandButton action="#{clienteMB.createClienteEnd()}"
+				value="#{msgs.create}" />
+
+			<p:commandButton action="#{clienteMB.listAllClientes()}"
+				value="#{msgs.cancel}" immediate="true" />
+
+		</h:panelGrid>
+
+	</ui:define>
+	
+</ui:decorate>
+
+</html>

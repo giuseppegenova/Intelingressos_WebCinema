@@ -21,7 +21,7 @@ public class EstadoConverter implements Converter {
  
     @Override
     public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-        return arg2.toString();
+        return String.valueOf(arg2);
     }
     
 }
