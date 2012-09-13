@@ -17,12 +17,12 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ClienteMB {
 	
 	private static final String CREATE_CLIENTE = "createCliente";
@@ -81,8 +81,24 @@ public class ClienteMB {
           carregaSelectEstados(estados);          
         }
         
+         public void atualizaCidades(){
+          cidades = estado.getCidades();
+          carregaSelectCidades(cidades);
+        }
+         
+        private void carregaSelectCidades(List<Cidade> cid){
+            for (int i = 0; i < cid.size(); i++) {
+                cidadeMap.put(cid.get(i), String.valueOf(i));
+            }
+        } 
 
-	public Cliente getCliente() {
+         private void carregaSelectEstados(List<Estado> est){
+            for (int i = 0; i < est.size(); i++) {
+                estadoMap.put(est.get(i), String.valueOf(i));                
+            }
+        }
+        
+       	public Cliente getCliente() {
 		if(cliente == null){
 			cliente = new Cliente();
 		}
@@ -168,17 +184,7 @@ public class ClienteMB {
 	public void setCidades(List<Cidade> cidades) {
 		this.cidades = cidades;
 	}
-        
-	/*public void atualizaCidades(AjaxBehaviorEvent event){
-		Estado estado  = (Estado) event.getComponent().getAttributes().get("value");
-		String id = estado.toString();
-		if(id != null) {
-	           Estado estadoTP = estadoFacade.find(Long.parseLong(id));
-	           this.cidades = estadoTP.getCidades();
-	           System.out.println("\n" + cidades);
-		}		
-	}*/
-	
+        		
 	public List<Estado> listAllEstados(){
 		estados = estadoFacade.findAll();		
 		return estados;
@@ -201,13 +207,7 @@ public class ClienteMB {
         public Cidade findCidadeById(Long id){
             return cidadeFacade.find(id);
         }
-	
-        public void carregaSelectEstados(List<Estado> est){
-            for (int i = 0; i < est.size(); i++) {
-              estadoMap.put(est.get(i), String.valueOf(i));                
-            }
-        }
-
+	      
 	public String updateClienteStart(){
 		endereco = cliente.getEndereco();
 		return UPDATE_CLIENTE;

@@ -1,7 +1,7 @@
 package br.com.cinema.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,7 +34,7 @@ public class Estado implements Serializable{
 	private String sigla;
 	
 	@OneToMany(mappedBy="estado", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)  
-	private Set<Cidade> cidades = new HashSet<Cidade>();;
+	private List<Cidade> cidades;
 
 	public Long getId() {
 		return id;
@@ -60,11 +60,11 @@ public class Estado implements Serializable{
 		this.sigla = sigla;
 	}
 
-    public Set<Cidade> getCidades() {
+    public List<Cidade> getCidades() {
         return cidades;
     }
 
-    public void setCidades(Set<Cidade> cidades) {
+    public void setCidades(List<Cidade> cidades) {
         this.cidades = cidades;
     }
 
@@ -92,6 +92,6 @@ public class Estado implements Serializable{
 
     @Override
     public String toString() {
-        return "br.com.cinema.entity.Estado[ id=" + id + " ]";
+        return nome;
     }
 }

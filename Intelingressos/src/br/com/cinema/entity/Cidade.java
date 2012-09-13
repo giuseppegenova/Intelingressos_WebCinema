@@ -2,6 +2,7 @@ package br.com.cinema.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,8 +38,8 @@ public class Cidade implements Serializable {
 	@JoinColumn(name="estado_id", nullable = false, insertable = false, updatable = false, referencedColumnName="id")
 	private Estado estado;
 	
-	@OneToMany(mappedBy="cidade", orphanRemoval = true, cascade = CascadeType.ALL)  
-	private Collection<Endereco> endereco;
+	@OneToMany(mappedBy="cidade", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)  
+	private List<Endereco> endereco;
 	
 	public Long getId() {
 		return id;
@@ -64,11 +65,11 @@ public class Cidade implements Serializable {
 		this.nome = nome;
 	}
 
-	public Collection<Endereco> getEndereco() {
+	public List<Endereco> getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(Collection<Endereco> endereco) {
+	public void setEndereco(List<Endereco> endereco) {
 		this.endereco = endereco;
 	}
 
@@ -108,7 +109,7 @@ public class Cidade implements Serializable {
 
     @Override
     public String toString() {
-        return "Cidade{" + "id=" + id + ", nome=" + nome + ", estado=" + estado + ", endereco=" + endereco + '}';
+        return nome;
     }
 
 	
