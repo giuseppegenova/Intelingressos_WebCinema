@@ -1,7 +1,6 @@
 package br.com.cinema.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,7 +37,7 @@ public class Cidade implements Serializable {
 	@JoinColumn(name="estado_id", nullable = false, insertable = false, updatable = false, referencedColumnName="id")
 	private Estado estado;
 	
-	@OneToMany(mappedBy="cidade", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)  
+	@OneToMany(mappedBy="cidade", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)  
 	private List<Endereco> endereco;
 	
 	public Long getId() {
@@ -75,11 +74,8 @@ public class Cidade implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 53 * hash + (this.nome != null ? this.nome.hashCode() : 0);
-        hash = 53 * hash + (this.estado != null ? this.estado.hashCode() : 0);
-        hash = 53 * hash + (this.endereco != null ? this.endereco.hashCode() : 0);
+        int hash = 5;
+        hash = 41 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
     }
 
@@ -95,17 +91,10 @@ public class Cidade implements Serializable {
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
-        if ((this.nome == null) ? (other.nome != null) : !this.nome.equals(other.nome)) {
-            return false;
-        }
-        if (this.estado != other.estado && (this.estado == null || !this.estado.equals(other.estado))) {
-            return false;
-        }
-        if (this.endereco != other.endereco && (this.endereco == null || !this.endereco.equals(other.endereco))) {
-            return false;
-        }
         return true;
     }
+
+    
 
     @Override
     public String toString() {

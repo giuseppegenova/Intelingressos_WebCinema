@@ -84,10 +84,14 @@
 
 						<p:outputLabel value="#{msgs.SalaCapacidade}" for="salaCapacidade"
 							style="color: blue;" />
-						<p:inputMask mask="9999" id="salaCapacidade"
-							value="#{programacaoMB.sala.capacidade}" required="true"
-							requiredMessage="#{msgs.SalaCapacidadeRequired}"  />
-						<h:messages for="salaCapacidade" style="color: red"/>
+                                                <h:panelGrid columns="1" style="margin-bottom:10px">  
+                                                    <p:inputText id="salaCapacidade" value="#{programacaoMB.sala.capacidade}" />  
+                                                    <p:slider for="salaCapacidade" maxValue="500"/>  
+                                                </h:panelGrid>  
+						<!-- <p:inputMask mask="9999" id="salaCapacidade"
+							value="{programacaoMB.sala.capacidade}" required="true"
+							requiredMessage="{msgs.SalaCapacidadeRequired}"  />
+						<h:messages for="salaCapacidade" style="color: red"/> -->
 
 					</h:panelGrid>
 

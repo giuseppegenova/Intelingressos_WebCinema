@@ -18,7 +18,6 @@ import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean
@@ -73,7 +72,8 @@ public class ClienteMB {
         
         @PostConstruct
         public void init(){
-            carregaEstados();            
+            carregaEstados();
+            atualizaCidades();
         }  
         
         private void carregaEstados(){
@@ -83,7 +83,9 @@ public class ClienteMB {
         
          public void atualizaCidades(){
           cidades = estado.getCidades();
-          carregaSelectCidades(cidades);
+          if(cidades != null){
+              carregaSelectCidades(cidades);
+          }          
         }
          
         private void carregaSelectCidades(List<Cidade> cid){

@@ -13,9 +13,12 @@ public class CidadeConverter implements Converter {
 	
 @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String key) {
+        
         FacesContext context = FacesContext.getCurrentInstance();
         ClienteMB clienteMB = (ClienteMB) context.getELContext().getELResolver().getValue(context.getELContext(), null, "clienteMB");
- 
+        if(key == null || key.equals("")){
+            return "";
+        }
         return clienteMB.findCidadeById(Long.parseLong(key));
     }
  

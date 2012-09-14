@@ -2,6 +2,7 @@ package br.com.cinema.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
@@ -30,7 +31,7 @@ public abstract class Usuario{
 	@JoinColumn(name = "cidade_id", unique = true)
 	private Cidade cidade;
 	
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.DETACH}, orphanRemoval = true)
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.DETACH}, orphanRemoval = true, fetch= FetchType.LAZY)
 	@JoinColumn(name = "estado_id", unique = true)
 	private Estado estado;
 	

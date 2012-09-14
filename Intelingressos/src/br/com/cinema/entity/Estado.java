@@ -2,7 +2,6 @@ package br.com.cinema.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +32,7 @@ public class Estado implements Serializable{
 	@Column(nullable = false, unique = true, length = 2)
 	private String sigla;
 	
-	@OneToMany(mappedBy="estado", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)  
+	@OneToMany(mappedBy="estado", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)  
 	private List<Cidade> cidades;
 
 	public Long getId() {

@@ -14,10 +14,10 @@
             <p:panel id="panelTitulo" header="#{msgs.ClienteTitleCadastro}"
                      style="margin-bottom:10px;">
                 
-                <p:ajaxStatus style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">  
+             <!--   <p:ajaxStatus style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">  
     <f:facet name="start">  
-        <p:graphicImage value="/pages/resources/images/ajax-loader.gif" />  
-    </f:facet>  
+        <p:graphicImage value="/pages/resources/images/ajax-loader.gif" /> 
+    </f:facet> -->  
 
                 <h:form id="progForm">
 
@@ -117,6 +117,7 @@
                                 <f:selectItem itemLabel=" Selecionar Cidade "/>
                                 <f:selectItems value="#{clienteMB.cidadeMap}" var="cidades"
                                                itemLabel="#{cidades.nome}" itemValue="#{cidades}"/>
+                                 <f:ajax event="change" execute="cidade"/> 
                             </p:selectOneMenu>
                             <h:messages  for="cidade" style="color: red"/> 
 
@@ -127,17 +128,17 @@
 
                     <h:panelGrid columns="2">
 
-                        <p:commandButton action="#{programacaoMB.createProgramacaoEnd()}"
+                        <h:commandButton action="#{programacaoMB.createProgramacaoEnd()}"
                                          value="#{msgs.create}" />
 
-                        <p:commandButton action="#{programacaoMB.listAllProgramacoes()}"
+                        <h:commandButton action="#{programacaoMB.listAllProgramacoes()}"
                                          value="#{msgs.cancel}" immediate="true" />
 
                     </h:panelGrid>
 
                 </h:form>
                     
-                </p:ajaxStatus>
+              <!--  </p:ajaxStatus>  -->
 
             </p:panel>
 
