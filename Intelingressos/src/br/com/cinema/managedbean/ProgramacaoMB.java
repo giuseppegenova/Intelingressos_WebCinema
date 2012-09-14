@@ -10,6 +10,7 @@ import br.com.cinema.facade.local.SalaFacadeLocal;
 import br.com.cinema.facade.local.SessaoFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
@@ -29,17 +30,10 @@ public class ProgramacaoMB {
 
 	@EJB
 	private ProgramacaoFacadeLocal programacaoFacade;
-	
-	@EJB
-	private FilmeFacadeLocal  filmeFacade;
-	
-	@EJB
-	private SalaFacadeLocal salaFacade;
-	
-	@EJB
-	private SessaoFacadeLocal sessaoFacade;
-	
-	private Programacao programacao;	
+		
+	private Programacao programacao;
+        
+        private List<Programacao> programacaoList;
 	
 	private Filme filme;
 	
@@ -51,9 +45,20 @@ public class ProgramacaoMB {
 		programacao = new Programacao();
 		filme = new Filme();
 		sala = new Sala();
-		sessao = new Sessao();		
-	}	
-	
+		sessao = new Sessao();
+               
+	}
+        
+        @PostConstruct
+        public void init(){
+           carregaProgramacao();
+        }
+        
+	private void carregaProgramacao(){
+          programacaoList = programacaoFacade.findAll();
+          //carregaSelectEstados(estados);          
+        }
+        
 	public Filme getFilme() {
 		if(filme == null){
 			filme = new Filme();
@@ -97,6 +102,17 @@ public class ProgramacaoMB {
 	public void setProgramacao(Programacao programacao) {
 		this.programacao = programacao;		
 	}
+
+        public List<Programacao> getProgramacaoList() {
+            if(programacaoList == null){
+                programacaoList = new ArrayList<Programacao>();
+            }
+            return programacaoList;
+        }
+
+        public void setProgramacaoList(List<Programacao> programacaoList) {
+            this.programacaoList = programacaoList;
+        }
 	
 		
 	public List<Programacao> getAllProgramacoes() {
@@ -112,8 +128,9 @@ public class ProgramacaoMB {
 	}
 	
 	public String updateProgramacaoEnd(){
-		try {			
-			  programacaoFacade.update(programacao);
+		try {	
+                        
+			programacaoFacade.update(programacao);
 		} catch (EJBException e) {
 			sendErrorMessageToUser("Houve um erro. Procure o administrador do sistema");
 			return STAY_IN_THE_SAME_PAGE;

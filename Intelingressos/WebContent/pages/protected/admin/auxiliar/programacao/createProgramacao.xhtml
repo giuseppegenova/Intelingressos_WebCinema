@@ -24,19 +24,18 @@
 						<p:calendar pattern="dd/MM/yyyy"
 							value="#{programacaoMB.programacao.inicio}" size="7" id="programacaoInicio"
 							required="true" requiredMessage="#{msgs.ProgramacaoInicioRequired}" accesskey="false">
-							<f:convertDateTime Pattern="dd/MM/yyyy" />
+                                                    <f:convertDateTime dateStyle="dd/MM/yyyy" />
 						</p:calendar>
-						<h:messages severity="info,warn" for="programacaoInicio" style="color: red"/>	
+						<h:messages for="programacaoInicio" style="color: red"/>	
 
 						<p:outputLabel value="#{msgs.ProgramacaoFim}" for="programacaoFim"
 							style="color: blue;" />
 						<p:calendar pattern="dd/MM/yyyy"
 							value="#{programacaoMB.programacao.fim}" size="7" id="programacaoFim"
 							required="true" requiredMessage="#{msgs.ProgramacaoFimRequired}" accesskey="false" >
-							<f:convertDateTime Pattern="dd/MM/yyyy" />			
+                                                    <f:convertDateTime dateStyle="dd/MM/yyyy" />			
 						</p:calendar>						
-						<h:messages severity="info,warn" for="programacaoFim" style="color: red"/>
-						
+						<h:messages for="programacaoFim" style="color: red"/>				
 
 					</h:panelGrid>			
 			
@@ -49,7 +48,14 @@
 						<p:inputText id="filmeTitulo" value="#{programacaoMB.filme.nome}"
 							required="true" requiredMessage="#{msgs.FilmeTituloRequired}"
 							label="filmeTitulo" />
-						<h:messages severity="info,warn" for="filmeTitulo" style="color: red"/>
+						<h:messages  for="filmeTitulo" style="color: red"/>
+                                                
+                                                <p:outputLabel for="filmeImagem" value="#{msgs.FilmeImagem}"
+							style="color: blue;" />
+						<p:inputText id="filmeImagem" value="#{programacaoMB.filme.imagem}"
+							required="true" requiredMessage="#{msgs.FilmeImagemRequired}"
+							label="filmeImagem" />
+						<h:messages  for="filmeImagem" style="color: red"/>
 
 						<p:outputLabel value="#{msgs.FilmeSinopse}" for="filmeSinopse"
 							style="color: blue;" />
@@ -88,11 +94,7 @@
                                                     <p:inputText id="salaCapacidade" value="#{programacaoMB.sala.capacidade}" />  
                                                     <p:slider for="salaCapacidade" maxValue="500"/>  
                                                 </h:panelGrid>  
-						<!-- <p:inputMask mask="9999" id="salaCapacidade"
-							value="{programacaoMB.sala.capacidade}" required="true"
-							requiredMessage="{msgs.SalaCapacidadeRequired}"  />
-						<h:messages for="salaCapacidade" style="color: red"/> -->
-
+						
 					</h:panelGrid>
 
 				</p:panel>
@@ -109,7 +111,7 @@
 						<p:calendar pattern="dd/MM/yyyy"
 							value="#{programacaoMB.sessao.data}" size="7" id="sessaoData"
 							required="true" requiredMessage="#{msgs.SessaoDataRequired}">
-							<f:convertDateTime Pattern="dd/MM/yyyy" />
+                                                    <f:convertDateTime dateStyle="dd/MM/yyyy" />
 						</p:calendar>
 						<h:messages for="sessaoData" style="color: red"/>
 

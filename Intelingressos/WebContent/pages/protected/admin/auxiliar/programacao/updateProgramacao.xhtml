@@ -46,22 +46,22 @@
 						
 						<p:outputLabel for="filmeTitulo" value="#{msgs.FilmeTitulo}"
 							style="color: blue;" />
-						<p:inputText id="filmeTitulo" value="#{programacaoMB.filme.nome}"
+                                                <p:inputText id="filmeTitulo" value="#{programacaoMB.programacao.filme.nome}"
 							required="true" requiredMessage="#{msgs.FilmeTituloRequired}"
 							label="filmeTitulo" />
-						<h:messages severity="info,warn" for="filmeTitulo" style="color: red"/>
+						<h:messages for="filmeTitulo" style="color: red"/>
 
 						<p:outputLabel value="#{msgs.FilmeSinopse}" for="filmeSinopse"
 							style="color: blue;" />
 						<p:inputTextarea id="filmeSinopse"
-							value="#{programacaoMB.filme.sinopse}" maxlength="5000"
+							value="#{programacaoMB.programacao.filme.sinopse}" maxlength="5000"
 							required="true" requiredMessage="#{msgs.FilmeSinopseRequired}" />
 						<h:messages for="filmeSinopse" style="color: red"/>
 
 						<p:outputLabel for="filmeSite" value="#{msgs.FilmeSite}"
 							style="color: blue;" />
 						<p:inputText id="filmeSite"
-							value="#{programacaoMB.filme.siteOficial}" required="true"
+							value="#{programacaoMB.programacao.filme.siteOficial}" required="true"
 							requiredMessage="#{msgs.FilmeSiteRequired}" />
 						<h:messages for="filmeSite" style="color: red"/>
 
@@ -78,16 +78,16 @@
 
 						<p:outputLabel for="salaNome" value="#{msgs.SalaNome}"
 							style="color: blue;" />
-						<p:inputText id="salaNome" value="#{programacaoMB.sala.nome}"
+						<p:inputText id="salaNome" value="#{programacaoMB.programacao.sala.nome}"
 							required="true" requiredMessage="#{msgs.SalaNomeRequired}" />
 						<h:messages for="salaNome" style="color: red"/>
-
+						
 						<p:outputLabel value="#{msgs.SalaCapacidade}" for="salaCapacidade"
 							style="color: blue;" />
-						<p:inputMask mask="99999" id="salaCapacidade"
-							value="#{programacaoMB.sala.capacidade}" required="true"
-							requiredMessage="#{msgs.SalaCapacidadeRequired}" />
-						<h:messages for="salaCapacidade" style="color: red"/>
+                                                <h:panelGrid columns="1" style="margin-bottom:10px">  
+                                                    <p:inputText id="salaCapacidade" value="#{programacaoMB.sala.capacidade}" />  
+                                                    <p:slider for="salaCapacidade" maxValue="500"/>  
+                                                </h:panelGrid>
 
 					</h:panelGrid>
 
@@ -103,7 +103,7 @@
 						<h:outputLabel for="sessaoData" value="#{msgs.SessaoData}"
 							style="color: blue;" />
 						<p:calendar pattern="dd/MM/yyyy"
-							value="#{programacaoMB.sessao.data}" size="7" id="sessaoData"
+							value="#{programacaoMB.programacao.sessao.data}" size="7" id="sessaoData"
 							required="true" requiredMessage="#{msgs.SessaoDataRequired}">
 							<f:convertDateTime Pattern="dd/MM/yyyy" />
 						</p:calendar>
@@ -111,10 +111,12 @@
 
 						<h:outputLabel for="sessaoHora" value="#{msgs.SessaoHora}"
 							style="color: blue;" />
-						<p:inputMask mask="99:99:99" value="#{programacaoMB.sessao.hora}"
-							size="7" id="sessaoHora" required="true"
-							requiredMessage="#{msgs.SessaoHoraRequired}" />
-						<h:messages for="sessaoHora" style="color: red"/>
+							<p:calendar value="#{programacaoMB.sessao.hora}" 
+                                                                    pattern="HH:mm:ss" timeOnly="true" 
+							required="true"
+							requiredMessage="#{msgs.SessaoHoraRequired}" > 
+				                <f:convertDateTime pattern="HH:mm:ss" />
+                                                        </p:calendar>
 						
 					</h:panelGrid>
 					

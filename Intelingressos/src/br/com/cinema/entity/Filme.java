@@ -27,6 +27,9 @@ public class Filme implements Serializable{
 	
 	@Column(nullable = false, unique = true, updatable = true)
 	private String nome;
+        
+        @Column(nullable = false, unique = true, updatable = true)
+        private String imagem;
 	
 	@Column(nullable = false)
 	private String sinopse;
@@ -49,6 +52,14 @@ public class Filme implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+        public String getImagem() {
+            return imagem;
+        }
+
+        public void setImagem(String imagem) {
+            this.imagem = imagem;
+        }  
 
 	public String getSinopse() {
 		return sinopse;
