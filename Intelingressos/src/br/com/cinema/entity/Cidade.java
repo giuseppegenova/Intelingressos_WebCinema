@@ -25,11 +25,14 @@ public class Cidade implements Serializable {
      */
     private static final long serialVersionUID = -2798405066468726147L;
     public static final String FIND_BY_NOME = "Cidade.findByNome";
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @Column(nullable = false)
     private String nome;
+    
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "estado_id", nullable = false, insertable = false, updatable = false, referencedColumnName = "id")
     private Estado estado;
