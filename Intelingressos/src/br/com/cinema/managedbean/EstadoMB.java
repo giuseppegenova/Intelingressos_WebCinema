@@ -79,15 +79,7 @@ public class EstadoMB {
 	public String getVerificaMaiuscula() {
 		return verificaMaiuscula;
 	}
-
-	public void setVerificaMaiuscula(String verificaMaiuscula) {
-		this.verificaMaiuscula = verificaMaiuscula;
-	}
 	
-	public void verificaMaiuscula(){
-		this.estado.getSigla().toUpperCase();
-	}
-
 	public List<Cidade> atualizaCidades(){
 		return this.cidades = (List<Cidade>) this.estado.getCidades();
 	}
@@ -97,10 +89,10 @@ public class EstadoMB {
 	}
 	
 	public String updateEstadoEnd(){
-		try {			
+		try {	
 			  estadoFacade.update(estado);
 		} catch (EJBException e) {
-			sendErrorMessageToUser("Houve um erro. Procure o administrador do sistema");
+			sendErrorMessageToUser("Houve um erro. Procure o administrador do sistema."+"\nProblema encontrado: "+e );
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		

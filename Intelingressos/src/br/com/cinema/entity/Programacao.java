@@ -32,8 +32,8 @@ public class Programacao implements Serializable{
 	@Column(nullable = false)
 	private Date fim;
 	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "filme_id", unique = true)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity= Filme.class)
+	@JoinColumn(name = "filme_id", unique = true , updatable=true, insertable=true)
 	private Filme filme;
 	
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

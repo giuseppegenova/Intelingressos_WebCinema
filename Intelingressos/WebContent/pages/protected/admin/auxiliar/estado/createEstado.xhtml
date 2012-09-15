@@ -2,40 +2,41 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-<ui:decorate template="/pages/templates/principalTemplate.xhtml">
-	<ui:define name="centro">
-		<h1 align="center">#{msgs.EstadoTitleCadastro}</h1>		
-			<h:form>
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro">
+            <p:panel id="panelTitulo" header="#{msgs.EstadoTitleCadastro}"
+                     style="margin-bottom:10px;">
+                <h:form>                    
 
-				<h:messages />
+                    <h:panelGrid columns="3" styleClass="panelGrid"
+                                 rowClasses="panelFirstLine,panelNextLine">
 
-				<h:panelGrid columns="2" styleClass="panelGrid"
-					rowClasses="panelFirstLine,panelNextLine">
+                        <p:outputLabel for="clienteNome" value="#{msgs.EstadoNome}:" style="color: blue;"/>
+                        <p:inputText id="clienteNome" value="#{estadoMB.estado.nome}"
+                                     required="true" requiredMessage="#{msgs.EstadoNomeRequired}" style="text-transform: capitalize"/>
+                        <h:messages  for="clienteNome" style="color: red"/>
 
-				<h:outputLabel for="estadoNome" value="#{msgs.Nome}" />
-					<h:inputText id="estadoNome" value="#{estadoMB.estado.nome}"
-						required="true" requiredMessage="#{msgs.EstadoNomeRequired}" />				
-				
-				
-					<h:outputLabel value="#{msgs.EstadoSigla}" for="estadoSigla" />
-					<h:inputText id="estadoSigla" value="#{estadoMB.estado.sigla}" 
-						maxlength="2" required="true" requiredMessage="#{mesgs.EstadoSiglaRequired}"/>						
-					
-				</h:panelGrid>
+                        <p:outputLabel value="#{msgs.EstadoSigla}:" for="estadoSigla" style="color: blue;"/>
+                        <p:inputText  id="estadoSigla" value="#{estadoMB.estado.sigla}" 
+                                      maxlength="2" required="true" requiredMessage="#{mesgs.EstadoSiglaRequired}" size="2"
+                                      style="text-transform:uppercase" />						
+                        <h:messages  for="estadoSigla" style="color: red"/>
+                    </h:panelGrid>
 
-				<h:panelGrid columns="2">
+                    <h:panelGrid columns="2">
 
-					<h:commandButton action="#{estadoMB.createEstadoEnd()}"
-						value="#{msgs.create}" />
-					<h:commandButton action="#{estadoMB.listAllEstados()}"
-						value="#{msgs.cancel}" immediate="true" /> 
-				</h:panelGrid>
-			</h:form>	
-	</ui:define>
-</ui:decorate>
+                        <h:commandButton action="#{estadoMB.createEstadoEnd()}"
+                                         value="#{msgs.create}" />
+                        <h:commandButton action="#{estadoMB.listAllEstados()}"
+                                         value="#{msgs.cancel}" immediate="true" /> 
+                    </h:panelGrid>
+                </h:form>	
+            </p:panel>
+        </ui:define>
+    </ui:decorate>
 </html>

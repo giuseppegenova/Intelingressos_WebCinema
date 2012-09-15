@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+
+        <ui:define name="centro">
+
+            <h:form id="form">
+
+                <p:panel id="panelTitulo" header="#{msgs.ConsultaTitle}"
+                         style="margin-bottom:10px;">
+
+                    <p:dataGrid var="prog" value="#{programacaoMB.programacaoList}" columns="3"
+                                rows="12" paginator="true"
+                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="9,12,15">
+
+                        <p:panel header="#{prog.filme.nome}" style="text-align:center">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <!-- <p:graphicImage value="/images/cars/{car.manufacturer}.jpg"/> -->
+
+                                <h:outputText value="#{prog.sessao.data}" title="#{msgs.SessaoData}" />
+
+                                <p:commandLink update=":form:progDetail" oncomplete="progDialog.show()" title="View Detail">
+                                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
+                                    <f:setPropertyActionListener value="#{prog}" 
+                                                                 target="#{programacaoMB.programacao}" />
+                                </p:commandLink>
+                                
+                            </h:panelGrid>
+                            
+                        </p:panel>
+
+                    </p:dataGrid>
+
+                    <p:dialog  header="Programacao Detalhada" widgetVar="progDialog" showEffect="explode" 
+                               hideEffect="bounce" modal="true" appendToBody="true" >
+                        <p:outputPanel id="progDetail" style="text-align:center;" layout="block" >
+
+                          <!--  <p:graphicImage value="/images/cars/{programacaoMB.programacao.manufacturer}.jpg"/> -->
+
+                            <h:panelGrid  columns="2" cellpadding="5">
+                                <h:outputLabel for="filme" value="Filme: " />
+                                <h:outputText id="filme" value="#{programacaoMB.programacao.filme.nome}" />
+                                
+                                <h:outputLabel for="sala" value="Sala: " />
+                                <h:outputText id="sala" value="#{programacaoMB.programacao.sala.nome}" />
+
+                                <h:outputLabel for="sessao" value="Sessão: " />
+                                <h:outputText id="sessao" value="#{programacaoMB.programacao.sessao.data}" />
+                                
+                                   <h:outputLabel for="Sinopse" value="Sinopse: " />
+                                <h:outputText id="Sinopse" value="#{programacaoMB.programacao.filme.sinopse}" />
+                                
+                                
+                                
+                             
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                </p:panel>
+
+            </h:form>
+
+        </ui:define>
+
+    </ui:decorate>
+
+</html>

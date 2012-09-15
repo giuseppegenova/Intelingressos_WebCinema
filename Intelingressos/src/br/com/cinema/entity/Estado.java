@@ -9,21 +9,34 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ *
+ * @author Luigi
+ */
+@NamedQueries({
+    @NamedQuery(name="Estado.findByNome", query="select e from Estado e where e.nome = :nome"),
+    @NamedQuery(name = "Estado.findAll", query = "SELECT e FROM Estado e"),
+    @NamedQuery(name = "Estado.findById", query = "SELECT e FROM Estado e WHERE e.id = :id"),    
+    @NamedQuery(name = "Estado.findBySigla", query = "SELECT e FROM Estado e WHERE e.sigla = :sigla")
+    })    
+
 @Entity
 @Table(name = "estado")
-@NamedQuery(name="Estado.findByNome", query="select e from Estado e where e.nome = :nome")
 public class Estado implements Serializable{
 
 	private static final long serialVersionUID = 6690237651440887930L;
 	
 	public static final String FIND_BY_NOME = "Estado.findByNome";
+        public static final String FIND_BY_ID = "Estado.findById";
+        public static final String FIND_BY_SIGLA = "Estado.findBySigla";        
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false, unique = true)
@@ -32,7 +45,7 @@ public class Estado implements Serializable{
 	@Column(nullable = false, unique = true, length = 2)
 	private String sigla;
 	
-	@OneToMany(mappedBy="estado", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)  
+	@OneToMany(mappedBy="estado", cascade= CascadeType.ALL, fetch = FetchType.LAZY)  
 	private List<Cidade> cidades;
 
 	public Long getId() {

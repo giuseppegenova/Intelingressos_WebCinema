@@ -40,9 +40,6 @@ public class Endereco implements Serializable{
 	@Column
 	private String cep;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="cidade_id", nullable = false)
-	private Cidade cidade;
 	
 	public Long getId() {
 		return id;
@@ -87,12 +84,7 @@ public class Endereco implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 89 * hash + (this.logradouro != null ? this.logradouro.hashCode() : 0);
-        hash = 89 * hash + (this.numero != null ? this.numero.hashCode() : 0);
-        hash = 89 * hash + (this.complemento != null ? this.complemento.hashCode() : 0);
-        hash = 89 * hash + (this.cep != null ? this.cep.hashCode() : 0);
-        hash = 89 * hash + (this.cidade != null ? this.cidade.hashCode() : 0);
+        hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
     }
 
@@ -108,23 +100,12 @@ public class Endereco implements Serializable{
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
-        if ((this.logradouro == null) ? (other.logradouro != null) : !this.logradouro.equals(other.logradouro)) {
-            return false;
-        }
-        if (this.numero != other.numero && (this.numero == null || !this.numero.equals(other.numero))) {
-            return false;
-        }
-        if ((this.complemento == null) ? (other.complemento != null) : !this.complemento.equals(other.complemento)) {
-            return false;
-        }
-        if ((this.cep == null) ? (other.cep != null) : !this.cep.equals(other.cep)) {
-            return false;
-        }
-        if (this.cidade != other.cidade && (this.cidade == null || !this.cidade.equals(other.cidade))) {
-            return false;
-        }
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Endereco{" + "id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + ", complemento=" + complemento + ", cep=" + cep + '}';
+    }       
 
 }

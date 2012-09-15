@@ -4,10 +4,7 @@ import br.com.cinema.entity.Filme;
 import br.com.cinema.entity.Programacao;
 import br.com.cinema.entity.Sala;
 import br.com.cinema.entity.Sessao;
-import br.com.cinema.facade.local.FilmeFacadeLocal;
 import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
-import br.com.cinema.facade.local.SalaFacadeLocal;
-import br.com.cinema.facade.local.SessaoFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -46,7 +43,6 @@ public class ProgramacaoMB {
 		filme = new Filme();
 		sala = new Sala();
 		sessao = new Sessao();
-               
 	}
         
         @PostConstruct
@@ -124,13 +120,48 @@ public class ProgramacaoMB {
 	}
 	
 	public String updateProgramacaoStart(){
-		return UPDATE_PROGRAMACAO;
+            
+            Filme filmeTP;
+            Sala salaTP;
+            Sessao sessaoTP;
+            
+                filmeTP = programacao.getFilme();
+                this.filme.setNome(filmeTP.getNome());
+                this.filme.setSinopse(filmeTP.getSinopse());
+                this.filme.setSiteOficial(filmeTP.getSiteOficial());
+                
+                salaTP = programacao.getSala();
+                this.sala.setNome(salaTP.getNome());
+                this.sala.setCapacidade(salaTP.getCapacidade());
+                
+                sessaoTP = programacao.getSessao();
+                this.sessao.setData(sessaoTP.getData());
+                this.sessao.setHora(sessaoTP.getHora());
+                
+               return UPDATE_PROGRAMACAO;
 	}
 	
 	public String updateProgramacaoEnd(){
 		try {	
-                        
-			programacaoFacade.update(programacao);
+                    
+                    Filme filmeTP = new Filme();
+                    filmeTP.setNome(this.filme.getNome());
+                    filmeTP.setSinopse(this.filme.getSinopse());
+                    filmeTP.setSiteOficial(this.filme.getSiteOficial());
+                    
+                    Sala salaTP = new Sala();
+                    salaTP.setNome(this.sala.getNome());
+                    salaTP.setCapacidade(this.sala.getCapacidade());
+                    
+                    Sessao sessaoTP = new Sessao();
+                    sessaoTP.setData(this.sessao.getData());
+                    sessaoTP.setHora(this.sessao.getHora());
+                                        
+                    this.programacao.setFilme(filmeTP);
+                    this.programacao.setSala(salaTP);
+                    this.programacao.setSessao(sessaoTP);
+                       
+                    programacaoFacade.update(this.programacao);
 		} catch (EJBException e) {
 			sendErrorMessageToUser("Houve um erro. Procure o administrador do sistema");
 			return STAY_IN_THE_SAME_PAGE;

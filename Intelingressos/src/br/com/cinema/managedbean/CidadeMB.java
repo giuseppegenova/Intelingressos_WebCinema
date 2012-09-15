@@ -3,8 +3,12 @@ package br.com.cinema.managedbean;
 import br.com.cinema.entity.Cidade;
 import br.com.cinema.entity.Estado;
 import br.com.cinema.facade.local.CidadeFacadeLocal;
+import br.com.cinema.facade.local.EstadoFacadeLocal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
@@ -24,10 +28,17 @@ public class CidadeMB {
 
 	@EJB
 	private CidadeFacadeLocal cidadeFacade;
+        
+        @EJB
+        private EstadoFacadeLocal estadoFacade;
 	
 	private Cidade cidade;	
 	
 	private Estado estado;
+        
+        private List<Estado> estados;
+        
+        private Map<Estado, String> estadoMap;
 	
 	private List<Cidade> cidades;
 
@@ -35,8 +46,26 @@ public class CidadeMB {
 		cidade = new Cidade();
 		estado = new Estado();
 		cidades = new ArrayList<Cidade>();
+                estados = new ArrayList<Estado>();
+                estadoMap = new HashMap<Estado, String>();
 	}
+        
+        @PostConstruct
+        public void init(){
+            listAllEstados();
+        }
+        
+        private void listAllEstados(){
+            estados = estadoFacade.findAll(); 
+            carregaSelectEstados(estados);
+        }
 
+        private void carregaSelectEstados(List<Estado> est){
+            for (int i = 0; i < est.size(); i++) {
+                estadoMap.put(est.get(i), String.valueOf(i));                
+            }
+        }
+        
 	public Cidade getCidade() {
 		return cidade;
 	}
@@ -53,6 +82,15 @@ public class CidadeMB {
 		this.estado = estado;
 	}
 
+        public List<Estado> getEstados() {
+            return estados;
+        }
+
+        public void setEstados(List<Estado> estados) {
+            this.estados = estados;
+        }
+
+        
 	public List<Cidade> getCidades() {
 		return cidades;
 	}
@@ -61,6 +99,14 @@ public class CidadeMB {
 		this.cidades = cidades;
 	}
 
+        public Map<Estado, String> getEstadoMap() {
+            return estadoMap;
+        }
+
+        public void setEstadoMap(Map<Estado, String> estadoMap) {
+            this.estadoMap = estadoMap;
+        }
+            
 	public List<Cidade> getAllCidades() {
 		return cidadeFacade.findAll();
 	}

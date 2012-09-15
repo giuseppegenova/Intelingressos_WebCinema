@@ -45,29 +45,29 @@
         </p:column>       
 
         <p:column>
-				<f:facet name="header">
+            <f:facet name="header">
 					#{msgs.opcoes}
-				</f:facet>
-				<p:panelGrid columns="2" >
-				
-					<!-- Always save the id as hidden when you use a request scope MB -->
-					<h:inputHidden value="#{programacao.id}" />
-					
-					
-					<p:commandButton action="#{programacaoMB.updateProgramacaoStart()}" value="#{msgs.update}" immediate="true" >
-						<f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
-					</p:commandButton>
-					
-					<p:commandButton action="#{programacaoMB.deleteProgramacaoStart()}" value="#{msgs.delete}">
-						<f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
-					</p:commandButton>
-					
-				</p:panelGrid>
-			</p:column>
+            </f:facet>
+            <p:panelGrid columns="2" >
+
+                <!-- Always save the id as hidden when you use a request scope MB -->
+                <h:inputHidden value="#{programacao.id}" />
+
+
+                <p:commandButton action="#{programacaoMB.updateProgramacaoStart()}" value="#{msgs.update}" immediate="true" >
+                    <f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
+                </p:commandButton>
+
+                <p:commandButton action="#{programacaoMB.deleteProgramacaoStart()}" value="#{msgs.delete}">
+                    <f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
+                </p:commandButton>
+
+            </p:panelGrid>
+        </p:column>
     </p:dataTable>
-   	<br />
-					<p:commandButton action="#{programacaoMB.createProgramacaoStart()}" value="#{msgs.create} #{msgs.Programacao}" />
-</h:form>  
+    <br />
+    <p:commandButton action="#{programacaoMB.createProgramacaoStart()}" value="#{msgs.create} #{msgs.Programacao}" />
+                </h:form>  
 </ui:define>
 </ui:decorate>
 </html>

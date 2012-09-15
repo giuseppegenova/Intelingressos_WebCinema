@@ -2,150 +2,143 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 
-	<ui:define name="centro">
-	
-		<p:panel id="panelTitulo" header="#{msgs.programacaoTitleCadastro}"
-			style="margin-bottom:10px;">
-			
-			<h:form id="progForm">
-			<h:messages style="color: red" for="programacaoFim" />
-				<h:panelGrid columns="3" styleClass="panelGrid"
-						rowClasses="panelFirstLine,panelNextLine">
-						
-						<p:outputLabel for="programacaoInicio" value="#{msgs.ProgramacaoInicio}"
-							style="color: blue;" />
-						<p:calendar pattern="dd/MM/yyyy"
-							value="#{programacaoMB.programacao.inicio}" size="7" id="programacaoInicio"
-							required="true" requiredMessage="#{msgs.ProgramacaoInicioRequired}" accesskey="false">
-                                                    <f:convertDateTime dateStyle="dd/MM/yyyy" />
-						</p:calendar>
-						<h:messages for="programacaoInicio" style="color: red"/>	
+        <ui:define name="centro">
 
-						<p:outputLabel value="#{msgs.ProgramacaoFim}" for="programacaoFim"
-							style="color: blue;" />
-						<p:calendar pattern="dd/MM/yyyy"
-							value="#{programacaoMB.programacao.fim}" size="7" id="programacaoFim"
-							required="true" requiredMessage="#{msgs.ProgramacaoFimRequired}" accesskey="false" >
-                                                    <f:convertDateTime dateStyle="dd/MM/yyyy" />			
-						</p:calendar>						
-						<h:messages for="programacaoFim" style="color: red"/>				
+            <p:panel id="panelTitulo" header="#{msgs.programacaoTitleCadastro}"
+                     style="margin-bottom:10px;">
 
-					</h:panelGrid>			
-			
-				<p:panel id="panel" header="Filme" style="margin-bottom:10px;">
-					<h:panelGrid columns="3" styleClass="panelGrid"
-						rowClasses="panelFirstLine,panelNextLine">
-						
-						<p:outputLabel for="filmeTitulo" value="#{msgs.FilmeTitulo}"
-							style="color: blue;" />
-						<p:inputText id="filmeTitulo" value="#{programacaoMB.filme.nome}"
-							required="true" requiredMessage="#{msgs.FilmeTituloRequired}"
-							label="filmeTitulo" />
-						<h:messages  for="filmeTitulo" style="color: red"/>
-                                                
-                                                <p:outputLabel for="filmeImagem" value="#{msgs.FilmeImagem}"
-							style="color: blue;" />
-						<p:inputText id="filmeImagem" value="#{programacaoMB.filme.imagem}"
-							required="true" requiredMessage="#{msgs.FilmeImagemRequired}"
-							label="filmeImagem" />
-						<h:messages  for="filmeImagem" style="color: red"/>
+                <h:form id="progForm">
+                    <h:messages style="color: red" for="programacaoFim" />
+                    <h:panelGrid columns="3" styleClass="panelGrid"
+                                 rowClasses="panelFirstLine,panelNextLine">
 
-						<p:outputLabel value="#{msgs.FilmeSinopse}" for="filmeSinopse"
-							style="color: blue;" />
-						<p:inputTextarea id="filmeSinopse"
-							value="#{programacaoMB.filme.sinopse}" maxlength="5000"
-							required="true" requiredMessage="#{msgs.FilmeSinopseRequired}" />
-						<h:messages for="filmeSinopse" style="color: red"/>
+                        <p:outputLabel for="programacaoInicio" value="#{msgs.ProgramacaoInicio}"
+                                       style="color: blue;" />
+                        <p:calendar pattern="dd/MM/yyyy"
+                                    value="#{programacaoMB.programacao.inicio}" size="7" id="programacaoInicio"
+                                    required="true" requiredMessage="#{msgs.ProgramacaoInicioRequired}" accesskey="false">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:calendar>
+                        <h:messages for="programacaoInicio" style="color: red"/>	
 
-						<p:outputLabel for="filmeSite" value="#{msgs.FilmeSite}"
-							style="color: blue;" />
-						<p:inputText id="filmeSite"
-							value="#{programacaoMB.filme.siteOficial}" required="true"
-							requiredMessage="#{msgs.FilmeSiteRequired}" />
-						<h:messages for="filmeSite" style="color: red"/>
+                        <p:outputLabel value="#{msgs.ProgramacaoFim}" for="programacaoFim"
+                                       style="color: blue;" />
+                        <p:calendar pattern="dd/MM/yyyy"
+                                    value="#{programacaoMB.programacao.fim}" size="7" id="programacaoFim"
+                                    required="true" requiredMessage="#{msgs.ProgramacaoFimRequired}" accesskey="false" >
+                            <f:convertDateTime pattern="dd/MM/yyyy" />			
+                        </p:calendar>						
+                        <h:messages for="programacaoFim" style="color: red"/>				
 
-					</h:panelGrid>
-					
-				</p:panel>
-				
-				<br />
-				
-				<p:panel id="panel2" header="Sala" style="margin-bottom:10px;">
+                    </h:panelGrid>			
 
-					<h:panelGrid columns="3" styleClass="panelGrid"
-						rowClasses="panelFirstLine,panelNextLine">
+                    <p:panel id="panel" header="Filme" style="margin-bottom:10px;">
+                        <h:panelGrid columns="3" styleClass="panelGrid"
+                                     rowClasses="panelFirstLine,panelNextLine">
 
-						<p:outputLabel for="salaNome" value="#{msgs.SalaNome}"
-							style="color: blue;" />
-						<p:inputText id="salaNome" value="#{programacaoMB.sala.nome}"
-							required="true" requiredMessage="#{msgs.SalaNomeRequired}" />
-						<h:messages for="salaNome" style="color: red"/>
+                            <p:outputLabel for="filmeTitulo" value="#{msgs.FilmeTitulo}"
+                                           style="color: blue;" />
+                            <p:inputText id="filmeTitulo" value="#{programacaoMB.filme.nome}"
+                                         required="true" requiredMessage="#{msgs.FilmeTituloRequired}"
+                                         label="filmeTitulo" />
+                            <h:messages  for="filmeTitulo" style="color: red"/>
 
-						<p:outputLabel value="#{msgs.SalaCapacidade}" for="salaCapacidade"
-							style="color: blue;" />
-                                                <h:panelGrid columns="1" style="margin-bottom:10px">  
-                                                    <p:inputText id="salaCapacidade" value="#{programacaoMB.sala.capacidade}" />  
-                                                    <p:slider for="salaCapacidade" maxValue="500"/>  
-                                                </h:panelGrid>  
-						
-					</h:panelGrid>
+                            <p:outputLabel value="#{msgs.FilmeSinopse}" for="filmeSinopse"
+                                           style="color: blue;" />
+                            <p:inputTextarea id="filmeSinopse"
+                                             value="#{programacaoMB.filme.sinopse}" maxlength="5000"
+                                             required="true" requiredMessage="#{msgs.FilmeSinopseRequired}" />
+                            <h:messages for="filmeSinopse" style="color: red"/>
 
-				</p:panel>
-				
-				<br />
-				
-				<p:panel id="panel3" header="Sessão" style="margin-bottom:10px;">
+                            <p:outputLabel for="filmeSite" value="#{msgs.FilmeSite}"
+                                           style="color: blue;" />
+                            <p:inputText id="filmeSite"
+                                         value="#{programacaoMB.filme.siteOficial}" required="true"
+                                         requiredMessage="#{msgs.FilmeSiteRequired}" />
+                            <h:messages for="filmeSite" style="color: red"/>
 
-					<h:panelGrid columns="3" styleClass="panelGrid"
-						rowClasses="panelFirstLine,panelNextLine">
+                        </h:panelGrid>
 
-						<h:outputLabel for="sessaoData" value="#{msgs.SessaoData}"
-							style="color: blue;" />
-						<p:calendar pattern="dd/MM/yyyy"
-							value="#{programacaoMB.sessao.data}" size="7" id="sessaoData"
-							required="true" requiredMessage="#{msgs.SessaoDataRequired}">
-                                                    <f:convertDateTime dateStyle="dd/MM/yyyy" />
-						</p:calendar>
-						<h:messages for="sessaoData" style="color: red"/>
+                    </p:panel>
 
-						<h:outputLabel for="sessaoHora" value="#{msgs.SessaoHora}"
-							style="color: blue;" />
-							<p:calendar value="#{programacaoMB.sessao.hora}" 
-                                                                    pattern="HH:mm:ss" timeOnly="true" 
-							required="true"
-							requiredMessage="#{msgs.SessaoHoraRequired}" > 
-				                <f:convertDateTime pattern="HH:mm:ss" />  
-				            </p:calendar>							
-						<h:messages for="sessaoHora" style="color: red"/>
-						
-					</h:panelGrid>
-					
-				</p:panel>
+                    <br />
+
+                    <p:panel id="panel2" header="Sala" style="margin-bottom:10px;">
+
+                        <h:panelGrid columns="3" styleClass="panelGrid"
+                                     rowClasses="panelFirstLine,panelNextLine">
+
+                            <p:outputLabel for="salaNome" value="#{msgs.SalaNome}"
+                                           style="color: blue;" />
+                            <p:inputText id="salaNome" value="#{programacaoMB.sala.nome}"
+                                         required="true" requiredMessage="#{msgs.SalaNomeRequired}" />
+                            <h:messages for="salaNome" style="color: red"/>
+
+                            <p:outputLabel value="#{msgs.SalaCapacidade}" for="salaCapacidade"
+                                           style="color: blue;" />
+                            <h:panelGrid columns="1" style="margin-bottom:10px">  
+                                <p:inputText id="salaCapacidade" value="#{programacaoMB.sala.capacidade}" />  
+                                <p:slider for="salaCapacidade" maxValue="500"/>  
+                            </h:panelGrid>  
+
+                        </h:panelGrid>
+
+                    </p:panel>
+
+                    <br />
+
+                    <p:panel id="panel3" header="Sessão" style="margin-bottom:10px;">
+
+                        <h:panelGrid columns="3" styleClass="panelGrid"
+                                     rowClasses="panelFirstLine,panelNextLine">
+
+                            <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}"
+                                           style="color: blue;" />
+                            <p:calendar pattern="dd/MM/yyyy"
+                                        value="#{programacaoMB.sessao.data}" size="7" id="sessaoData"
+                                        required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </p:calendar>
+                            <h:messages for="sessaoData" style="color: red"/>
+
+                            <h:outputLabel for="sessaoHora" value="#{msgs.SessaoHora}"
+                                           style="color: blue;" />
+                            <p:calendar value="#{programacaoMB.sessao.hora}" 
+                                        pattern="HH:mm:ss" timeOnly="true" 
+                                        required="true"
+                                        requiredMessage="#{msgs.SessaoHoraRequired}" > 
+                                <f:convertDateTime pattern="HH:mm:ss" />  
+                            </p:calendar>							
+                            <h:messages for="sessaoHora" style="color: red"/>
+
+                        </h:panelGrid>
+
+                    </p:panel>
 
 
-				<h:panelGrid columns="2">
-					
-					<h:commandButton action="#{programacaoMB.createProgramacaoEnd()}"
-					value="#{msgs.create}" />
-				
-					<h:commandButton action="#{programacaoMB.listAllProgramacoes()}"
-					value="#{msgs.cancel}" immediate="true" />
+                    <h:panelGrid columns="2">
 
-				</h:panelGrid>
-				
-			</h:form>
-			
-		</p:panel>
-		
-	</ui:define>
-	
-</ui:decorate>
+                        <h:commandButton action="#{programacaoMB.createProgramacaoEnd()}"
+                                         value="#{msgs.create}" />
+
+                        <h:commandButton action="#{programacaoMB.listAllProgramacoes()}"
+                                         value="#{msgs.cancel}" immediate="true" />
+
+                    </h:panelGrid>
+
+                </h:form>
+
+            </p:panel>
+
+        </ui:define>
+
+    </ui:decorate>
 
 </html>

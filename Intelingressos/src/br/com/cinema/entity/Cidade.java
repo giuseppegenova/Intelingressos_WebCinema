@@ -17,60 +17,46 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cidade")
-@NamedQuery(name="Cidade.findByNome", query="select c from Cidade c where c.estado = :estado")
+@NamedQuery(name = "Cidade.findByNome", query = "select c from Cidade c where c.estado = :estado")
 public class Cidade implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2798405066468726147L;
-	
-	public static final String FIND_BY_NOME = "Cidade.findByNome";
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(nullable = false)
-	private String nome;	
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="estado_id", nullable = false, insertable = false, updatable = false, referencedColumnName="id")
-	private Estado estado;
-	
-	@OneToMany(mappedBy="cidade", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)  
-	private List<Endereco> endereco;
-	
-	public Long getId() {
-		return id;
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = -2798405066468726147L;
+    public static final String FIND_BY_NOME = "Cidade.findByNome";
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private String nome;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "estado_id", nullable = false, insertable = false, updatable = false, referencedColumnName = "id")
+    private Estado estado;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Estado getEstado() {
-		return estado;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
+    public Estado getEstado() {
+        return estado;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public List<Endereco> getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(List<Endereco> endereco) {
-		this.endereco = endereco;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     @Override
     public int hashCode() {
@@ -94,12 +80,8 @@ public class Cidade implements Serializable {
         return true;
     }
 
-    
-
     @Override
     public String toString() {
         return nome;
     }
-
-	
 }
