@@ -11,17 +11,19 @@
     </h:head>
     <ui:decorate template="/pages/templates/principalTemplate.xhtml">
         <ui:define name="centro"> 
-            <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">
-	<f:facet name="start">
-		<h:graphicImage value="/pages/resources/images/ajax-loader.gif" />
-	</f:facet>
-	
-	<f:facet name="complete">
-		<h:outputText value="" />
-	</f:facet>
+
+            <p:ajaxStatus style="width:16px;height:16px; alignment-adjust: auto" id="ajaxStatusPanel2" >
+                <f:facet name="start">
+                    <h:graphicImage value="/pages/resources/images/ajax-loader.gif" style="alignment-adjust: auto"/>
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
             </p:ajaxStatus>
+
             <h:form prependId="false">	
-                
+
                 <p:dataTable id="dataTable" var="estado" value="#{estadoMB.getAllEstados()}"
                              paginator="true" rows="10"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -37,7 +39,7 @@
                         </f:facet>
                         <h:outputText value="#{estado.nome}" />
                     </p:column>  
-                    
+
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{msgs.EstadoSigla}" />
@@ -67,8 +69,17 @@
                 </p:dataTable>
                 <br />
                 <p:commandButton action="#{estadoMB.createEstadoStart()}" value="#{msgs.create} #{msgs.Estado}" />
-                
+
             </h:form>  
+            <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">
+                <f:facet name="start">
+                    <h:graphicImage value="/pages/resources/images/ajax-loader.gif" />
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
         </ui:define>
     </ui:decorate>
 </html>

@@ -11,6 +11,16 @@
     </h:head>
     <ui:decorate template="/pages/templates/principalTemplate.xhtml">
         <ui:define name="centro">
+            <p:ajaxStatus style="width:16px;height:16px; alignment-adjust: auto" id="ajaxStatusPanel2" >
+                <f:facet name="start">
+                    <h:graphicImage value="/pages/resources/images/ajax-loader.gif" style="alignment-adjust: auto"/>
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
+
             <h:form prependId="false">	
                 <p:dataTable id="dataTable" var="cidade" value="#{cidadeMB.getAllCidades()}"
                              paginator="true" rows="10"
@@ -51,6 +61,16 @@
                 <br />
                 <p:commandButton action="#{cidadeMB.createCidadeStart()}" value="#{msgs.create} #{msgs.Cidade}" />
             </h:form>  
+            <p:ajaxStatus style="width:16px;height:16px; alignment-adjust: auto" id="ajaxStatusPanel" >
+                <f:facet name="start">
+                    <h:graphicImage value="/pages/resources/images/ajax-loader.gif" style="alignment-adjust: auto"/>
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
+
         </ui:define>
     </ui:decorate>
 </html>

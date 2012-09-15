@@ -1,23 +1,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
- <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
         <ui:define name="centro">
-	<h:form>
-		<h:messages/>
-		
-		<h3>#{msgs.CidadeDeleteHeader}: #{cidadeMB.cidade.nome}</h3>
-		<h:inputHidden value="#{cidadeMB.cidade.id}" />
-		<h:panelGrid columns="2">
-			
-			<h:commandButton action="#{cidadeMB.deleteCidadeEnd()}" value="#{msgs.delete}" />
-			<h:commandButton action="#{cidadeMB.listAllCidades()}" value="#{msgs.cancel}" immediate="true" />
-		</h:panelGrid>
-		<br/>
-	</h:form>
-    </ui:define>
+
+            <p:panel id="panelTitulo" header="#{msgs.CidadeTitleDelete}"
+                     style="margin-bottom:10px;">
+
+                <h:form>                    
+
+                    <h:messages />                    
+
+                    <h:inputHidden value="#{cidadeMB.cidade.id}" />
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msgs.CidadeDeleteHeader}" />
+                        </f:facet>
+                        <h:outputText value="#{cidadeMB.cidade.nome}" style="color: blue"/>
+                    </p:column>  
+
+              <!--      <p:outputLabel value="{msgs.CidadeDeleteHeader}: {cidadeMB.cidade.nome}"/> -->
+
+                    <h:panelGrid columns="2">
+
+                        <h:commandButton action="#{cidadeMB.deleteCidadeEnd()}" value="#{msgs.delete}" />
+                        <h:commandButton action="#{cidadeMB.listAllCidades()}" value="#{msgs.cancel}" immediate="true" />
+                    </h:panelGrid>
+                    <br/>
+                </h:form>
+                 <p:ajaxStatus style="width:16px;height:16px; alignment-adjust: auto" id="ajaxStatusPanel" >
+                <f:facet name="start">
+                    <h:graphicImage value="/pages/resources/images/ajax-loader.gif" style="alignment-adjust: auto"/>
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
+            </p:panel>
+        </ui:define>
     </ui:decorate>
 </html>

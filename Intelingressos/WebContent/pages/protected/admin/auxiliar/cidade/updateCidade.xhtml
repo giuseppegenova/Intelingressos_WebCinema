@@ -2,70 +2,56 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-<ui:decorate template="/pages/templates/principalTemplate.xhtml">
-	<ui:define name="centro">
-		<h1 align="center">#{msgs.cidadeTitleCadastro}</h1>
-		<fieldset>
-			<legend>#{msgs.cidadeCreateFieldset}</legend>
-			<h:form>
-				<h:messages />				
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro">
+            <p:panel id="panelTitulo" header="#{msgs.EstadoTitleUpdate}"
+                     style="margin-bottom:10px;">
+                <h:form>                    
 
-				<h:panelGrid columns="2" styleClass="panelGrid"
-					rowClasses="panelFirstLine,panelNextLine">
+                    <h:messages />
+                      
+                    <h:inputHidden value="#{estadoMB.estado.id}" />
+                    
+                    <h:panelGrid columns="3" styleClass="panelGrid"
+                                 rowClasses="panelFirstLine,panelNextLine">
 
-					<h:outputLabel for="cidadeNome" value="#{msgs.cidadeNome}" />
-					<h:inputText id="cidadeNome" value="#{cidadeMB.cidade.nome}"
-						required="true" requiredMessage="#{msgs.cidadeNomeRequired}" />
+                        <p:outputLabel for="clienteNome" value="#{msgs.EstadoNome}:" style="color: blue;"/>
+                        <p:inputText id="clienteNome" value="#{estadoMB.estado.nome}"
+                                     required="true" requiredMessage="#{msgs.EstadoNomeRequired}" style="text-transform: capitalize"/>
+                        <h:messages  for="clienteNome" style="color: red"/>
 
-					<h:outputLabel for="cidadeCPF" value="#{msgs.cidadeCpf}" />
-					<p:inputMask mask="999.999.999-99" id="cidadeCPF" value="#{cidadeMB.cidade.cpf}"
-						required="true" requiredMessage="#{msgs.cidadeCpfRequired}" size="17"/>
-						
-				    <h:outputLabel for="cidadeEmail" value="#{msgs.cidadeEmail}" />
-					<h:inputText id="cidadeEmail"
-						value="#{cidadeMB.cidade.email}" required="true"
-						requiredMessage="#{msgs.cidadeEmailRequired}" />	
-						
-					<h:outputLabel id="cidadeCelularLabel" value="#{msgs.cidadeCelular}" />
-					<p:inputMask mask="(99)9999-9999" id="cidadeCelular"
-						value="#{cidadeMB.cidade.celular}" required="true"
-						requiredMessage="#{msgs.cidadeCelularRequired}" />
-					
-					<h:outputLabel for="cidadeEnderecoLogradouro" value="#{msgs.cidadeEnderecoLogradouro}" />
-					<h:inputText id="cidadeEnderecoLogradouro"
-						value="#{cidadeMB.endereco.logradouro}" required="true"
-						requiredMessage="#{msgs.cidadeEnderecoLogradouroRequired}" />	
-						
-					<h:outputLabel for="cidadeEnderecoComplemento" value="#{msgs.cidadeEnderecoComplemento}" />
-					<h:inputText id="cidadeEnderecoComplemento"
-						value="#{cidadeMB.endereco.complemento}" required="true"
-						requiredMessage="#{msgs.cidadeEnderecoComplementoRequired}" />		
-					
-					<h:outputLabel for="cidadeEnderecoCep" value="#{msgs.cidadeEnderecoCep}" />
-					<p:inputMask mask="999.999-99" id="cidadeEnderecoCep"
-						value="#{cidadeMB.endereco.cep}" required="true"
-						requiredMessage="#{msgs.cidadeEnderecoCepRequired}" />	
-						
-						
+                        <p:outputLabel value="#{msgs.EstadoSigla}:" for="estadoSigla" style="color: blue;"/>
+                        <p:inputText  id="estadoSigla" value="#{estadoMB.estado.sigla}" 
+                                      maxlength="2" required="true" requiredMessage="#{mesgs.EstadoSiglaRequired}" size="2"
+                                      style="text-transform:uppercase" />						
+                        <h:messages  for="estadoSigla" style="color: red"/>
+                    </h:panelGrid>
 
-				</h:panelGrid>
+                    <h:panelGrid columns="2">
 
-				<h:panelGrid columns="2">
+                        <h:commandButton action="#{estadoMB.updateEstadoEnd()}"
+                                         value="#{msgs.update}" />
+                        <h:commandButton action="#{estadoMB.listAllEstados()}"
+                                         value="#{msgs.cancel}" immediate="true" />
 
-					<h:commandButton action="#{cidadeMB.updateCidadeEnd()}"
-						value="#{msgs.update}" />
-					<h:commandButton action="#{cidadeMB.listAllCidades()}"
-						value="#{msgs.cancel}" immediate="true" />
+                    </h:panelGrid>
 
-				</h:panelGrid>
+                </h:form>
+                 <p:ajaxStatus style="width:16px;height:16px; alignment-adjust: auto" id="ajaxStatusPanel" >
+                <f:facet name="start">
+                    <h:graphicImage value="/pages/resources/images/ajax-loader.gif" style="alignment-adjust: auto"/>
+                </f:facet>
 
-			</h:form>
-		</fieldset>
-	</ui:define>
-</ui:decorate>
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
+            </p:panel>
+        </ui:define>
+    </ui:decorate>
 </html>
