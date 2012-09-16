@@ -9,7 +9,7 @@
 
 <ui:decorate template="/pages/templates/principalTemplate.xhtml">
 	<ui:define name="centro">
-		<h1 align="center">#{msgs.sessaoTitleCadastro}</h1>
+		<h1 align="center">#{msgs.CinemaTitleCadastro}</h1>
 		<h:form>
 
 			<h:messages />
@@ -17,21 +17,17 @@
 			<h:panelGrid columns="2" styleClass="panelGrid"
 				rowClasses="panelFirstLine,panelNextLine">
 
-				<h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
-				<p:calendar 
-				pattern="dd/MM/yyyy" value="#{sessaoMB.sessao.data}" size="7"
-				id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
-				<f:convertDateTime/>
-				</p:calendar>
+				<h:outputLabel for="cinemaNome" value="#{msgs.CinemaNome}" />
+                                <p:inputText id="cinemaNome"  value="#{cinemaMB.cinema.nome}"
+				 	required="true" requiredMessage="#{msgs.CinemaNomeRequired}">
 				
-				<h:outputLabel value="#{msgs.SessaoHora}" for="sessaoHora" />
-				<p:inputMask mask="99:99:99" id="sessaoHora" value="#{sessaoMB.sessao.hora}"
-					required="true" requiredMessage="#{mesgs.SessaoHoraRequired}" size="7"
-					convert="num">
-						
-				</p:inputMask>
-
+                                </p:inputText>
 				
+				<h:outputLabel value="#{msgs.CinemaProgramacao}" for="cinemaProgramacao" />
+				<p:pickList id="cinemaProgramacao"
+                                    value="#{cinemaMB.dualListProgramacao}" var="prog"
+                                    itemLabel="#{prog.f}" itemValue="#{prod}"
+                                    converter="produtoConverter" required="true" styleClass="ui-widget ui-widget-header"/>
 
 			</h:panelGrid>
 
