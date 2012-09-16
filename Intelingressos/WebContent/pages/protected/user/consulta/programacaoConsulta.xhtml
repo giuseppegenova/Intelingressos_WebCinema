@@ -16,12 +16,15 @@
                 <p:panel id="panelTitulo" header="#{msgs.ConsultaTitle}"
                          style="margin-bottom:10px;">
 
-                    <p:dataGrid var="prog" value="#{programacaoMB.programacaoList}" columns="3"
-                                rows="12" paginator="true"
+                    <p:dataGrid value="#{programacaoMB.programacaoList}" var="prog" columns="3"
+                                rows="10" paginator="true"
                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                rowsPerPageTemplate="9,12,15">
+                                rowsPerPageTemplate="5,10,15">
+                        
+                        <h:inputHidden value="#{prog.id}" />
 
                         <p:panel header="#{prog.filme.nome}" style="text-align:center">
+                            
                             <h:panelGrid columns="1" style="width:100%">
                                 <!-- <p:graphicImage value="/images/cars/{car.manufacturer}.jpg"/> -->
 
@@ -29,12 +32,14 @@
 
                                 <p:commandLink update=":form:progDetail" oncomplete="progDialog.show()" title="View Detail">
                                     <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
-                                    <f:setPropertyActionListener value="#{prog}" 
+                                    <f:setPropertyActionListener value="#{prog}"                                                                  
                                                                  target="#{programacaoMB.programacao}" />
                                 </p:commandLink>
-                                
+
+                                <p:commandButton action="/pages/protected/admin/venda/programacaoVenda.xhtml" value="Compre seu ingresso" />
+
                             </h:panelGrid>
-                            
+
                         </p:panel>
 
                     </p:dataGrid>
@@ -43,30 +48,28 @@
                                hideEffect="bounce" modal="true" appendToBody="true" >
                         <p:outputPanel id="progDetail" style="text-align:center;" layout="block" >
 
-                          <!--  <p:graphicImage value="/images/cars/{programacaoMB.programacao.manufacturer}.jpg"/> -->
+                            <!--  <p:graphicImage value="/images/cars/{programacaoMB.programacao.manufacturer}.jpg"/> -->
 
                             <h:panelGrid  columns="2" cellpadding="5">
-                                
-                                <h:inputHidden value="#{programacao.id}" />
-                                
+
                                 <h:outputLabel for="filme" value="Filme: " />
                                 <h:outputText id="filme" value="#{programacaoMB.programacao.filme.nome}" />
-                                
+
                                 <h:outputLabel for="sala" value="Sala: " />
                                 <h:outputText id="sala" value="#{programacaoMB.programacao.sala.nome}" />
 
                                 <h:outputLabel for="sessao" value="Sessão: " />
                                 <h:outputText id="sessao" value="#{programacaoMB.programacao.sessao.data}" />
-                                
-                                   <h:outputLabel for="Sinopse" value="Sinopse: " />
+
+                                <h:outputLabel for="Sinopse" value="Sinopse: " />
                                 <h:outputText id="Sinopse" value="#{programacaoMB.programacao.filme.sinopse}" />
-                                
-                                
-                                <h:commandLink value="/pages/protected/admin/venda/programacaoVenda.xhtml" />
-                             
+
                             </h:panelGrid>
+                            
                         </p:outputPanel>
+                        
                     </p:dialog>
+                    
                 </p:panel>
 
             </h:form>

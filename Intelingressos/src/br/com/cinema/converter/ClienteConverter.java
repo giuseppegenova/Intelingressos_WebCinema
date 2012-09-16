@@ -7,9 +7,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(value="estadoConverter")
+@FacesConverter(value="clienteConverter")
 @Stateless
-public class EstadoConverter implements Converter {
+public class ClienteConverter implements Converter {
 	
 @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String key) {

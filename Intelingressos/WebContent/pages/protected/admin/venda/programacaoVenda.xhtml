@@ -16,47 +16,27 @@
                 <p:panel id="panelTitulo" header="#{msgs.ConsultaTitle}"
                          style="margin-bottom:10px;">
 
-                    <p:panel header="#{prog.filme.nome}" style="text-align:center">
-                            <h:panelGrid columns="1" style="width:100%">
-                                <!-- <p:graphicImage value="/images/cars/{car.manufacturer}.jpg"/> -->
-
-                                <h:outputText value="#{prog.ingresso.tipo}" title="#{msgs.SessaoData}" />
-
-                                <p:commandLink update=":form:progDetail" oncomplete="progDialog.show()" title="View Detail">
-                                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
-                                    <f:setPropertyActionListener value="#{prog}" 
-                                                                 target="#{programacaoMB.programacao}" />
-                                </p:commandLink>
+                    <p:panel header="#{programacaoMB.filme.nome}" style="text-align:center">
+                        
+                            <h:panelGrid columns="3" style="width:100%">
+                                
+                            <p:outputLabel value="Sessão:" for="sessao" style="color: blue;"/>
+                            <p:selectOneMenu id="sessao" value="#{programacaoMB.programacao.sessao.data}" required="true" 
+                                             requiredMessage="#{msgs.SessaoSelectRequired}"
+                                             converter="sessaoConverter">
+                                <f:selectItem itemLabel=" Selecionar Estado " />
+                                <f:selectItems value="#{sessaoMB.sessaoMap}" var="sessoes"
+                                               itemLabel="#{sessoes.data}"  itemValue="#{sessoes}" />
+                             <!--   <f:ajax event="change" listener="#{clienteMB.atualizaCidades()}" 
+                                        execute="estado" render="cidade" />  -->
+                            </p:selectOneMenu>
+                            <h:messages  for="estado" style="color: red"/>
                                 
                             </h:panelGrid>
                             
                         </p:panel>
                     
-                    <p:dialog  header="Programacao Detalhada" widgetVar="progDialog" showEffect="explode" 
-                               hideEffect="bounce" modal="true" appendToBody="true" >
-                        <p:outputPanel id="progDetail" style="text-align:center;" layout="block" >
-
-                          <!--  <p:graphicImage value="/images/cars/{programacaoMB.programacao.manufacturer}.jpg"/> -->
-
-                            <h:panelGrid  columns="2" cellpadding="5">
-                                <h:outputLabel for="filme" value="Filme: " />
-                                <h:outputText id="filme" value="#{programacaoMB.programacao.filme.nome}" />
-                                
-                                <h:outputLabel for="sala" value="Sala: " />
-                                <h:outputText id="sala" value="#{programacaoMB.programacao.sala.nome}" />
-
-                                <h:outputLabel for="sessao" value="Sessão: " />
-                                <h:outputText id="sessao" value="#{programacaoMB.programacao.sessao.data}" />
-                                
-                                   <h:outputLabel for="Sinopse" value="Sinopse: " />
-                                <h:outputText id="Sinopse" value="#{programacaoMB.programacao.filme.sinopse}" />
-                                
-                                
-                                
-                             
-                            </h:panelGrid>
-                        </p:outputPanel>
-                    </p:dialog>
+                    
                 </p:panel>
 
             </h:form>
