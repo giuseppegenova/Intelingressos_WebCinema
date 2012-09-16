@@ -46,6 +46,9 @@
                           <!--  <p:graphicImage value="/images/cars/{programacaoMB.programacao.manufacturer}.jpg"/> -->
 
                             <h:panelGrid  columns="2" cellpadding="5">
+                                
+                                <h:inputHidden value="#{programacao.id}" />
+                                
                                 <h:outputLabel for="filme" value="Filme: " />
                                 <h:outputText id="filme" value="#{programacaoMB.programacao.filme.nome}" />
                                 
@@ -59,7 +62,7 @@
                                 <h:outputText id="Sinopse" value="#{programacaoMB.programacao.filme.sinopse}" />
                                 
                                 
-                                <h:commandLink value="/pages/" />
+                                <h:commandLink value="/pages/protected/admin/venda/programacaoVenda.xhtml" />
                              
                             </h:panelGrid>
                         </p:outputPanel>

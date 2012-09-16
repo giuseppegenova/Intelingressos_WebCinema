@@ -28,24 +28,32 @@ public class Ingresso implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @Column(nullable = false)
     private Integer protocolo;
+    
     @Column(nullable = false)
     private double valorTotal;
+    
     @Column(nullable = false)
     private String cartaoCredito;
+    
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date validadeCartao;
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ingressoCompra_id", unique = true)
     private IngressoCompra ingressoCompra;
+    
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ingressoTipo_id", unique = true)
     private Set<IngressoTipo> ingressoTipo;
+    
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ingresso", nullable = false, insertable = false, updatable = false, referencedColumnName = "id")
+    @JoinColumn(name = "sessao_id", nullable = false, insertable = false, updatable = false, referencedColumnName = "id")
     private Sessao sessao;
+    
     private boolean valido;
 
     public Long getId() {
