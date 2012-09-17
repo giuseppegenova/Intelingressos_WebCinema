@@ -2,47 +2,53 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-<ui:decorate template="/pages/templates/principalTemplate.xhtml">
-	<ui:define name="centro">
-		<h1 align="center">#{msgs.sessaoTitleCadastro}</h1>
-		<h:form>
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro">
+            <h1 align="center">#{msgs.sessaoTitleCadastro}</h1>
+            <h:form>
 
-			<h:messages />
+                <h:messages />
 
-			<h:panelGrid columns="2" styleClass="panelGrid"
-				rowClasses="panelFirstLine,panelNextLine">
+                <h:panelGrid columns="3" styleClass="panelGrid"
+                             rowClasses="panelFirstLine,panelNextLine">
 
-				<h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
-				<p:calendar 
-				pattern="dd/MM/yyyy" value="#{sessaoMB.sessao.data}" size="7"
-				id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
-				<f:convertDateTime Pattern="yyyy/MM/dd"/>
-				</p:calendar>			
-				
-				<h:outputLabel for="sessaoHora" value="#{msgs.SessaoHora}" />
-				<p:inputMask 
-				mask="99:99:99" value="#{sessaoMB.sessao.hora}" size="7"
-				id="sessaoHora"	required="true" requiredMessage="#{msgs.SessaoHoraRequired}"
-				>				
-				</p:inputMask >			
+                    <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
+                    <p:calendar 
+                        pattern="dd/MM/yyyy" value="#{sessaoMB.dataDaSessao}" size="7"
+                        id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+                        <f:convertDateTime pattern="yyyy/MM/dd"/>
+                        <f:ajax event="keyup" execute="sessaoData" />
+                    </p:calendar>			
 
-			</h:panelGrid>
+                    <h:commandButton action="#{sessaoMB.adicionaData()}" value="Adiciona no carrinho"/>
+                </h:panelGrid>
+                <p:panel id="DadosSessao" header="#{msgs.SessaoListaDatas}"
+                         style="margin-bottom:10px;">
+                    <h:dataTable value="#{sessaoMB.sessaoDataList}" var="s">
 
-			<h:panelGrid columns="2">
+                        <h:column>
+                            <h:outputText value="#{s}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandLink action="#{sessaoMB.removeData(s)}" value="remove" />
+                        </h:column>
+                    </h:dataTable>
+                </p:panel>
+                <h:panelGrid columns="2">
 
-				<h:commandButton action="#{sessaoMB.createSessaoEnd()}"
-					value="#{msgs.create}" />
-				<h:commandButton action="#{sessaoMB.listAllSessoes()}"
-					value="#{msgs.cancel}" immediate="true" />
+                    <h:commandButton action="#{sessaoMB.createSessaoEnd()}"
+                                     value="#{msgs.create}" />
+                    <h:commandButton action="#{sessaoMB.listAllSessoes()}"
+                                     value="#{msgs.cancel}" immediate="true" />
 
-			</h:panelGrid>
+                </h:panelGrid>
 
-		</h:form>
-	</ui:define>
-</ui:decorate>
+            </h:form>
+        </ui:define>
+    </ui:decorate>
 </html>

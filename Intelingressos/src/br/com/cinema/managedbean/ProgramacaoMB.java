@@ -5,6 +5,8 @@ import br.com.cinema.entity.Ingresso;
 import br.com.cinema.entity.Programacao;
 import br.com.cinema.entity.Sala;
 import br.com.cinema.entity.Sessao;
+import br.com.cinema.entity.SessaoData;
+import br.com.cinema.entity.SessaoHora;
 import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
 import br.com.cinema.facade.local.SessaoFacadeLocal;
 import java.util.ArrayList;
@@ -37,6 +39,8 @@ public class ProgramacaoMB {
     private Filme filme;
     private Sala sala;
     private Sessao sessao;
+    private SessaoData sessaoData;
+    private SessaoHora sessaoHora;
     private List<Sessao> sessaoList;
     private Map<Sessao, String> sessaoMap;
     private Map<Ingresso, String> ingressoMap;
@@ -108,6 +112,22 @@ public class ProgramacaoMB {
 
     public void setSessao(Sessao sessao) {
         this.sessao = sessao;
+    }
+
+    public SessaoData getSessaoData() {
+        return sessaoData;
+    }
+
+    public void setSessaoData(SessaoData sessaoData) {
+        this.sessaoData = sessaoData;
+    }
+
+    public SessaoHora getSessaoHora() {
+        return sessaoHora;
+    }
+
+    public void setSessaoHora(SessaoHora sessaoHora) {
+        this.sessaoHora = sessaoHora;
     }
 
     public List<Sessao> getSessaoList() {
@@ -184,8 +204,8 @@ public class ProgramacaoMB {
         this.sala.setCapacidade(salaTP.getCapacidade());
 
         sessaoTP = programacao.getSessao();
-        this.sessao.setData(sessaoTP.getData());
-        this.sessao.setHora(sessaoTP.getHora());
+       // this.sessao.setData(sessaoTP.getData());
+        //this.sessao.setHora(sessaoTP.getHora());
 
         return UPDATE_PROGRAMACAO;
     }
@@ -203,8 +223,8 @@ public class ProgramacaoMB {
             salaTP.setCapacidade(this.sala.getCapacidade());
 
             Sessao sessaoTP = new Sessao();
-            sessaoTP.setData(this.sessao.getData());
-            sessaoTP.setHora(this.sessao.getHora());
+           // sessaoTP.setData(this.sessao.getData());
+            //sessaoTP.setHora(this.sessao.getHora());
 
             this.programacao.setFilme(filmeTP);
             this.programacao.setSala(salaTP);

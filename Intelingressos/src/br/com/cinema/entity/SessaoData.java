@@ -7,6 +7,7 @@ package br.com.cinema.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 /**
@@ -22,11 +23,10 @@ public class SessaoData implements Serializable {
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date dataSessao;
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.LAZY)    
     private Sessao sessao;
-    @OneToMany(cascade= CascadeType.ALL, orphanRemoval=true)
-    @JoinColumn(name="sessaoHora_id")
-    private List<SessaoHora> horaSessao;
+    @OneToMany(mappedBy="sessaoData")    
+    private Set<SessaoHora> sessaoHora;
 
     public Long getId() {
         return id;
@@ -40,14 +40,14 @@ public class SessaoData implements Serializable {
         return dataSessao;
     }
 
-    public List<SessaoHora> getHoraSessao() {
-        return horaSessao;
+    public Set<SessaoHora> getSessaoHora() {
+        return sessaoHora;
     }
 
-    public void setHoraSessao(List<SessaoHora> horaSessao) {
-        this.horaSessao = horaSessao;
+    public void setSessaoHora(Set<SessaoHora> sessaoHora) {
+        this.sessaoHora = sessaoHora;
     }
-    
+
     public void setDataSessao(Date dataSessao) {
         this.dataSessao = dataSessao;
     }

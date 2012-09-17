@@ -1,17 +1,22 @@
 package br.com.cinema.managedbean;
 
 import br.com.cinema.entity.Sessao;
+import br.com.cinema.entity.SessaoData;
 import br.com.cinema.facade.local.SessaoFacadeLocal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.context.FacesContext;
 
 @ManagedBean
@@ -26,7 +31,13 @@ public class SessaoMB {
     @EJB
     private SessaoFacadeLocal sessaoFacade;
     
-    private Sessao sessao;
+    private Sessao sessao; 
+    
+    private Date dataDaSessao;
+    
+    private SessaoData sessaoData;
+    
+    private Set<SessaoData> sessaoDataList;  
     
     private List<Sessao> sessaoList;
     
@@ -35,12 +46,22 @@ public class SessaoMB {
     public SessaoMB() {
         sessao = new Sessao();
         sessaoMap = new HashMap<Sessao, String>();
+        sessaoDataList = new HashSet<SessaoData>();
     }
     
     @PostConstruct
     public void init(){
         carregaListaSessoes();
         carregaSelectSessoes(sessaoList);
+    }
+    
+    public void adicionaData(){ 
+        sessaoDataList.add(sessaoData);
+         this.sessao.setSessaoData(sessaoDataList);
+    }
+    
+     public void removeData(SessaoData dataTp){
+        this.sessaoDataList.remove(dataTp);
     }
     
     private void carregaListaSessoes(){
@@ -65,6 +86,30 @@ public class SessaoMB {
         this.sessao = sessao;
     }
 
+    public Date getDataDaSessao() {
+        return dataDaSessao;
+    }
+
+    public void setDataDaSessao(Date dataDaSessao) {
+        this.dataDaSessao = dataDaSessao;
+    }
+
+    public SessaoData getSessaoData() {
+        return sessaoData;
+    }
+
+    public void setSessaoData(SessaoData sessaoData) {
+        this.sessaoData = sessaoData;
+    }
+
+    public Set<SessaoData> getSessaoDataList() {
+        return sessaoDataList;
+    }
+
+    public void setSessaoDataList(Set<SessaoData> sessaoDataList) {
+        this.sessaoDataList = sessaoDataList;
+    }
+    
     public List<Sessao> getSessaoList() {
         return sessaoList;
     }

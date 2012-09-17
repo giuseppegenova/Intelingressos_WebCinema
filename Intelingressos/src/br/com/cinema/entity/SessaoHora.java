@@ -26,8 +26,8 @@ public class SessaoHora implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date horaSessao;
     
-    @ManyToOne
-    private Sessao sessao;
+    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.LAZY)
+    private SessaoData sessaoData;
 
     public void setId(Long id) {
         this.id = id;
@@ -37,18 +37,18 @@ public class SessaoHora implements Serializable {
         return horaSessao;
     }
 
-    public void setHoraSessao(Date hHoraSessao) {
+    public void setHoraSessao(Date horaSessao) {
         this.horaSessao = horaSessao;
     }
 
-    public Sessao getSessao() {
-        return sessao;
+    public SessaoData getSessaoDAta() {
+        return sessaoData;
     }
 
-    public void setSessao(Sessao sessao) {
-        this.sessao = sessao;
+    public void setSessaoDAta(SessaoData sessaoData) {
+        this.sessaoData = sessaoData;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;

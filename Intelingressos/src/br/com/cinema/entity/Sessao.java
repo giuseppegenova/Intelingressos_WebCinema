@@ -2,6 +2,7 @@ package br.com.cinema.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -11,9 +12,8 @@ public class Sessao implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
-    @JoinColumn(name="sessaoData_id", unique=true)
-    private List<SessaoData> data; 
+    @OneToMany(mappedBy="sessao")
+    private Set<SessaoData> sessaoData; 
     
     private int ingressosVendidos;
     
@@ -30,14 +30,14 @@ public class Sessao implements Serializable{
         this.id = id;
     }
 
-    public List<SessaoData> getData() {
-        return data;
+    public Set<SessaoData> getSessaoData() {
+        return sessaoData;
     }
 
-    public void setData(List<SessaoData> data) {
-        this.data = data;
+    public void setSessaoData(Set<SessaoData> sessaoData) {
+        this.sessaoData = sessaoData;
     }
-  
+
     public int getIngressosVendidos() {
         return ingressosVendidos;
     }
@@ -78,6 +78,6 @@ public class Sessao implements Serializable{
 
     @Override
     public String toString() {
-        return data.toString();
+        return sessaoData.toString();
     }
 }
