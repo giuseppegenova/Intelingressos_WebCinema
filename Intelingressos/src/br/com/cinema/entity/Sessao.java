@@ -1,19 +1,8 @@
 package br.com.cinema.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "sessao")
@@ -22,14 +11,9 @@ public class Sessao implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date data;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date hora;
+    @OneToMany(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
+    @JoinColumn(name="sessaoData_id", unique=true)
+    private List<SessaoData> data; 
     
     private int ingressosVendidos;
     
@@ -46,22 +30,14 @@ public class Sessao implements Serializable{
         this.id = id;
     }
 
-    public Date getData() {
+    public List<SessaoData> getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(List<SessaoData> data) {
         this.data = data;
     }
-
-    public Date getHora() {
-        return hora;
-    }
-
-    public void setHora(Date hora) {
-        this.hora = hora;
-    }
-
+  
     public int getIngressosVendidos() {
         return ingressosVendidos;
     }
