@@ -8,41 +8,50 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:decorate template="/pages/templates/principalTemplate.xhtml">
-
         <ui:define name="centro">
-
+            
             <h:form id="form">
-
                 <p:panel id="panelTitulo" header="#{msgs.ConsultaTitle}"
-                         style="margin-bottom:10px;">
+                         style="margin-bottom:10px;">                   
+                        <h:panelGrid columns="3" style="width:100%">
 
-                    <p:panel header="#{programacaoMB.filme.nome}" style="text-align:center">
-                        
-                            <h:panelGrid columns="3" style="width:100%">
-                                
-                            <p:outputLabel value="Sessão:" for="sessao" style="color: blue;"/>
-                            <p:selectOneMenu id="sessao" value="#{programacaoMB.programacao.sessao.data}" required="true" 
-                                             requiredMessage="#{msgs.SessaoSelectRequired}"
-                                             converter="sessaoConverter">
-                                <f:selectItem itemLabel=" Selecionar Estado " />
-                                <f:selectItems value="#{sessaoMB.sessaoMap}" var="sessoes"
-                                               itemLabel="#{sessoes.data}"  itemValue="#{sessoes}" />
-                             <!--   <f:ajax event="change" listener="#{clienteMB.atualizaCidades()}" 
-                                        execute="estado" render="cidade" />  -->
+                            <p:outputLabel value="#{msgs.SessaoData}:" for="sessaoData" style="color: blue;"/>
+                            <p:selectOneMenu id="sessaoData" value="#{programacaoMB.programacao.sessao.data}" 
+                                             required="true" requiredMessage="#{msgs.SessaoDataSelectRequired}"
+                                             converter="programacaoConverter">
+                                <f:selectItem itemLabel="#{msgs.Selecione}"/>
+                                <f:selectItems value="#{programacaoMB.sessaoMap}" var="sessoes1"
+                                               itemLabel="#{sessoes1.data}" itemValue="#{sessoes1}"/> 
+                                <f:ajax event="change"  execute="sessaoData" render="sessaoHora" />
+                                <f:convertDateTime for="sessaoData"/>
                             </p:selectOneMenu>
-                            <h:messages  for="estado" style="color: red"/>
-                                
-                            </h:panelGrid>
+                            <h:messages  for="sessaoData" style="color: red"/>
                             
-                        </p:panel>
-                    
-                    
-                </p:panel>
+                            <p:outputLabel value="#{msgs.SessaoHora}:" for="sessaoHora" style="color: blue;"/>
+                            <p:selectOneMenu id="sessaoHora" value="#{programacaoMB.programacao.sessao.hora}" 
+                                             required="true" requiredMessage="#{msgs.SessaoHoraSelectRequired}"
+                                             converter="programacaoConverter">
+                                <f:selectItem itemLabel="#{msgs.Selecione}"/>
+                                <f:selectItems value="#{programacaoMB.sessaoMap}" var="sessoes2"
+                                               itemLabel="#{sessoes2.hora}" itemValue="#{sessoes2}"/> 
+                                
+                                <f:convertDateTime for="sessaoHora"/>
+                            </p:selectOneMenu>
+                            <h:messages  for="sessaoHora" style="color: red"/>
 
+                        </h:panelGrid>   
+                    <h:panelGrid columns="3">
+                        <h:inputHidden value="#{programacaoMB.programacao.id}" />
+                        
+                        <h:commandButton action="#{programacaoMB.createProgramacaoEnd()}"
+                                         value="#{msgs.create}" />
+
+                        <h:commandButton action="#{programacaoMB.listAllProgramacoes()}"
+                                         value="#{msgs.cancel}" immediate="true" />
+
+                    </h:panelGrid>
+                    </p:panel>                
             </h:form>
-
         </ui:define>
-
     </ui:decorate>
-
 </html>

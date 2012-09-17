@@ -1,25 +1,25 @@
 package br.com.cinema.converter;
 
-import br.com.cinema.managedbean.SessaoMB;
+import br.com.cinema.managedbean.ProgramacaoMB;
 import javax.ejb.Stateless;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(value="sessaoConverter")
+@FacesConverter(value="programacaoConverter")
 @Stateless
-public class SessaoConverter implements Converter {
+public class ProgramacaoConverter implements Converter {
 	
 @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String key) {
         
         FacesContext context = FacesContext.getCurrentInstance();
-        SessaoMB sessaoMB = (SessaoMB) context.getELContext().getELResolver().getValue(context.getELContext(), null, "sessaoMB");
+        ProgramacaoMB programacaoMB = (ProgramacaoMB) context.getELContext().getELResolver().getValue(context.getELContext(), null, "programacaoMB");
         if(key == null || key.equals("")){
             return "";
         }
-        return sessaoMB.findSessaoById(Long.parseLong(key));
+        return programacaoMB.findSessaoById(Long.parseLong(key));
     }
  
     @Override

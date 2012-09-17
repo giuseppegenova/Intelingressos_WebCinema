@@ -83,8 +83,9 @@
 
                             <p:outputLabel value="#{msgs.SalaCapacidade}" for="salaCapacidade"
                                            style="color: blue;" />
-                            <h:panelGrid columns="1" style="margin-bottom:10px">  
-                                <p:inputText id="salaCapacidade" value="#{programacaoMB.sala.capacidade}" />  
+                            <h:panelGrid  columns="1" style="margin-bottom:10px">  
+                                <p:inputText id="salaCapacidade" value="#{programacaoMB.sala.capacidade}" 
+                                             required="true" requiredMessage="#{msgs.SalaCapacidadeRequired}"/>  
                                 <p:slider for="salaCapacidade" maxValue="500"/>  
                             </h:panelGrid>  
 
@@ -101,7 +102,7 @@
 
                             <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}"
                                            style="color: blue;" />
-                            <p:calendar pattern="dd/MM/yyyy"
+                            <p:calendar  pattern="dd/MM/yyyy"
                                         value="#{programacaoMB.sessao.data}" size="7" id="sessaoData"
                                         required="true" requiredMessage="#{msgs.SessaoDataRequired}">
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -110,7 +111,7 @@
 
                             <h:outputLabel for="sessaoHora" value="#{msgs.SessaoHora}"
                                            style="color: blue;" />
-                            <p:calendar value="#{programacaoMB.sessao.hora}" 
+                            <p:calendar id="sessaoHora" value="#{programacaoMB.sessao.hora}" 
                                         pattern="HH:mm:ss" timeOnly="true" 
                                         required="true"
                                         requiredMessage="#{msgs.SessaoHoraRequired}" > 

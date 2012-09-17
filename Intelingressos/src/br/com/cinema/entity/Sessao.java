@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +27,7 @@ public class Sessao implements Serializable{
     @Column(nullable = false)
     private Date data;
     
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date hora;
     

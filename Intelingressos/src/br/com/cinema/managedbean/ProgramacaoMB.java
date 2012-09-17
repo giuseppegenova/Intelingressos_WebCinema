@@ -6,6 +6,7 @@ import br.com.cinema.entity.Programacao;
 import br.com.cinema.entity.Sala;
 import br.com.cinema.entity.Sessao;
 import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
+import br.com.cinema.facade.local.SessaoFacadeLocal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,11 +30,15 @@ public class ProgramacaoMB {
     private static final String STAY_IN_THE_SAME_PAGE = null;
     @EJB
     private ProgramacaoFacadeLocal programacaoFacade;
+    @EJB
+    private SessaoFacadeLocal sessaoFacade;
     private Programacao programacao;
     private List<Programacao> programacaoList;
     private Filme filme;
     private Sala sala;
     private Sessao sessao;
+    private List<Sessao> sessaoList;
+    private Map<Sessao, String> sessaoMap;
     private Map<Ingresso, String> ingressoMap;
 
     public ProgramacaoMB() {
@@ -41,17 +46,35 @@ public class ProgramacaoMB {
         filme = new Filme();
         sala = new Sala();
         sessao = new Sessao();
+        sessaoList = new ArrayList<Sessao>();
+        sessaoMap = new HashMap<Sessao, String>();
         ingressoMap = new HashMap<Ingresso, String>();
     }
 
     @PostConstruct
     public void init() {
-        carregaProgramacao();
+        this.programacaoList = carregaProgramacao();
+        this.sessaoList = carregaListaSessao();
+        carregaSelectSessao(sessaoList);
     }
-
-    private void carregaProgramacao() {
-        programacaoList = programacaoFacade.findAll();
-        //carregaSelectEstados(estados);          
+    
+    private void carregaSelectSessao(List<Sessao> ses){
+        for (int i = 0; i < ses.size(); i++) {
+            sessaoMap.put(ses.get(i), String.valueOf(i));
+            
+        }
+    }
+    
+    private List<Sessao> carregaListaSessao(){
+        List<Sessao> sessaoTP;
+        sessaoTP = sessaoFacade.findAll();
+        return sessaoTP;
+    }
+            
+    private List<Programacao> carregaProgramacao() {
+        List<Programacao> programacaoTP;
+        programacaoTP = programacaoFacade.findAll();
+        return programacaoTP;
     }
 
     public Filme getFilme() {
@@ -85,6 +108,22 @@ public class ProgramacaoMB {
 
     public void setSessao(Sessao sessao) {
         this.sessao = sessao;
+    }
+
+    public List<Sessao> getSessaoList() {
+        return sessaoList;
+    }
+
+    public void setSessaoList(List<Sessao> sessaoList) {
+        this.sessaoList = sessaoList;
+    }
+
+    public Map<Sessao, String> getSessaoMap() {
+        return sessaoMap;
+    }
+
+    public void setSessaoMap(Map<Sessao, String> sessaoMap) {
+        this.sessaoMap = sessaoMap;
     }
 
     public Map<Ingresso, String> getIngressoMap() {
@@ -123,6 +162,10 @@ public class ProgramacaoMB {
 
     public Programacao findProgramacaoByFilme(Filme filme) {
         return null;
+    }
+    
+    public Sessao findSessaoById(Long id){
+        return sessaoFacade.find(id);
     }
 
     public String updateProgramacaoStart() {

@@ -19,6 +19,8 @@
                     <h:panelGrid columns="3" styleClass="panelGrid"
                                  rowClasses="panelFirstLine,panelNextLine">
 
+                        <h:inputHidden value="#{programacaoMB.programacao.id}" />
+                        
                         <p:outputLabel for="programacaoInicio" value="#{msgs.ProgramacaoInicio}"
                                        style="color: blue;" />
                         <p:calendar pattern="dd/MM/yyyy"
@@ -43,6 +45,8 @@
                     <p:panel id="panel" header="Filme" style="margin-bottom:10px;">
                         <h:panelGrid columns="3" styleClass="panelGrid"
                                      rowClasses="panelFirstLine,panelNextLine">
+                            
+                         
 
                             <p:outputLabel for="filmeTitulo" value="#{msgs.FilmeTitulo}"
                                            style="color: blue;" />
@@ -75,6 +79,8 @@
 
                         <h:panelGrid columns="3" styleClass="panelGrid"
                                      rowClasses="panelFirstLine,panelNextLine">
+                            
+                         
 
                             <p:outputLabel for="salaNome" value="#{msgs.SalaNome}"
                                            style="color: blue;" />
@@ -99,7 +105,8 @@
 
                         <h:panelGrid columns="3" styleClass="panelGrid"
                                      rowClasses="panelFirstLine,panelNextLine">
-
+                            
+                          
                             <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}"
                                            style="color: blue;" />
                             <p:calendar pattern="dd/MM/yyyy"
@@ -114,16 +121,17 @@
                             <p:calendar value="#{programacaoMB.sessao.hora}" 
                                         pattern="HH:mm:ss" timeOnly="true" 
                                         required="true"
-                                        requiredMessage="#{msgs.SessaoHoraRequired}" > 
-                                <f:convertDateTime pattern="HH:mm:ss" />
+                                        requiredMessage="#{msgs.SessaoHoraRequired}" id="sessaoHora"> 
+                                <f:convertDateTime pattern="HH:mm:ss" for="sessaoHora"/>                                
                             </p:calendar>
-
+                            <h:messages for="sessaoHora" style="color: red"/>
+                            
                         </h:panelGrid>
 
                     </p:panel>
 
 
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="2">    
 
                         <h:commandButton action="#{programacaoMB.createProgramacaoEnd()}"
                                          value="#{msgs.update}" />
