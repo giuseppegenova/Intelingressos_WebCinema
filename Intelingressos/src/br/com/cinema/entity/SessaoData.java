@@ -25,7 +25,7 @@ public class SessaoData implements Serializable {
     private Date dataSessao;
     @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.LAZY)    
     private Sessao sessao;
-    @OneToMany(mappedBy="sessaoData")    
+    @OneToMany(cascade= CascadeType.ALL, fetch= FetchType.EAGER, orphanRemoval=true)
     private Set<SessaoHora> sessaoHora;
 
     public Long getId() {
@@ -82,6 +82,6 @@ public class SessaoData implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.cinema.entity.SessaoData[ id=" + id + " ]";
+        return String.valueOf(dataSessao);
     }
 }

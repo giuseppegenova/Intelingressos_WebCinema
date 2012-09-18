@@ -9,46 +9,55 @@
 
     <ui:decorate template="/pages/templates/principalTemplate.xhtml">
         <ui:define name="centro">
-            <h1 align="center">#{msgs.sessaoTitleCadastro}</h1>
-            <h:form>
+            <p:panel id="painelData" header="#{msgs.SessaoTitleCadastroData}" >
+                <h:form>
+                    <h:messages />
+                    <h:panelGrid columns="3" styleClass="panelGrid"
+                                 rowClasses="panelFirstLine,panelNextLine">
 
-                <h:messages />
+                        <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
+                        <p:calendar 
+                            pattern="dd/MM/yyyy" value="#{sessaoMB.dataLocal}" size="7"
+                            id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
 
-                <h:panelGrid columns="3" styleClass="panelGrid"
-                             rowClasses="panelFirstLine,panelNextLine">
+                        </p:calendar>	
+                    </h:panelGrid>
+                    <p:panel id="DadosSessao" header="#{msgs.SessaoListaHoras}"
+                             style="margin-bottom:10px;">
+                        <p:pickList id="pickList" value="#{sessaoMB.horaPic}" var="hora" 
+                                    itemLabel="#{hora}" itemValue="#{hora}" >
+                            <f:facet name="sourceCaption">Disponível</f:facet>  
+                            <f:facet name="targetCaption">Selecionado</f:facet>  
+                        </p:pickList>  
+                        <p:commandButton id="SessaoSubmit" value="Submit" update="displaySessoes" oncomplete="sessaoDialog.show()" style="margin-top:5px"/> 
+                    </p:panel>  
+                    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="sessaoDialog" appendToBody="true">  
+                        <h:panelGrid id="displaySessoes" columns="2">  
+                            <h:outputText  value="#{sessaoMB.dataLocal}" style="font-weight:bold" >  
+                                <f:convertDateTime  pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>  
+                            </h:outputText>
+                            <!-- <ui:repeat value="{sessaoMB.horaPic.source}" var="data">  
+                                 <h:outputText value="{item}" style="margin-right:5px" />  
+                             </ui:repeat> --> 
 
-                    <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
-                    <p:calendar 
-                        pattern="dd/MM/yyyy" value="#{sessaoMB.dataDaSessao}" size="7"
-                        id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
-                        <f:convertDateTime pattern="yyyy/MM/dd"/>
-                        <f:ajax event="keyup" execute="sessaoData" />
-                    </p:calendar>			
+                            <h:outputText value="Horario: " style="font-weight:bold"/>  
+                            <ui:repeat value="#{sessaoMB.horaPic.target}" var="item">  
+                                <h:outputText value="#{item}" style="margin-right:5px" />  
+                            </ui:repeat>
+                           
+                        </h:panelGrid>  
+                    </p:dialog>   
+                     <h:panelGrid columns="2">
 
-                    <h:commandButton action="#{sessaoMB.adicionaData()}" value="Adiciona no carrinho"/>
-                </h:panelGrid>
-                <p:panel id="DadosSessao" header="#{msgs.SessaoListaDatas}"
-                         style="margin-bottom:10px;">
-                    <h:dataTable value="#{sessaoMB.sessaoDataList}" var="s">
+                                <h:commandButton action="#{sessaoMB.createSessaoEnd()}"
+                                                 value="#{msgs.create}" />
+                                <h:commandButton action="#{sessaoMB.listAllSessoes()}"
+                                                 value="#{msgs.cancel}" immediate="true" />
 
-                        <h:column>
-                            <h:outputText value="#{s}"/>
-                        </h:column>
-                        <h:column>
-                            <h:commandLink action="#{sessaoMB.removeData(s)}" value="remove" />
-                        </h:column>
-                    </h:dataTable>
-                </p:panel>
-                <h:panelGrid columns="2">
-
-                    <h:commandButton action="#{sessaoMB.createSessaoEnd()}"
-                                     value="#{msgs.create}" />
-                    <h:commandButton action="#{sessaoMB.listAllSessoes()}"
-                                     value="#{msgs.cancel}" immediate="true" />
-
-                </h:panelGrid>
-
-            </h:form>
+                            </h:panelGrid>
+                </h:form>
+            </p:panel>
         </ui:define>
     </ui:decorate>
 </html>

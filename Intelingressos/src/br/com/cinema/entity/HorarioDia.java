@@ -1,28 +1,36 @@
 /*
- * Classe que acomoda os Horários 
- * relacionados a Data da Sessão
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package br.com.cinema.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author lgenova
  */
 @Entity
-public class SessaoHora implements Serializable {
+@Table(name="horariodia")
+public class HorarioDia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    private String horaSessao;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable=false)
+    private Date horario;
+    
     public Long getId() {
         return id;
     }
@@ -31,12 +39,12 @@ public class SessaoHora implements Serializable {
         this.id = id;
     }
 
-    public String getHoraSessao() {
-        return horaSessao;
+    public Date getHorario() {
+        return horario;
     }
 
-    public void setHoraSessao(String horaSessao) {
-        this.horaSessao = horaSessao;
+    public void setHorario(Date horario) {
+        this.horario = horario;
     }
 
     @Override
@@ -49,10 +57,10 @@ public class SessaoHora implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SessaoHora)) {
+        if (!(object instanceof HorarioDia)) {
             return false;
         }
-        SessaoHora other = (SessaoHora) object;
+        HorarioDia other = (HorarioDia) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -61,7 +69,7 @@ public class SessaoHora implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.cinema.entity.SessaoHorario[ id=" + id + " ]";
+        return String.valueOf(horario);
     }
     
 }

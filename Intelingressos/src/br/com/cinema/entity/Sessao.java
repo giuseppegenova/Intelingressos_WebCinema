@@ -2,21 +2,26 @@ package br.com.cinema.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "sessao")
 public class Sessao implements Serializable{
 
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany(mappedBy="sessao")
-    private Set<SessaoData> sessaoData; 
-    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+      name = "sessao_data",
+    joinColumns = {
+        @JoinColumn(name = "SESSAO_ID", referencedColumnName = "ID", nullable=false)},
+    inverseJoinColumns = {
+        @JoinColumn(name = "DATA_ID", referencedColumnName = "ID", unique = true, nullable=false)})
+    private List<SessaoData> sessaoData;
     private int ingressosVendidos;
-    
+
     private int ingressosDisponiveis;
     
     @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.LAZY)
@@ -30,11 +35,11 @@ public class Sessao implements Serializable{
         this.id = id;
     }
 
-    public Set<SessaoData> getSessaoData() {
+    public List<SessaoData> getSessaoData() {
         return sessaoData;
     }
 
-    public void setSessaoData(Set<SessaoData> sessaoData) {
+    public void setSessaoData(List<SessaoData> sessaoData) {
         this.sessaoData = sessaoData;
     }
 

@@ -6,7 +6,6 @@ import br.com.cinema.entity.Programacao;
 import br.com.cinema.entity.Sala;
 import br.com.cinema.entity.Sessao;
 import br.com.cinema.entity.SessaoData;
-import br.com.cinema.entity.SessaoHora;
 import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
 import br.com.cinema.facade.local.SessaoFacadeLocal;
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class ProgramacaoMB {
     private Sala sala;
     private Sessao sessao;
     private SessaoData sessaoData;
-    private SessaoHora sessaoHora;
+    
     private List<Sessao> sessaoList;
     private Map<Sessao, String> sessaoMap;
     private Map<Ingresso, String> ingressoMap;
@@ -120,14 +119,6 @@ public class ProgramacaoMB {
 
     public void setSessaoData(SessaoData sessaoData) {
         this.sessaoData = sessaoData;
-    }
-
-    public SessaoHora getSessaoHora() {
-        return sessaoHora;
-    }
-
-    public void setSessaoHora(SessaoHora sessaoHora) {
-        this.sessaoHora = sessaoHora;
     }
 
     public List<Sessao> getSessaoList() {
