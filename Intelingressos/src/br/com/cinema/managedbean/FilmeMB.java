@@ -10,6 +10,7 @@ import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean
@@ -27,9 +28,7 @@ public class FilmeMB {
 	
 	private Filme filme;	
 	
-	public FilmeMB() {
-		filme = new Filme();	
-	}
+	public FilmeMB() {}
 
         @PostConstruct
         public void init(){
@@ -71,7 +70,7 @@ public class FilmeMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Filme Atualizada");
+		sendInfoMessageToUser("Operação realizada com sucesso: Filme Atualizado");
 		return LIST_ALL_FILMES;
 	}
 	
@@ -89,7 +88,7 @@ public class FilmeMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}			
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Filme Excluida");
+		sendInfoMessageToUser("Operação realizada com sucesso: Filme Excluido");
 		
 		return LIST_ALL_FILMES;
 	}
@@ -109,7 +108,7 @@ public class FilmeMB {
 			return STAY_IN_THE_SAME_PAGE;
 		}		
 		
-		sendInfoMessageToUser("Operação realizada com sucesso: Filme Criada");
+		sendInfoMessageToUser("Operação realizada com sucesso: Filme Criado");
 		
 		return LIST_ALL_FILMES;
 	}

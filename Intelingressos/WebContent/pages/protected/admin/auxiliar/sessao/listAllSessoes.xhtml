@@ -49,7 +49,7 @@
                             <h:inputHidden value="#{sessao.id}" />
 
 
-                            <p:commandButton action="#{sessaoMB.updateSessaoStart()}" value="#{msgs.update}" immediate="true">
+                            <p:commandButton action="#{sessaoMB.updateSessaoStart()}" value="#{msgs.update}" immediate="true" >
                                 <f:setPropertyActionListener target="#{sessaoMB.sessao}" value="#{sessao}" />
                             </p:commandButton>
 

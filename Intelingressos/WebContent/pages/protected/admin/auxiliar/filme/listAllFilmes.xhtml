@@ -12,7 +12,7 @@
     <ui:decorate template="/pages/templates/principalTemplate.xhtml">
         <ui:define name="centro">
             <h:form>
-                <h:messages globalOnly="true"/>
+                <h:messages globalOnly="true" style="color: yellowgreen; font: 12px/14px sans-serif"/>
                 <p:dataTable id="dataTable" var="filme" value="#{filmeMB.allFilmes}"
                              paginator="true" rows="10"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -43,18 +43,15 @@
                         <h:outputText value="#{filme.siteOficial}" >
                             <!--  <f:convertDateTime  pattern="dd/MM/yyyy" timeZone="GMT-03:00"/> -->
                         </h:outputText>
-                    </p:column> 			
-
+                    </p:column>
                     <p:column>
                         <f:facet name="header">
                             #{msgs.opcoes}
                         </f:facet>
-                        <h:panelGrid columns="2" >
-
-                            <!-- Always save the id as hidden when you use a request scope MB -->
+                        <h:panelGrid columns="3" >
+                            
                             <h:inputHidden value="#{filme.id}" />
-
-
+                            
                             <p:commandButton action="#{filmeMB.updateFilmeStart()}" value="#{msgs.update}" immediate="true">
                                 <f:setPropertyActionListener target="#{filmeMB.filme}" value="#{filme}" />
                             </p:commandButton>

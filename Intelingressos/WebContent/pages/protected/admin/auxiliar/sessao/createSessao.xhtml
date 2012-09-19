@@ -18,7 +18,7 @@
                         <p:outputLabel value="Filme" for="filme" style="color: blue;"/>
                         <p:selectOneMenu id="filme" value="#{filmeMB.filme}" required="true" 
                                          requiredMessage="#{msgs.FilmeSelectRequired}"
-                                         converter="clienteConverter">
+                                         converter="filmeConverter">
                             <f:selectItem itemLabel="#{msgs.Selecione}" />
                             <f:selectItems value="#{filmeMB.allFilmes}" var="filmes"
                                            itemLabel="#{filme.nome}"  itemValue="#{filme}" />

@@ -43,7 +43,6 @@ public class SessaoMB {
     private List<String> horaSource;
     private List<String> horaTarget;
     private Filme filme;
-    
 
     public SessaoMB() {
         dataLocal = new Date();
@@ -116,16 +115,18 @@ public class SessaoMB {
     @PostConstruct
     public void init() {
         carregaListaSessoes();
-        carregaSelectSessoes(this.sessaoList);
+        carregaSelectSessoes(sessaoList);
     }
-   
+
     private void carregaListaSessoes() {
-        sessaoList = sessaoFacade.findAll();
+        // sessaoList = sessaoFacade.findAll();
     }
 
     private void carregaSelectSessoes(List<Sessao> ses) {
-        for (int i = 0; i < ses.size(); i++) {
-            sessaoMap.put(ses.get(i), String.valueOf(i));
+        if (ses != null) {
+            for (int i = 0; i < ses.size(); i++) {
+                sessaoMap.put(ses.get(i), String.valueOf(i));
+            }
         }
     }
 
@@ -276,15 +277,15 @@ public class SessaoMB {
         Set<SessaoHora> sessaoHoraTP = new HashSet<SessaoHora>();
         try {
             for (int i = 0; i < horaTarget.size(); i++) {
-               this.sessaoHora.setHoraSessao(horaTarget.get(i));  
-               sessaoHoraTP.add(this.sessaoHora);
+                this.sessaoHora.setHoraSessao(horaTarget.get(i));
+                sessaoHoraTP.add(this.sessaoHora);
             }
-          
+
             sessaoData.setSessaoHora(sessaoHoraTP);
-            sessaoData.setDataSessao(dataLocal);  
+            sessaoData.setDataSessao(dataLocal);
             sessaoDataList.add(sessaoData);
             sessao.setSessaoData(sessaoDataList);
-            sessao.setFilme(filme);
+            //sessao.setFilme(filme);
             sessaoFacade.save(sessao);
 
         } catch (EJBException e) {
