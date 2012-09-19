@@ -1,12 +1,16 @@
 package br.com.cinema.entity;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +33,9 @@ public class Filme implements Serializable {
     private String sinopse;
     @Column
     private String siteOficial;
+    
+    @OneToMany(mappedBy="filme", cascade= CascadeType.ALL, fetch = FetchType.LAZY)  
+    private List<Sessao> sessaoList;
 
     public Long getId() {
         return id;
@@ -61,6 +68,14 @@ public class Filme implements Serializable {
 
     public void setSiteOficial(String siteOficial) {
         this.siteOficial = siteOficial;
+    }
+
+    public List<Sessao> getSessaoList() {
+        return sessaoList;
+    }
+
+    public void setSessaoList(List<Sessao> sessaoList) {
+        this.sessaoList = sessaoList;
     }
 
     @Override

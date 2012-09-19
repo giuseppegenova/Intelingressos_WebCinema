@@ -4,15 +4,10 @@ import br.com.cinema.entity.Filme;
 import br.com.cinema.entity.Sessao;
 import br.com.cinema.entity.SessaoData;
 import br.com.cinema.entity.SessaoHora;
-import br.com.cinema.facade.local.SessaoFacadeLocal;
+import br.com.cinema.facade.local.FilmeFacadeLocal;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
@@ -23,37 +18,30 @@ import org.primefaces.model.DualListModel;
 
 @ManagedBean
 @RequestScoped
-public class SessaoMB {
+public class FilmeMB_old {
 
-    private static final String CREATE_SESSAO = "createSessao";
-    private static final String DELETE_SESSAO = "deleteSessao";
-    private static final String UPDATE_SESSAO = "updateSessao";
-    private static final String LIST_ALL_SESSOES = "listAllSessoes";
+    private static final String CREATE_FILME = "createFilme";
+    private static final String DELETE_FILME = "deleteFilme";
+    private static final String UPDATE_FILME = "updateFilme";
+    private static final String LIST_ALL_FILMES = "listAllFilmes";
     private static final String STAY_IN_THE_SAME_PAGE = null;
     @EJB
-    private SessaoFacadeLocal sessaoFacade;
+    private FilmeFacadeLocal filmeFacade;
+    private Filme filme;
     private Sessao sessao;
     private Date dataLocal;
     private SessaoData sessaoData;
     private SessaoHora sessaoHora;
     private DualListModel<String> horaPic;
-    private List<SessaoData> sessaoDataList;
-    private List<Sessao> sessaoList;
-    private Map<Sessao, String> sessaoMap;
     private List<String> horaSource;
     private List<String> horaTarget;
-    private Filme filme;
-    
 
-    public SessaoMB() {
+    public FilmeMB_old() {
+        filme = new Filme();
         dataLocal = new Date();
         sessao = new Sessao();
-        sessaoMap = new HashMap<Sessao, String>();
-        sessaoList = new ArrayList<Sessao>();
-        sessaoDataList = new ArrayList<SessaoData>();
         sessaoData = new SessaoData();
-        filme = new Filme();
-
+        sessaoHora = new SessaoHora();
         horaSource = new ArrayList<String>();
         horaTarget = new ArrayList<String>();
 
@@ -109,60 +97,8 @@ public class SessaoMB {
         horaSource.add("22:15");
         horaSource.add("22:30");
         horaSource.add("22:45");
-
+        
         horaPic = new DualListModel<String>(horaSource, horaTarget);
-    }
-
-    @PostConstruct
-    public void init() {
-        carregaListaSessoes();
-        carregaSelectSessoes(this.sessaoList);
-    }
-   
-    private void carregaListaSessoes() {
-        sessaoList = sessaoFacade.findAll();
-    }
-
-    private void carregaSelectSessoes(List<Sessao> ses) {
-        for (int i = 0; i < ses.size(); i++) {
-            sessaoMap.put(ses.get(i), String.valueOf(i));
-        }
-    }
-
-    public Sessao findSessaoById(Long id) {
-        return sessaoFacade.find(id);
-    }
-
-    public Sessao getSessao() {
-        return sessao;
-    }
-
-    public void setSessao(Sessao sessao) {
-        this.sessao = sessao;
-    }
-
-    public DualListModel<String> getHoraPic() {
-        return horaPic;
-    }
-
-    public void setHoraPic(DualListModel<String> horaPic) {
-        this.horaPic = horaPic;
-    }
-
-    public Date getDataLocal() {
-        return dataLocal;
-    }
-
-    public void setDataLocal(Date dataLocal) {
-        this.dataLocal = dataLocal;
-    }
-
-    public SessaoHora getSessaoHora() {
-        return sessaoHora;
-    }
-
-    public void setSessaoHora(SessaoHora sessaoHora) {
-        this.sessaoHora = sessaoHora;
     }
 
     public List<String> getHoraSource() {
@@ -181,24 +117,12 @@ public class SessaoMB {
         this.horaTarget = horaTarget;
     }
 
-    public List<SessaoData> getSessaoDataSet() {
-        return sessaoDataList;
+    public DualListModel<String> getHoraPic() {
+        return horaPic;
     }
 
-    public void setSessaoDataSet(List<SessaoData> sessaoDataSet) {
-        this.sessaoDataList = sessaoDataSet;
-    }
-
-    public List<Sessao> getSessaoList() {
-        return sessaoList;
-    }
-
-    public void setSessaoList(List<Sessao> sessaoList) {
-        this.sessaoList = sessaoList;
-    }
-
-    public Map<Sessao, String> getSessaoMap() {
-        return sessaoMap;
+    public void setHoraPic(DualListModel<String> horaPic) {
+        this.horaPic = horaPic;
     }
 
     public SessaoData getSessaoData() {
@@ -209,19 +133,26 @@ public class SessaoMB {
         this.sessaoData = sessaoData;
     }
 
-    public void setSessaoMap(Map<Sessao, String> sessaoMap) {
-        this.sessaoMap = sessaoMap;
+    public SessaoHora getSessaoHora() {
+        return sessaoHora;
     }
 
-    public List<SessaoData> getSessaoDataList() {
-        return sessaoDataList;
+    public void setSessaoHora(SessaoHora sessaoHora) {
+        this.sessaoHora = sessaoHora;
     }
 
-    public void setSessaoDataList(List<SessaoData> sessaoDataList) {
-        this.sessaoDataList = sessaoDataList;
+    public Date getDataLocal() {
+        return dataLocal;
+    }
+
+    public void setDataLocal(Date dataLocal) {
+        this.dataLocal = dataLocal;
     }
 
     public Filme getFilme() {
+        if (filme == null) {
+            filme = new Filme();
+        }
         return filme;
     }
 
@@ -229,63 +160,64 @@ public class SessaoMB {
         this.filme = filme;
     }
 
-    public List<Sessao> getAllSessoes() {
-        return sessaoFacade.findAll();
+    public List<Filme> getAllFilmes() {
+        return filmeFacade.findAll();
     }
 
-    public String updateSessaoStart() {
-        return UPDATE_SESSAO;
+    public Filme getFilmeByNome(String nome) {
+        return filmeFacade.findFilmeByNome(nome);
     }
 
-    public String updateSessaoEnd() {
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
+    }
+
+    public String updateFilmeStart() {
+        return UPDATE_FILME;
+    }
+
+    public String updateFilmeEnd() {
         try {
-            sessaoFacade.update(sessao);
+            filmeFacade.update(filme);
         } catch (EJBException e) {
             sendErrorMessageToUser("Houve um erro. Procure o administrador do sistema");
             return STAY_IN_THE_SAME_PAGE;
         }
 
-        sendInfoMessageToUser("Operação realizada com sucesso: Sessao Atualizada");
-        return LIST_ALL_SESSOES;
+        sendInfoMessageToUser("Operação realizada com sucesso: Filme Atualizada");
+        return LIST_ALL_FILMES;
     }
 
-    public String deleteSessaoStart() {
-        return DELETE_SESSAO;
+    public String deleteFilmeStart() {
+        return DELETE_FILME;
     }
 
-    public String deleteSessaoEnd() {
+    public String deleteFilmeEnd() {
         try {
-            sessaoFacade.delete(sessao);
+            filmeFacade.delete(filme);
 
         } catch (EJBException e) {
             sendErrorMessageToUser("Houve um erro. Procure o administrador do sistema");
             return STAY_IN_THE_SAME_PAGE;
         }
 
-        sendInfoMessageToUser("Operação realizada com sucesso: Sessao Excluida");
+        sendInfoMessageToUser("Operação realizada com sucesso: Filme Excluida");
 
-        return LIST_ALL_SESSOES;
+        return LIST_ALL_FILMES;
     }
 
-    public String createSessaoStart() {
+    public String createFilmeStart() {
 
-        return CREATE_SESSAO;
+        return CREATE_FILME;
     }
 
-    public String createSessaoEnd() {
-        Set<SessaoHora> sessaoHoraTP = new HashSet<SessaoHora>();
+    public String createFilmeEnd() {
         try {
-            for (int i = 0; i < horaTarget.size(); i++) {
-               this.sessaoHora.setHoraSessao(horaTarget.get(i));  
-               sessaoHoraTP.add(this.sessaoHora);
-            }
-          
-            sessaoData.setSessaoHora(sessaoHoraTP);
-            sessaoData.setDataSessao(dataLocal);  
-            sessaoDataList.add(sessaoData);
-            sessao.setSessaoData(sessaoDataList);
-            sessao.setFilme(filme);
-            sessaoFacade.save(sessao);
+            filmeFacade.save(filme);
 
         } catch (EJBException e) {
             sendErrorMessageToUser("Houve um erro! Procure o administrador do sistema");
@@ -293,19 +225,19 @@ public class SessaoMB {
             return STAY_IN_THE_SAME_PAGE;
         }
 
-        sendInfoMessageToUser("Operação realizada com sucesso: Sessao Criada");
+        sendInfoMessageToUser("Operação realizada com sucesso: Filme Criada");
 
-        return LIST_ALL_SESSOES;
+        return LIST_ALL_FILMES;
     }
 
-    public List<Sessao> listSessoesByNome(String nome) {
-        List<Sessao> sessaos = new ArrayList<Sessao>();
-        //sessaos.add(sessaoFacade.findSessaoByNome(nome));
-        return sessaos;
+    public List<Filme> listFilmesByNome(String nome) {
+        List<Filme> filmes = new ArrayList<Filme>();
+        //filmes.add(filmeFacade.findFilmeByNome(nome));
+        return filmes;
     }
 
-    public String listAllSessoes() {
-        return LIST_ALL_SESSOES;
+    public String listAllFilmes() {
+        return LIST_ALL_FILMES;
     }
 
     private void sendInfoMessageToUser(String message) {

@@ -35,6 +35,38 @@
                         <h:message for="filmeSite" style="color: red" />
 
                     </h:panelGrid>
+                    <h:panelGrid columns="3" styleClass="panelGrid"
+                                 rowClasses="panelFirstLine,panelNextLine">   
+                        
+                        <h:outputLabel for="filmeData" value="#{msgs.FilmeData}" />
+                        <p:calendar 
+                            pattern="dd/MM/yyyy" value="#{filmeMB.dataLocal}" size="7"
+                            id="filmeData"	required="true" requiredMessage="#{msgs.FilmeDataRequired}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
+
+                        </p:calendar>	
+                    </h:panelGrid>
+                    <p:panel id="DadosFilme" header="#{msgs.FilmeListaHoras}"
+                             style="margin-bottom:10px;">
+                        <p:pickList id="pickList" value="#{filmeMB.horaPic}" var="hora" 
+                                    itemLabel="#{hora}" itemValue="#{hora}" >
+                            <f:facet name="sourceCaption">Disponível</f:facet>  
+                            <f:facet name="targetCaption">Selecionado</f:facet>  
+                        </p:pickList>  
+                        <p:commandButton id="FilmeSubmit" value="Visualize os Dados" update="displaySessoes" oncomplete="filmeDialog.show()" style="margin-top:5px"/> 
+                    </p:panel>  
+                    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="filmeDialog" appendToBody="true">  
+                        <h:panelGrid id="displaySessoes" columns="2">  
+                            <h:outputText  value="#{filmeMB.dataLocal}" style="font-weight:bold" >  
+                                <f:convertDateTime  pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>  
+                            </h:outputText>                          
+                            <h:outputText value="Horario: " style="font-weight:bold"/>  
+                            <ui:repeat value="#{filmeMB.horaPic.target}" var="item">  
+                                <h:outputText value="#{item}" style="margin-right:5px" />  
+                            </ui:repeat>
+
+                        </h:panelGrid>  
+                    </p:dialog>   
 
                     <h:panelGrid columns="2">
 

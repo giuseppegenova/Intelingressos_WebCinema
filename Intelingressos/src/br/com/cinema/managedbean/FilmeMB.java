@@ -4,6 +4,7 @@ import br.com.cinema.entity.Filme;
 import br.com.cinema.facade.local.FilmeFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
@@ -26,11 +27,15 @@ public class FilmeMB {
 	
 	private Filme filme;	
 	
-	
 	public FilmeMB() {
 		filme = new Filme();	
 	}
 
+        @PostConstruct
+        public void init(){
+            //getAllFilmes();
+        }
+        
 	public Filme getFilme() {
 		if(filme == null){
 			filme = new Filme();
@@ -46,6 +51,10 @@ public class FilmeMB {
 		return filmeFacade.findAll();
 	}
 	
+        public Filme findFilmeById(Long id){
+            return filmeFacade.find(id);
+        }
+        
 	public Filme getFilmeByNome(String nome){
 		return filmeFacade.findFilmeByNome(nome);
 	}

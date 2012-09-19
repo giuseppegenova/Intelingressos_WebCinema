@@ -11,10 +11,22 @@
         <ui:define name="centro">
             <p:panel id="painelData" header="#{msgs.SessaoTitleCadastroData}" >
                 <h:form>
-                    <h:messages />
+                    <h:messages globalOnly="true"/>
                     <h:panelGrid columns="3" styleClass="panelGrid"
                                  rowClasses="panelFirstLine,panelNextLine">
 
+                        <p:outputLabel value="Filme" for="filme" style="color: blue;"/>
+                        <p:selectOneMenu id="filme" value="#{filmeMB.filme}" required="true" 
+                                         requiredMessage="#{msgs.FilmeSelectRequired}"
+                                         converter="clienteConverter">
+                            <f:selectItem itemLabel="#{msgs.Selecione}" />
+                            <f:selectItems value="#{filmeMB.allFilmes}" var="filmes"
+                                           itemLabel="#{filme.nome}"  itemValue="#{filme}" />
+                      <!--      <f:ajax event="change" listener="#{clienteMB.atualizaCidades()}" 
+                                    execute="estado" render="cidade" /> -->
+                        </p:selectOneMenu>
+                        <h:messages  for="filme" style="color: red"/>
+                        
                         <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
                         <p:calendar 
                             pattern="dd/MM/yyyy" value="#{sessaoMB.dataLocal}" size="7"
@@ -45,17 +57,19 @@
                             <ui:repeat value="#{sessaoMB.horaPic.target}" var="item">  
                                 <h:outputText value="#{item}" style="margin-right:5px" />  
                             </ui:repeat>
-                           
+
                         </h:panelGrid>  
                     </p:dialog>   
-                     <h:panelGrid columns="2">
+                    <h:panelGrid columns="2">
+                        
+                        <h:inputHidden value="#{filmeMB.filme.id}" />
+                         
+                        <h:commandButton action="#{sessaoMB.createSessaoEnd()}"
+                                         value="#{msgs.create}" />
+                        <h:commandButton action="#{sessaoMB.listAllSessoes()}"
+                                         value="#{msgs.cancel}" immediate="true" />
 
-                                <h:commandButton action="#{sessaoMB.createSessaoEnd()}"
-                                                 value="#{msgs.create}" />
-                                <h:commandButton action="#{sessaoMB.listAllSessoes()}"
-                                                 value="#{msgs.cancel}" immediate="true" />
-
-                            </h:panelGrid>
+                    </h:panelGrid>
                 </h:form>
             </p:panel>
         </ui:define>

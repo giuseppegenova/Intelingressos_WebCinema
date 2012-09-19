@@ -1,22 +1,22 @@
 package br.com.cinema.converter;
 
-import br.com.cinema.managedbean.CinemaMB;
+import br.com.cinema.managedbean.FilmeMB;
 import javax.ejb.Stateless;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(value="cinemaConverter")
+@FacesConverter(value="filmeConverter")
 @Stateless
-public class CinemaConverter implements Converter {
+public class FilmeConverter implements Converter {
 	
 @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String key) {
         FacesContext context = FacesContext.getCurrentInstance();
-        CinemaMB cinemaMB = (CinemaMB) context.getELContext().getELResolver().getValue(context.getELContext(), null, "cinemaMB");
+        FilmeMB filmeMB = (FilmeMB) context.getELContext().getELResolver().getValue(context.getELContext(), null, "filmeMB");
  
-        return cinemaMB.findCinemaById(Long.parseLong(key));
+        return filmeMB.findFilmeById(Long.parseLong(key));
     }
  
     @Override

@@ -43,26 +43,26 @@
                         <f:facet name="header">
                             <h:outputText value="#{msgs.opcoes}" />
                         </f:facet>
-                        <h:panelGrid columns="2" >
+                        <h:panelGrid columns="3" style="text-align: center">
 
 
                             <h:inputHidden value="#{sessao.id}" />
 
 
-                            <h:commandButton action="#{sessaoMB.updateSessaoStart()}" value="#{msgs.update}" immediate="true">
+                            <p:commandButton action="#{sessaoMB.updateSessaoStart()}" value="#{msgs.update}" immediate="true">
                                 <f:setPropertyActionListener target="#{sessaoMB.sessao}" value="#{sessao}" />
-                            </h:commandButton>
+                            </p:commandButton>
 
-                            <h:commandButton action="#{sessaoMB.deleteSessaoStart()}" value="#{msgs.delete}">
+                            <p:commandButton action="#{sessaoMB.deleteSessaoStart()}" value="#{msgs.delete}">
                                 <f:setPropertyActionListener target="#{sessaoMB.sessao}" value="#{sessao}" />
-                            </h:commandButton>
+                            </p:commandButton>
 
                         </h:panelGrid>
                     </p:column> 			
 
                 </p:dataTable>
 
-                <h:commandButton action="#{sessaoMB.createSessaoStart()}" value="#{msgs.create} #{msgs.Sessao}" /> 
+                <p:commandButton action="#{sessaoMB.createSessaoStart()}" value="#{msgs.create} #{msgs.Sessao}" /> 
 
             </h:form>
         </ui:define>
