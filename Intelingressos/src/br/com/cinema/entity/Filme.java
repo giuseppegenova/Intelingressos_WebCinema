@@ -34,7 +34,7 @@ public class Filme implements Serializable {
     @Column
     private String siteOficial;
     
-    @OneToMany(mappedBy="filme", cascade= CascadeType.ALL, fetch = FetchType.LAZY)  
+    @OneToMany(mappedBy="filme", cascade= CascadeType.ALL, fetch = FetchType.EAGER)  
     private List<Sessao> sessaoList;
 
     public Long getId() {

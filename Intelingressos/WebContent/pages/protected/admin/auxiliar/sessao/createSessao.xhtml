@@ -15,17 +15,20 @@
                     <h:panelGrid columns="3" styleClass="panelGrid"
                                  rowClasses="panelFirstLine,panelNextLine">
 
-                        <p:outputLabel value="Filme" for="filme" style="color: blue;"/>
-                        <p:selectOneMenu id="filme" value="#{filmeMB.filme}" required="true" 
+                        <p:outputLabel value="Filme" for="filmeSelect" style="color: blue;"/>
+                        <p:autoComplete value="#{sessaoMB.filme}" id="filmeSelect" 
+                                        completeMethod="#{sessaoMB.carregaListaFilmes()}"
+                        var="p" itemLabel="#{p.nome}" itemValue="#{p}" converter="sessaoConverter" forceSelection="true"/>
+                        <h:messages  for="filmeSelect" style="color: red"/>
+                    <!--    <p:selectOneMenu id="filme" value="#{sessaoMB.filme}" required="true" 
                                          requiredMessage="#{msgs.FilmeSelectRequired}"
-                                         converter="filmeConverter">
+                                         converter="sessaoConverter" immediate="true">
                             <f:selectItem itemLabel="#{msgs.Selecione}" />
-                            <f:selectItems value="#{filmeMB.allFilmes}" var="filmes"
-                                           itemLabel="#{filme.nome}"  itemValue="#{filme}" />
-                      <!--      <f:ajax event="change" listener="#{clienteMB.atualizaCidades()}" 
-                                    execute="estado" render="cidade" /> -->
-                        </p:selectOneMenu>
-                        <h:messages  for="filme" style="color: red"/>
+                            <f:selectItems value="#{sessaoMB.filmeMap}" var="filmes"
+                                           itemLabel="#{filmes.nome}"  itemValue="#{filmes.id}" />
+                            <f:ajax event="change" execute="filme" listener="#{sessaoMB.setFilme(filme)}"/> 
+                       </p:selectOneMenu> -->
+                        
                         
                         <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
                         <p:calendar 
@@ -48,10 +51,7 @@
                         <h:panelGrid id="displaySessoes" columns="2">  
                             <h:outputText  value="#{sessaoMB.dataLocal}" style="font-weight:bold" >  
                                 <f:convertDateTime  pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>  
-                            </h:outputText>
-                            <!-- <ui:repeat value="{sessaoMB.horaPic.source}" var="data">  
-                                 <h:outputText value="{item}" style="margin-right:5px" />  
-                             </ui:repeat> --> 
+                            </h:outputText>                           
 
                             <h:outputText value="Horario: " style="font-weight:bold"/>  
                             <ui:repeat value="#{sessaoMB.horaPic.target}" var="item">  
@@ -62,7 +62,7 @@
                     </p:dialog>   
                     <h:panelGrid columns="2">
                         
-                        <h:inputHidden value="#{filmeMB.filme.id}" />
+                        <h:inputHidden value="#{filme.id}" />
                          
                         <h:commandButton action="#{sessaoMB.createSessaoEnd()}"
                                          value="#{msgs.create}" />

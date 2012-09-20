@@ -6,12 +6,15 @@ import br.com.cinema.entity.Programacao;
 import br.com.cinema.entity.Sala;
 import br.com.cinema.entity.Sessao;
 import br.com.cinema.entity.SessaoData;
+import br.com.cinema.entity.SessaoHora;
 import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
 import br.com.cinema.facade.local.SessaoFacadeLocal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -19,6 +22,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.event.FlowEvent;
+import org.primefaces.model.DualListModel;
 
 @ManagedBean
 @RequestScoped
@@ -29,6 +34,7 @@ public class ProgramacaoMB {
     private static final String UPDATE_PROGRAMACAO = "updateProgramacao";
     private static final String LIST_ALL_PROGRAMACOES = "listAllProgramacoes";
     private static final String STAY_IN_THE_SAME_PAGE = null;
+    private static Logger logger = Logger.getLogger(ProgramacaoMB.class.getName());
     @EJB
     private ProgramacaoFacadeLocal programacaoFacade;
     @EJB
@@ -38,8 +44,13 @@ public class ProgramacaoMB {
     private Filme filme;
     private Sala sala;
     private Sessao sessao;
+    private Date dataLocal;
     private SessaoData sessaoData;
-    
+    private SessaoHora sessaoHora;
+    private DualListModel<String> horaPic;
+    private List<String> horaSource;
+    private List<String> horaTarget;
+    private boolean skip;
     private List<Sessao> sessaoList;
     private Map<Sessao, String> sessaoMap;
     private Map<Ingresso, String> ingressoMap;
@@ -52,6 +63,66 @@ public class ProgramacaoMB {
         sessaoList = new ArrayList<Sessao>();
         sessaoMap = new HashMap<Sessao, String>();
         ingressoMap = new HashMap<Ingresso, String>();
+        
+         dataLocal = new Date();
+        
+        horaSource = new ArrayList<String>();
+        horaTarget = new ArrayList<String>();
+
+        horaSource.add("10:00");
+        horaSource.add("10:15");
+        horaSource.add("10:30");
+        horaSource.add("10:45");
+        horaSource.add("11:00");
+        horaSource.add("11:15");
+        horaSource.add("11:30");
+        horaSource.add("11:45");
+        horaSource.add("12:00");
+        horaSource.add("12:15");
+        horaSource.add("12:30");
+        horaSource.add("12:45");
+        horaSource.add("13:00");
+        horaSource.add("13:15");
+        horaSource.add("13:30");
+        horaSource.add("13:45");
+        horaSource.add("14:00");
+        horaSource.add("14:15");
+        horaSource.add("14:30");
+        horaSource.add("14:45");
+        horaSource.add("15:00");
+        horaSource.add("15:15");
+        horaSource.add("15:30");
+        horaSource.add("15:45");
+        horaSource.add("16:00");
+        horaSource.add("16:15");
+        horaSource.add("16:30");
+        horaSource.add("16:45");
+        horaSource.add("17:00");
+        horaSource.add("17:15");
+        horaSource.add("17:30");
+        horaSource.add("17:45");
+        horaSource.add("18:00");
+        horaSource.add("18:15");
+        horaSource.add("18:30");
+        horaSource.add("18:45");
+        horaSource.add("19:00");
+        horaSource.add("19:15");
+        horaSource.add("19:30");
+        horaSource.add("19:45");
+        horaSource.add("20:00");
+        horaSource.add("20:15");
+        horaSource.add("20:30");
+        horaSource.add("20:45");
+        horaSource.add("21:00");
+        horaSource.add("21:15");
+        horaSource.add("21:30");
+        horaSource.add("21:45");
+        horaSource.add("22:00");
+        horaSource.add("22:15");
+        horaSource.add("22:30");
+        horaSource.add("22:45");
+
+        horaPic = new DualListModel<String>(horaSource, horaTarget);
     }
 
     @PostConstruct
@@ -60,24 +131,84 @@ public class ProgramacaoMB {
         this.sessaoList = carregaListaSessao();
         carregaSelectSessao(sessaoList);
     }
-    
-    private void carregaSelectSessao(List<Sessao> ses){
+
+    private void carregaSelectSessao(List<Sessao> ses) {
         for (int i = 0; i < ses.size(); i++) {
             sessaoMap.put(ses.get(i), String.valueOf(i));
-            
+
         }
     }
-    
-    private List<Sessao> carregaListaSessao(){
+
+    private List<Sessao> carregaListaSessao() {
         List<Sessao> sessaoTP;
         sessaoTP = sessaoFacade.findAll();
         return sessaoTP;
     }
-            
+
     private List<Programacao> carregaProgramacao() {
         List<Programacao> programacaoTP;
         programacaoTP = programacaoFacade.findAll();
         return programacaoTP;
+    }
+
+    public Date getDataLocal() {
+        return dataLocal;
+    }
+
+    public void setDataLocal(Date dataLocal) {
+        this.dataLocal = dataLocal;
+    }
+
+    public SessaoHora getSessaoHora() {
+        return sessaoHora;
+    }
+
+    public void setSessaoHora(SessaoHora sessaoHora) {
+        this.sessaoHora = sessaoHora;
+    }
+
+    public DualListModel<String> getHoraPic() {
+        return horaPic;
+    }
+
+    public void setHoraPic(DualListModel<String> horaPic) {
+        this.horaPic = horaPic;
+    }
+
+    public List<String> getHoraSource() {
+        return horaSource;
+    }
+
+    public void setHoraSource(List<String> horaSource) {
+        this.horaSource = horaSource;
+    }
+
+    public List<String> getHoraTarget() {
+        return horaTarget;
+    }
+
+    public void setHoraTarget(List<String> horaTarget) {
+        this.horaTarget = horaTarget;
+    }
+
+    public boolean isSkip() {
+        return skip;
+    }
+
+    public void setSkip(boolean skip) {
+        this.skip = skip;
+    }
+
+    public String onFlowProcess(FlowEvent event) {
+        logger.info("Current wizard step:" + event.getOldStep());
+        logger.info("Next step:" + event.getNewStep());
+
+        if (skip) {
+            skip = false;   //reset in case user goes back  
+            return "confirm";
+        } else {
+            return event.getNewStep();
+        }
     }
 
     public Filme getFilme() {
@@ -174,8 +305,8 @@ public class ProgramacaoMB {
     public Programacao findProgramacaoByFilme(Filme filme) {
         return null;
     }
-    
-    public Sessao findSessaoById(Long id){
+
+    public Sessao findSessaoById(Long id) {
         return sessaoFacade.find(id);
     }
 
@@ -195,7 +326,7 @@ public class ProgramacaoMB {
         this.sala.setCapacidade(salaTP.getCapacidade());
 
         sessaoTP = programacao.getSessao();
-       // this.sessao.setData(sessaoTP.getData());
+        // this.sessao.setData(sessaoTP.getData());
         //this.sessao.setHora(sessaoTP.getHora());
 
         return UPDATE_PROGRAMACAO;
@@ -214,7 +345,7 @@ public class ProgramacaoMB {
             salaTP.setCapacidade(this.sala.getCapacidade());
 
             Sessao sessaoTP = new Sessao();
-           // sessaoTP.setData(this.sessao.getData());
+            // sessaoTP.setData(this.sessao.getData());
             //sessaoTP.setHora(this.sessao.getHora());
 
             this.programacao.setFilme(filmeTP);

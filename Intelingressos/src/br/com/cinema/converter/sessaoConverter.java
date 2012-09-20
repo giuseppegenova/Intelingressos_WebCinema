@@ -16,7 +16,7 @@ public class sessaoConverter implements Converter {
         FacesContext context = FacesContext.getCurrentInstance();
         SessaoMB sessaoMB = (SessaoMB) context.getELContext().getELResolver().getValue(context.getELContext(), null, "sessaoMB");
  
-        return sessaoMB.findSessaoById(Long.parseLong(key));
+        return sessaoMB.findFilmeById(Long.parseLong(key));
     }
  
     @Override

@@ -4,6 +4,7 @@ import br.com.cinema.entity.Filme;
 import br.com.cinema.entity.Sessao;
 import br.com.cinema.entity.SessaoData;
 import br.com.cinema.entity.SessaoHora;
+import br.com.cinema.facade.local.FilmeFacadeLocal;
 import br.com.cinema.facade.local.SessaoFacadeLocal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +33,8 @@ public class SessaoMB {
     private static final String STAY_IN_THE_SAME_PAGE = null;
     @EJB
     private SessaoFacadeLocal sessaoFacade;
+    @EJB
+    private FilmeFacadeLocal filmeFacade;
     private Sessao sessao;
     private Date dataLocal;
     private SessaoData sessaoData;
@@ -43,16 +46,22 @@ public class SessaoMB {
     private List<String> horaSource;
     private List<String> horaTarget;
     private Filme filme;
+    private Map<Filme, String> filmeMap;
+    private List<Filme> filmeList;
 
     public SessaoMB() {
-        dataLocal = new Date();
+        
         sessao = new Sessao();
         sessaoMap = new HashMap<Sessao, String>();
         sessaoList = new ArrayList<Sessao>();
         sessaoDataList = new ArrayList<SessaoData>();
         sessaoData = new SessaoData();
         filme = new Filme();
-
+        filmeMap = new HashMap<Filme, String>();
+        filmeList = new ArrayList<Filme>();
+        
+        dataLocal = new Date();
+        
         horaSource = new ArrayList<String>();
         horaTarget = new ArrayList<String>();
 
@@ -118,20 +127,28 @@ public class SessaoMB {
         carregaSelectSessoes(sessaoList);
     }
 
+    public List<Filme> carregaListaFilmes(){
+        return filmeFacade.findAll();
+    }
+     
     private void carregaListaSessoes() {
-        // sessaoList = sessaoFacade.findAll();
+        this.sessaoList = sessaoFacade.findAll();
     }
 
     private void carregaSelectSessoes(List<Sessao> ses) {
         if (ses != null) {
             for (int i = 0; i < ses.size(); i++) {
-                sessaoMap.put(ses.get(i), String.valueOf(i));
+                this.sessaoMap.put(ses.get(i), String.valueOf(i));
             }
         }
     }
 
     public Sessao findSessaoById(Long id) {
         return sessaoFacade.find(id);
+    }
+    
+    public Filme findFilmeById(Long id){
+        return filmeFacade.find(id);
     }
 
     public Sessao getSessao() {
@@ -230,6 +247,22 @@ public class SessaoMB {
         this.filme = filme;
     }
 
+    public Map<Filme, String> getFilmeMap() {
+        return filmeMap;
+    }
+
+    public void setFilmeMap(Map<Filme, String> filmeMap) {
+        this.filmeMap = filmeMap;
+    }
+
+    public List<Filme> getFilmeList() {
+        return filmeList;
+    }
+
+    public void setFilmeList(List<Filme> filmeList) {
+        this.filmeList = filmeList;
+    }
+
     public List<Sessao> getAllSessoes() {
         return sessaoFacade.findAll();
     }
@@ -281,11 +314,11 @@ public class SessaoMB {
                 sessaoHoraTP.add(this.sessaoHora);
             }
 
-            sessaoData.setSessaoHora(sessaoHoraTP);
-            sessaoData.setDataSessao(dataLocal);
-            sessaoDataList.add(sessaoData);
-            sessao.setSessaoData(sessaoDataList);
-            //sessao.setFilme(filme);
+            this.sessaoData.setSessaoHora(sessaoHoraTP);
+            this.sessaoData.setDataSessao(dataLocal);
+            this.sessaoDataList.add(sessaoData);
+            this.sessao.setSessaoData(sessaoDataList);
+            this.sessao.setFilme(filme);
             sessaoFacade.save(sessao);
 
         } catch (EJBException e) {

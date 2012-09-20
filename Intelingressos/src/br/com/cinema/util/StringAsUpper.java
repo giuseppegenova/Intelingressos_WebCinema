@@ -1,4 +1,4 @@
-package br.com.cinema.converter;
+package br.com.cinema.util;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
