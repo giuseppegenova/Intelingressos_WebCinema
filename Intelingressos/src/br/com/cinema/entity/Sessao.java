@@ -1,6 +1,7 @@
 package br.com.cinema.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
@@ -12,20 +13,22 @@ public class Sessao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-      name = "sessao_data",
-    joinColumns = {
-        @JoinColumn(name = "SESSAO_ID", referencedColumnName = "ID", nullable = false)},
-    inverseJoinColumns = {
-        @JoinColumn(name = "DATA_ID", referencedColumnName = "ID", unique = true, nullable = false)})
-    private List<SessaoData> sessaoData;
+    
+    @Temporal(TemporalType.DATE)
+    private List<Date> sessaoData;
+    
+    @Temporal(TemporalType.TIME)
+    private List<Date> sessaoPrimeiraHora;
+    
+    private int ingressosVendidos;
+    
+    private int ingressosDisponiveis;
+    
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "filme_id", nullable = false, insertable = false, updatable = false, referencedColumnName = "id")
     private Filme filme;
-    private int ingressosVendidos;
-    private int ingressosDisponiveis;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "sessao")
     private List<Ingresso> ingresso;
 
     public Long getId() {
@@ -36,14 +39,22 @@ public class Sessao implements Serializable {
         this.id = id;
     }
 
-    public List<SessaoData> getSessaoData() {
+    public List<Date> getSessaoData() {
         return sessaoData;
     }
 
-    public void setSessaoData(List<SessaoData> sessaoData) {
+    public void setSessaoData(List<Date> sessaoData) {
         this.sessaoData = sessaoData;
     }
 
+    public List<Date> getSessaoPrimeiraHora() {
+        return sessaoPrimeiraHora;
+    }
+
+    public void setSessaoPrimeiraHora(List<Date> sessaoPrimeiraHora) {
+        this.sessaoPrimeiraHora = sessaoPrimeiraHora;
+    }
+    
     public int getIngressosVendidos() {
         return ingressosVendidos;
     }

@@ -2,17 +2,13 @@ package br.com.cinema.managedbean;
 
 import br.com.cinema.entity.Filme;
 import br.com.cinema.entity.Sessao;
-import br.com.cinema.entity.SessaoData;
-import br.com.cinema.entity.SessaoHora;
 import br.com.cinema.facade.local.FilmeFacadeLocal;
 import br.com.cinema.facade.local.SessaoFacadeLocal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -36,11 +32,8 @@ public class SessaoMB {
     @EJB
     private FilmeFacadeLocal filmeFacade;
     private Sessao sessao;
-    private Date dataLocal;
-    private SessaoData sessaoData;
-    private SessaoHora sessaoHora;
-    private DualListModel<String> horaPic;
-    private List<SessaoData> sessaoDataList;
+    private Date dataLocal;    
+    private DualListModel<String> horaPic;   
     private List<Sessao> sessaoList;
     private Map<Sessao, String> sessaoMap;
     private List<String> horaSource;
@@ -53,9 +46,7 @@ public class SessaoMB {
         
         sessao = new Sessao();
         sessaoMap = new HashMap<Sessao, String>();
-        sessaoList = new ArrayList<Sessao>();
-        sessaoDataList = new ArrayList<SessaoData>();
-        sessaoData = new SessaoData();
+        sessaoList = new ArrayList<Sessao>();        
         filme = new Filme();
         filmeMap = new HashMap<Filme, String>();
         filmeList = new ArrayList<Filme>();
@@ -175,14 +166,6 @@ public class SessaoMB {
         this.dataLocal = dataLocal;
     }
 
-    public SessaoHora getSessaoHora() {
-        return sessaoHora;
-    }
-
-    public void setSessaoHora(SessaoHora sessaoHora) {
-        this.sessaoHora = sessaoHora;
-    }
-
     public List<String> getHoraSource() {
         return horaSource;
     }
@@ -199,14 +182,6 @@ public class SessaoMB {
         this.horaTarget = horaTarget;
     }
 
-    public List<SessaoData> getSessaoDataSet() {
-        return sessaoDataList;
-    }
-
-    public void setSessaoDataSet(List<SessaoData> sessaoDataSet) {
-        this.sessaoDataList = sessaoDataSet;
-    }
-
     public List<Sessao> getSessaoList() {
         return sessaoList;
     }
@@ -217,26 +192,6 @@ public class SessaoMB {
 
     public Map<Sessao, String> getSessaoMap() {
         return sessaoMap;
-    }
-
-    public SessaoData getSessaoData() {
-        return sessaoData;
-    }
-
-    public void setSessaoData(SessaoData sessaoData) {
-        this.sessaoData = sessaoData;
-    }
-
-    public void setSessaoMap(Map<Sessao, String> sessaoMap) {
-        this.sessaoMap = sessaoMap;
-    }
-
-    public List<SessaoData> getSessaoDataList() {
-        return sessaoDataList;
-    }
-
-    public void setSessaoDataList(List<SessaoData> sessaoDataList) {
-        this.sessaoDataList = sessaoDataList;
     }
 
     public Filme getFilme() {
@@ -307,17 +262,8 @@ public class SessaoMB {
     }
 
     public String createSessaoEnd() {
-        Set<SessaoHora> sessaoHoraTP = new HashSet<SessaoHora>();
-        try {
-            for (int i = 0; i < horaTarget.size(); i++) {
-                this.sessaoHora.setHoraSessao(horaTarget.get(i));
-                sessaoHoraTP.add(this.sessaoHora);
-            }
-
-            this.sessaoData.setSessaoHora(sessaoHoraTP);
-            this.sessaoData.setDataSessao(dataLocal);
-            this.sessaoDataList.add(sessaoData);
-            this.sessao.setSessaoData(sessaoDataList);
+       
+        try {     
             this.sessao.setFilme(filme);
             sessaoFacade.save(sessao);
 

@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+
+        <ui:define name="centro">
+
+            <p:panel id="panelTitulo" header="#{msgs.programacaoTitleCadastro}"
+                     style="margin-bottom:10px;">
+
+                <h:form id="progForm">                    
+                    <p:wizard widgetVar="wiz"  
+                              flowListener="#{programacaoMB.onFlowProcess(event)}">
+                        <p:tab id="periodo" title="#{msgs.periodo}">
+                            <p:panel header="#{msgs.ProgramacaoInicio}">
+                                <h:messages globalOnly="true" style="color: red"/>
+                                <h:panelGrid columns="3" styleClass="panelGrid"
+                                             rowClasses="panelFirstLine,panelNextLine">
+
+                                    <p:outputLabel for="programacaoInicio" value="#{msgs.ProgramacaoInicio}"
+                                                   style="color: blue;" />
+                                    <p:calendar pattern="dd/MM/yyyy"
+                                                value="#{programacaoMB.programacao.inicio}" size="7" id="programacaoInicio"
+                                                required="true" requiredMessage="#{msgs.ProgramacaoInicioRequired}" accesskey="false">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </p:calendar>
+                                    <h:messages for="programacaoInicio" style="color: red"/>	
+
+                                    <p:outputLabel value="#{msgs.ProgramacaoFim}" for="programacaoFim"
+                                                   style="color: blue;" />
+                                    <p:calendar pattern="dd/MM/yyyy"
+                                                value="#{programacaoMB.programacao.fim}" size="7" id="programacaoFim"
+                                                required="true" requiredMessage="#{msgs.ProgramacaoFimRequired}" accesskey="false" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />			
+                                    </p:calendar>						
+                                    <h:messages for="programacaoFim" style="color: red"/>				
+                                         <h:outputText value="Skip to last: " />  
+                                    <h:selectBooleanCheckbox value="#{programacaoMB.skip}" />
+                                </h:panelGrid>			
+                            </p:panel>
+                        </p:tab>
+                        <p:tab id="filmeProgramacao" title="#{msgs.Filme}">
+                            <p:panel header="#{msgs.FilmeTitleCadastro}">
+                                <h:messages globalOnly="true" style="color: red"/>
+                                <h:panelGrid columns="3" styleClass="panelGrid"
+                                             rowClasses="panelFirstLine,panelNextLine">
+
+                                    <p:outputLabel for="filmeTitulo" value="#{msgs.FilmeTitulo}:" style="color: blue;"/>
+                                    <p:inputText id="filmeTitulo" value="#{programacaoMB.filme.nome}"
+                                                 required="true" requiredMessage="#{msgs.FilmeTituloRequired}" />
+                                    <h:message for="filmeTitulo" style="color: red" />
+
+
+                                    <p:outputLabel value="#{msgs.FilmeSinopse}:" for="filmeSinopse" style="color: blue;"/>
+                                    <p:inputTextarea id="filmeSinopse" value="#{programacaoMB.filme.sinopse}"
+                                                     maxlength="5000" required="true"
+                                                     requiredMessage="#{mesgs.FilmeSinopseRequired}" />
+                                    <h:message for="filmeSinopse" style="color: red" />
+
+                                    <p:outputLabel for="filmeSite" value="#{msgs.FilmeSite}:" style="color: blue;"/>
+                                    <p:inputText id="filmeSite" value="#{programacaoMB.filme.siteOficial}"
+                                                 required="true" requiredMessage="#{msgs.FilmeSiteRequired}" />
+                                    <h:message for="filmeSite" style="color: red" />
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+                        <p:tab id="sessaoProgramacao" title="#{msgs.Sessao}">
+                            <p:panel header="#{msgs.SessaoTitleCadastroData}">
+                                <h:messages globalOnly="true" style="color: red"/>
+                                <h:panelGrid columns="3" styleClass="panelGrid"
+                                             rowClasses="panelFirstLine,panelNextLine">
+
+                                    <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
+                                    <p:calendar 
+                                        pattern="dd/MM/yyyy" value="#{programacaoMB.dataLocal}" size="7"
+                                        id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
+                                    </p:calendar>
+                                    <h:message for="sessaoData" style="color: red" />
+                                    
+                                     <h:outputLabel for="sessaoData1" value="#{msgs.SessaoData}" />
+                                    <p:calendar 
+                                        pattern="dd/MM/yyyy" value="#{programacaoMB.dataLocal}" size="7"
+                                        id="sessaoData1" required="true" requiredMessage="#{msgs.SessaoData2Required}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
+                                    </p:calendar>
+                                     <h:message for="sessaoData" style="color: red" />
+                                </h:panelGrid>
+                                <p:panel id="DadosSessao1" header="#{msgs.SessaoListaHoras}"
+                                         style="margin-bottom:10px;">
+                                    <p:pickList id="pickList" value="#{programacaoMB.horaPic}" var="hora" 
+                                                itemLabel="#{hora}" itemValue="#{hora}" >
+                                        <f:facet name="sourceCaption">Disponível</f:facet>  
+                                        <f:facet name="targetCaption">Selecionado</f:facet>  
+                                    </p:pickList> 
+                                </p:panel>
+                                 <!--   <h:outputText value="Skip to last: " />  
+                                    <h:selectBooleanCheckbox value="#{programacaoMB.skip}" immediate="false"/> -->
+                            </p:panel>
+                        </p:tab>
+                        <p:tab id="confirmacao" title="#{msgs.Finalizando}">
+                            <p:panel header="#{msgs.FinalizandoCadastro}">
+                                <h:panelGrid id="confirmation" columns="6">
+                                    <h:outputText value="#{msgs.ProgramacaoInicio}" />
+                                    <h:outputText value="#{programacaoMB.programacao.inicio}"/>
+                                    <h:outputText value="#{msgs.ProgramacaoFim}" />
+                                    <h:outputText value="#{programacaoMB.programacao.fim}"/>
+                                    <h:outputText value="#{msgs.msgs.Filme}" />
+                                    <h:outputText value="{userWizard.user.age}" />
+                                    <h:outputText value="#{msgs.Fil}" />
+                                    <h:outputText value="{userWizard.user.street}" />
+                                    <h:outputText value="Postal Code: " />
+                                    <h:outputText value="{userWizard.user.postalCode}"/>
+                                    <h:outputText value="City: " />
+                                    <h:outputText value="{userWizard.user.city}"/>
+                                    <h:outputText value="Email: " />
+                                    <h:outputText value="{userWizard.user.email}" />
+                                    <h:outputText value="Phone " />
+                                    <h:outputText value="{userWizard.user.phone}"/>
+                                    <h:outputText value="Info: " />
+                                    <h:outputText value="{userWizard.user.info}"/>
+                                    <h:outputText />
+                                    <h:outputText />
+                                </h:panelGrid>
+                                <p:commandButton value="Submit" actionListener="{userWizard.save}" />
+                            </p:panel>
+                        </p:tab>
+                    </p:wizard>
+                </h:form>
+
+            </p:panel>
+
+        </ui:define>
+
+    </ui:decorate>
+
+</html>

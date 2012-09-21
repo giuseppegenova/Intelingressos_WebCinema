@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 @Table(name = "programacao")
 public class Programacao implements Serializable{
 
-	private static final long serialVersionUID = -7265665371904315411L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class Programacao implements Serializable{
 	@Column(nullable = false)
 	private Date fim;
 	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity= Filme.class)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)//, targetEntity= Filme.class
 	@JoinColumn(name = "filme_id", unique = true , updatable=true, insertable=true)
 	private Filme filme;
 	

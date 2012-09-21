@@ -50,8 +50,7 @@ public class Ingresso implements Serializable {
     @JoinColumn(name = "ingressoTipo_id", unique = true)
     private Set<IngressoTipo> ingressoTipo;
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "sessao_id", nullable = false, insertable = false, updatable = false, referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)    
     private Sessao sessao;
     
     private boolean valido;

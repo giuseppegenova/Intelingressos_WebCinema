@@ -2,8 +2,6 @@ package br.com.cinema.managedbean;
 
 import br.com.cinema.entity.Filme;
 import br.com.cinema.entity.Sessao;
-import br.com.cinema.entity.SessaoData;
-import br.com.cinema.entity.SessaoHora;
 import br.com.cinema.facade.local.FilmeFacadeLocal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,9 +27,7 @@ public class FilmeMB_old {
     private FilmeFacadeLocal filmeFacade;
     private Filme filme;
     private Sessao sessao;
-    private Date dataLocal;
-    private SessaoData sessaoData;
-    private SessaoHora sessaoHora;
+    private Date dataLocal;    
     private DualListModel<String> horaPic;
     private List<String> horaSource;
     private List<String> horaTarget;
@@ -39,9 +35,7 @@ public class FilmeMB_old {
     public FilmeMB_old() {
         filme = new Filme();
         dataLocal = new Date();
-        sessao = new Sessao();
-        sessaoData = new SessaoData();
-        sessaoHora = new SessaoHora();
+        sessao = new Sessao();      
         horaSource = new ArrayList<String>();
         horaTarget = new ArrayList<String>();
 
@@ -123,23 +117,7 @@ public class FilmeMB_old {
 
     public void setHoraPic(DualListModel<String> horaPic) {
         this.horaPic = horaPic;
-    }
-
-    public SessaoData getSessaoData() {
-        return sessaoData;
-    }
-
-    public void setSessaoData(SessaoData sessaoData) {
-        this.sessaoData = sessaoData;
-    }
-
-    public SessaoHora getSessaoHora() {
-        return sessaoHora;
-    }
-
-    public void setSessaoHora(SessaoHora sessaoHora) {
-        this.sessaoHora = sessaoHora;
-    }
+    }   
 
     public Date getDataLocal() {
         return dataLocal;
