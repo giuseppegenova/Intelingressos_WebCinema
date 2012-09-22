@@ -2,13 +2,14 @@ package br.com.cinema.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,15 +23,14 @@ public class Cinema implements Serializable{
 	private static final long serialVersionUID = -1737339586735255940L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false, unique = true)
 	private String nome;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "programacao_id", unique = true)
-	private Collection<Programacao> programacao;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="cinema", fetch= FetchType.LAZY, orphanRemoval=true)
+	private List<Programacao> programacao;
 
 	public Long getId() {
 		return id;
@@ -52,7 +52,7 @@ public class Cinema implements Serializable{
 		return programacao;
 	}
 
-	public void setProgramacao(Collection<Programacao> programacao) {
+	public void setProgramacao(List<Programacao> programacao) {
 		this.programacao = programacao;
 	}
 

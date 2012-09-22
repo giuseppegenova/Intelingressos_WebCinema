@@ -21,7 +21,7 @@
 
                         <p:tab id="periodo" title="#{msgs.periodo}">
 
-                            <p:panel header="#{msgs.ProgramacaoInicio}">
+                            <p:panel header="#{msgs.ProgramacaoCadastroInicio}">
                                 <h:messages globalOnly="true" style="color: red"/>
                                 <h:panelGrid columns="3" styleClass="panelGrid"
                                              rowClasses="panelFirstLine,panelNextLine">
@@ -109,19 +109,31 @@
 
                                     <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
                                     <p:calendar 
-                                        pattern="dd/MM/yyyy" value="#{programacaoMB.dataLocal}" size="7"
+                                        pattern="dd/MM/yyyy" value="#{programacaoMB.sessao.sessaoData}" size="7"
                                         id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
                                     </p:calendar>
                                     <h:message for="sessaoData" style="color: red" />
 
                                     <h:outputLabel for="sessaoPrimeiraHora" value="#{msgs.SessaoHora}" />
-                                    <p:calendar id="sessaoPrimeiraHora" value="#{programacaoMB.primeiraHora}" pattern="HH:mm" timeOnly="true" />                                      
+                                    <p:calendar id="sessaoPrimeiraHora" value="#{programacaoMB.primeiroHorario}" pattern="HH:mm:ss" timeOnly="true" />                                      
                                     <h:message for="sessaoPrimeiraHora" style="color: red" />
 
                                     <h:outputLabel for="sessaoSegundaHora" value="#{msgs.SessaoHora2}" />
-                                    <p:calendar id="sessaoSegundaHora" value="#{programacaoMB.segundaHora}" pattern="HH:mm" timeOnly="true" /> 
+                                    <p:calendar id="sessaoSegundaHora" value="#{programacaoMB.segundoHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
                                     <h:message for="sessaoSegundaHora" style="color: red" />
+
+                                    <h:outputLabel for="sessaoTerceiraHora" value="#{msgs.SessaoHora2}" />
+                                    <p:calendar id="sessaoTerceiraHora" value="#{programacaoMB.terceiroHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
+                                    <h:message for="sessaoTerceiraHora" style="color: red" />
+
+                                    <h:outputLabel for="sessaoQuartaHora" value="#{msgs.SessaoHora2}" />
+                                    <p:calendar id="sessaoQuartaHora" value="#{programacaoMB.quartoHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
+                                    <h:message for="sessaoQuartaHora" style="color: red" />
+
+                                    <h:outputLabel for="sessaoQuintaHora" value="#{msgs.SessaoHora2}" />
+                                    <p:calendar id="sessaoQuintaHora" value="#{programacaoMB.quintoHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
+                                    <h:message for="sessaoQuintaHora" style="color: red" />
 
                                 </h:panelGrid>                                
                                 <h:outputText value="Skip to last: " />  
@@ -129,37 +141,12 @@
                             </p:panel>
                         </p:tab>
 
-                     <!--   <p:tab id="sessaoProgramacao2" title="#{msgs.SessaoSegunda}">
-                            <p:panel header="#{msgs.Sessao}">
-                                <h:messages globalOnly="true" style="color: red"/>
-                                <h:panelGrid columns="6" styleClass="panelGrid"
-                                             rowClasses="panelFirstLine,panelNextLine">
-
-                                    <h:outputLabel for="sessaoData2" value="#{msgs.SessaoData}" />
-                                    <p:calendar 
-                                        pattern="dd/MM/yyyy" value="#{programacaoMB.dataLocal2}" size="7"
-                                        id="sessaoData2" required="true" requiredMessage="#{msgs.SessaoDataRequired}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
-                                    </p:calendar>
-                                    <h:message for="sessaoData2" style="color: red" />
-
-                                </h:panelGrid>
-                                <p:panel id="DadosSessao2" header="#{msgs.SessaoListaHoras}"
-                                         style="margin-bottom:10px;">
-                                    <p:pickList id="pickList2" value="#{programacaoMB.horaPic2}" var="hora2" 
-                                                itemLabel="#{hora2}" itemValue="#{hora2}" >
-                                        <f:facet name="sourceCaption">Disponível</f:facet>  
-                                        <f:facet name="targetCaption">Selecionado</f:facet>  
-                                    </p:pickList> 
-                                </p:panel>                               
-                            </p:panel>
-                        </p:tab> -->
 
                         <p:tab id="confirmacao" title="#{msgs.Finalizando}">
                             <h:inputHidden value="#{programacaoMB.programacao.id}" />
                             <p:panel header="#{msgs.FinalizandoCadastro}">
-                                <h:panelGrid id="confirmation" columns="2">
-
+                                <h:messages globalOnly="true" style="color: red" />
+                                <h:panelGrid id="confirmation" columns="4">
 
                                     <h:outputText value="#{msgs.ProgramacaoInicio}:" style="color: blue; font: bold italic large Palatino, serif "/>
                                     <h:outputText value="#{programacaoMB.programacao.inicio}" style="color: green; font: bold normal large Palatino, serif ">
@@ -180,22 +167,36 @@
                                     <h:outputText value="#{msgs.SalaCapacidade}:"  style="color: blue; font: bold italic large Palatino, serif "/>
                                     <h:outputText value="#{programacaoMB.sala.capacidade}"  style="color: green; font: bold normal large Palatino, serif "/>
                                     <h:outputText value="#{msgs.SessaoData}:"  style="color: blue; font: bold italic large Palatino, serif "/>
-                                    <h:outputText   value="#{programacaoMB.dataLocal}"  style="color: green; font: bold normal large Palatino, serif ">
+                                    <h:outputText   value="#{programacaoMB.sessao.sessaoData}"  style="color: green; font: bold normal large Palatino, serif ">
                                         <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
                                     </h:outputText>
                                     <h:outputText value="#{msgs.SessaoHora}:" style="color: blue; font: bold italic large Palatino, serif "/>
-                                    <h:outputText  value="#{programacaoMB.primeiraHora}" style="color: green; font: bold normal large Palatino, serif">  
-                                        <f:convertDateTime pattern="HH:mm" timeOnly="true" />
+                                    <h:outputText  value="#{programacaoMB.primeiroHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                        <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
                                     </h:outputText>
                                     <h:outputText value="#{msgs.SessaoHora2}:" style="color: blue; font: bold italic large Palatino, serif "/>
-                                    <h:outputText  value="#{programacaoMB.segundaHora}" style="color: green; font: bold normal large Palatino, serif">  
-                                        <f:convertDateTime pattern="HH:mm" timeOnly="true" />
+                                    <h:outputText  value="#{programacaoMB.segundoHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                        <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
+                                    </h:outputText>
+                                    <h:outputText value="#{msgs.SessaoHora3}:" style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText  value="#{programacaoMB.terceiroHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                        <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
+                                    </h:outputText>
+                                    <h:outputText value="#{msgs.SessaoHora4}:" style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText  value="#{programacaoMB.quartoHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                        <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
+                                    </h:outputText>
+                                    <h:outputText value="#{msgs.SessaoHora5}:" style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText  value="#{programacaoMB.quintoHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                        <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
                                     </h:outputText>
                                     <h:outputText />
                                     <h:outputText />
+
                                 </h:panelGrid>
-                                <h:panelGrid columns="3">
+                                <h:panelGrid id="submitCadastro" columns="3">
                                     <h:inputHidden value="#{programacaoMB.programacao.id}" />
+
                                     <h:commandButton action="#{programacaoMB.createProgramacaoEnd()}"
                                                      value="#{msgs.create}" />
 

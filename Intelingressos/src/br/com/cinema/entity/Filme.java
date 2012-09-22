@@ -24,18 +24,18 @@ public class Filme implements Serializable {
     private static final long serialVersionUID = 1808765237432372920L;
     public static final String FIND_FILME_BY_NOME = "Filme.findByNome";
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false, unique = true, updatable = true)
     private String nome;
-   
     @Column(nullable = false)
     private String sinopse;
     @Column
     private String siteOficial;
-    
-    @OneToMany(mappedBy="filme", cascade= CascadeType.ALL, fetch = FetchType.EAGER)  
-    private List<Sessao> sessaoList;
+    @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Sessao> sessao;
+    @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity=Sala.class)
+    private List<Sala> sala;
 
     public Long getId() {
         return id;
@@ -53,7 +53,6 @@ public class Filme implements Serializable {
         this.nome = nome;
     }
 
-   
     public String getSinopse() {
         return sinopse;
     }
@@ -70,12 +69,20 @@ public class Filme implements Serializable {
         this.siteOficial = siteOficial;
     }
 
-    public List<Sessao> getSessaoList() {
-        return sessaoList;
+    public List<Sessao> getSessao() {
+        return sessao;
     }
 
-    public void setSessaoList(List<Sessao> sessaoList) {
-        this.sessaoList = sessaoList;
+    public void setSessao(List<Sessao> sessao) {
+        this.sessao = sessao;
+    }
+
+    public List<Sala> getSala() {
+        return sala;
+    }
+
+    public void setSala(List<Sala> sala) {
+        this.sala = sala;
     }
 
     @Override

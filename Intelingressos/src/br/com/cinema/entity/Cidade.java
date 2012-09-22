@@ -25,7 +25,7 @@ public class Cidade implements Serializable {
     public static final String FIND_BY_NOME = "Cidade.findByNome";
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     @Column(nullable = false)

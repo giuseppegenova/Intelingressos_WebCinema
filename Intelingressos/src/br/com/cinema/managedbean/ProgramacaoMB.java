@@ -1,13 +1,13 @@
 package br.com.cinema.managedbean;
 
 import br.com.cinema.entity.Filme;
+import br.com.cinema.entity.Horario;
 import br.com.cinema.entity.Ingresso;
 import br.com.cinema.entity.Programacao;
 import br.com.cinema.entity.Sala;
 import br.com.cinema.entity.Sessao;
 import br.com.cinema.facade.local.ProgramacaoFacadeLocal;
 import br.com.cinema.facade.local.SessaoFacadeLocal;
-import br.com.cinema.util.DateUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,27 +33,31 @@ public class ProgramacaoMB {
     private static final String LIST_ALL_PROGRAMACOES = "listAllProgramacoes";
     private static final String STAY_IN_THE_SAME_PAGE = null;
     private static Logger logger = Logger.getLogger(ProgramacaoMB.class.getName());
+    
     @EJB
     private ProgramacaoFacadeLocal programacaoFacade;
     @EJB
     private SessaoFacadeLocal sessaoFacade;
+   
     private Programacao programacao;    
     private Filme filme;
     private Sala sala;
     private Sessao sessao;
-    private Date dataLocal;
-    private Date dataLocal2;    
-    private Date primeiraHora;
-    private Date segundaHora;
-    private Date terceiraHora;
-    private Date quartaHora;
-    private List<Date> dataLista;    
+    private Horario horario;
+    private Date sessaoData;
+    private Date primeiroHorario;
+    private Date segundoHorario;
+    private Date terceiroHorario;
+    private Date quartoHorario;
+    private Date quintoHorario;
+    private List<Date> dataList;
+    private List<Date> horaList;
     private List<Programacao> programacaoList;
-    private List<Sessao> sessaoList;    
+    private List<Sessao> sessaoList; 
+    private List<Sala> salaList;
+    private List<Horario> horarioList;
     private Map<Sessao, String> sessaoMap;
     private Map<Ingresso, String> ingressoMap;
-   
-  
     private boolean skip;
     
     public ProgramacaoMB() {
@@ -61,17 +65,17 @@ public class ProgramacaoMB {
         filme = new Filme();
         sala = new Sala();
         sessao = new Sessao();
-        sessaoList = new ArrayList<Sessao>();
+        sessaoList = new ArrayList<Sessao>();         
         sessaoMap = new HashMap<Sessao, String>();
-        ingressoMap = new HashMap<Ingresso, String>();
-        
-        dataLocal = new Date();
+        ingressoMap = new HashMap<Ingresso, String>();        
     }
 
     @PostConstruct
     public void init() {
         this.programacaoList = carregaProgramacao();
         this.sessaoList = carregaListaSessao();
+        this.horaList = new ArrayList<Date>();
+        this.salaList = new ArrayList<Sala>();
         carregaSelectSessao(sessaoList);
     }
     
@@ -94,36 +98,60 @@ public class ProgramacaoMB {
         return programacaoTP;
     }
 
-    public List<Date> getDataLista() {
-        return dataLista;
+    public List<Date> getDataList() {
+        return dataList;
     }
 
-    public void setDataLista(List<Date> dataLista) {
-        this.dataLista = dataLista;
+    public void setDataList(List<Date> dataList) {
+        this.dataList = dataList;
     }
 
-    public Date getDataLocal() {
-        return dataLocal;
+    public Horario getHorario() {
+        return horario;
     }
 
-    public void setDataLocal(Date dataLocal) {
-        this.dataLocal = dataLocal;
+    public void setHorario(Horario horario) {
+        this.horario = horario;
     }
 
-    public Date getDataLocal2() {
-        return dataLocal2;
+    public List<Horario> getHorarioList() {
+        return horarioList;
     }
 
-    public void setDataLocal2(Date dataLocal2) {
-        this.dataLocal2 = dataLocal2;
+    public void setHorarioList(List<Horario> horarioList) {
+        this.horarioList = horarioList;
     }
-     
+
+    public List<Date> getHoraList() {
+        return horaList;
+    }
+
+    public void setHoraList(List<Date> horaList) {
+        this.horaList = horaList;
+    }
+
+    public List<Sala> getSalaList() {
+        return salaList;
+    }
+
+    public void setSalaList(List<Sala> salaList) {
+        this.salaList = salaList;
+    }
+            
     public boolean isSkip() {
         return skip;
     }
 
     public void setSkip(boolean skip) {
         this.skip = skip;
+    }
+
+    public Date getSessaoData() {
+        return sessaoData;
+    }
+
+    public void setSessaoData(Date sessaoData) {
+        this.sessaoData = sessaoData;
     }
 
     public String onFlowProcess(FlowEvent event) {
@@ -160,6 +188,46 @@ public class ProgramacaoMB {
 
     public void setSessao(Sessao sessao) {
         this.sessao = sessao;
+    }
+
+    public Date getPrimeiroHorario() {
+        return primeiroHorario;
+    }
+
+    public void setPrimeiroHorario(Date primeiroHorario) {
+        this.primeiroHorario = primeiroHorario;
+    }
+
+    public Date getSegundoHorario() {
+        return segundoHorario;
+    }
+
+    public void setSegundoHorario(Date segundoHorario) {
+        this.segundoHorario = segundoHorario;
+    }
+
+    public Date getTerceiroHorario() {
+        return terceiroHorario;
+    }
+
+    public void setTerceiroHorario(Date terceiroHorario) {
+        this.terceiroHorario = terceiroHorario;
+    }
+
+    public Date getQuartoHorario() {
+        return quartoHorario;
+    }
+
+    public void setQuartoHorario(Date quartoHorario) {
+        this.quartoHorario = quartoHorario;
+    }
+
+    public Date getQuintoHorario() {
+        return quintoHorario;
+    }
+
+    public void setQuintoHorario(Date quintoHorario) {
+        this.quintoHorario = quintoHorario;
     }
   
     public List<Sessao> getSessaoList() {
@@ -206,38 +274,6 @@ public class ProgramacaoMB {
         return programacaoFacade.findAll();
     }
 
-    public Date getPrimeiraHora() {
-        return primeiraHora;
-    }
-
-    public void setPrimeiraHora(Date primeiraHora) {
-        this.primeiraHora = primeiraHora;
-    }
-
-    public Date getSegundaHora() {
-        return segundaHora;
-    }
-
-    public void setSegundaHora(Date segundaHora) {
-        this.segundaHora = segundaHora;
-    }
-
-    public Date getTerceiraHora() {
-        return terceiraHora;
-    }
-
-    public void setTerceiraHora(Date terceiraHora) {
-        this.terceiraHora = terceiraHora;
-    }
-
-    public Date getQuartaHora() {
-        return quartaHora;
-    }
-
-    public void setQuartaHora(Date quartaHora) {
-        this.quartaHora = quartaHora;
-    }
-
     public Programacao findProgramacaoByFilme(Filme filme) {
         return null;
     }
@@ -257,14 +293,11 @@ public class ProgramacaoMB {
         this.filme.setSinopse(filmeTP.getSinopse());
         this.filme.setSiteOficial(filmeTP.getSiteOficial());
 
-        salaTP = programacao.getSala();
-        this.sala.setNome(salaTP.getNome());
-        this.sala.setCapacidade(salaTP.getCapacidade());
-
-        sessaoTP = programacao.getSessao();
-        // this.sessao.setData(sessaoTP.getData());
-        //this.sessao.setHora(sessaoTP.getHora());
-
+       
+       
+        
+       
+        
         return UPDATE_PROGRAMACAO;
     }
 
@@ -285,8 +318,7 @@ public class ProgramacaoMB {
             //sessaoTP.setHora(this.sessao.getHora());
 
             this.programacao.setFilme(filmeTP);
-            this.programacao.setSala(salaTP);
-            this.programacao.setSessao(sessaoTP);
+           
 
             programacaoFacade.update(this.programacao);
         } catch (EJBException e) {
@@ -325,24 +357,30 @@ public class ProgramacaoMB {
 
     public String createProgramacaoEnd() {
            int ingressoVendidoTP = 0;           
-           List<Date> horaLista = new ArrayList<Date>();
-           String dataString;
-           Date DataTP;
+           
         try {
-            if (programacao.getInicio().before(programacao.getFim())) {              
-                programacao.setFilme(this.filme);
-                programacao.setSala(this.sala);
-                this.sessao.setIngressosDisponiveis(sala.getCapacidade());
+            if (this.programacao.getInicio().before(this.programacao.getFim())) { 
+                
+                horaList.add(primeiroHorario);
+                horaList.add(segundoHorario);
+                horaList.add(terceiroHorario);
+                horaList.add(quartoHorario);
+                horaList.add(quintoHorario);
+                
+                this.sessao.setSessaoHora(horarioList);
+                this.sessao.setIngressosDisponiveis(this.sala.getCapacidade());
                 this.sessao.setIngressosVendidos(ingressoVendidoTP);
-               
-                horaLista.add(primeiraHora);
-                horaLista.add(segundaHora);
+                
+                sessaoList.add(sessao);
+                salaList.add(sala);                
+                
+                this.filme.setSala(salaList);
+                this.filme.setSessao(sessaoList);
                                 
-                dataString = DateUtils.converterDataUSParaBR(dataLocal);
-                DataTP = DateUtils.strToDate(dataString);
-                              
-                programacao.setSessao(this.sessao);
-                programacaoFacade.save(programacao);
+                this.programacao.setFilme(this.filme);
+                
+                this.programacaoFacade.save(programacao);
+                
             } else {
                 programacao.setFim(null);
                 sendErrorMessageToUser("A data de finalização da programação deve ser posterior a data de in�cio");

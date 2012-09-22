@@ -15,17 +15,18 @@ public class Sessao implements Serializable {
     private Long id;
     
     @Temporal(TemporalType.DATE)
-    private List<Date> sessaoData;
+    private Date sessaoData;
     
-    @Temporal(TemporalType.TIME)
-    private List<Date> sessaoPrimeiraHora;
+    @Temporal(TemporalType.TIMESTAMP)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy="sessao")
+    private List<Horario> sessaoHora;
     
     private int ingressosVendidos;
     
     private int ingressosDisponiveis;
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "filme_id", nullable = false, insertable = false, updatable = false, referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "filme_id")
     private Filme filme;
     
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "sessao")
@@ -39,22 +40,22 @@ public class Sessao implements Serializable {
         this.id = id;
     }
 
-    public List<Date> getSessaoData() {
+    public Date getSessaoData() {
         return sessaoData;
     }
 
-    public void setSessaoData(List<Date> sessaoData) {
+    public void setSessaoData(Date sessaoData) {
         this.sessaoData = sessaoData;
     }
 
-    public List<Date> getSessaoPrimeiraHora() {
-        return sessaoPrimeiraHora;
+    public List<Horario> getSessaoHora() {
+        return sessaoHora;
     }
 
-    public void setSessaoPrimeiraHora(List<Date> sessaoPrimeiraHora) {
-        this.sessaoPrimeiraHora = sessaoPrimeiraHora;
+    public void setSessaoHora(List<Horario> sessaoHora) {
+        this.sessaoHora = sessaoHora;
     }
-    
+
     public int getIngressosVendidos() {
         return ingressosVendidos;
     }

@@ -18,7 +18,7 @@ public class IngressoTipo implements Serializable{
 	private static final long serialVersionUID = -883509251960370255L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(unique = true, nullable = false)

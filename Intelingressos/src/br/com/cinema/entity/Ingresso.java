@@ -26,7 +26,7 @@ public class Ingresso implements Serializable {
      */
     private static final long serialVersionUID = -7626515563012062095L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     @Column(nullable = false)
