@@ -16,17 +16,22 @@ public class Sessao implements Serializable {
     
     @Temporal(TemporalType.DATE)
     private Date sessaoData;
+      
+    @Temporal(TemporalType.TIME)
+    private Date primeiroHorario;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy="sessao")
-    private List<Horario> sessaoHora;
+    @Temporal(TemporalType.TIME)
+    private Date segundoHorario;
+    
+    @Temporal(TemporalType.TIME)
+    private Date terceiroHorario;
     
     private int ingressosVendidos;
     
     private int ingressosDisponiveis;
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "filme_id")
+    @JoinColumn(name = "filme_id", referencedColumnName="id", insertable=true, nullable=false)
     private Filme filme;
     
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "sessao")
@@ -48,14 +53,30 @@ public class Sessao implements Serializable {
         this.sessaoData = sessaoData;
     }
 
-    public List<Horario> getSessaoHora() {
-        return sessaoHora;
+    public Date getPrimeiroHorario() {
+        return primeiroHorario;
     }
 
-    public void setSessaoHora(List<Horario> sessaoHora) {
-        this.sessaoHora = sessaoHora;
+    public void setPrimeiroHorario(Date primeiroHorario) {
+        this.primeiroHorario = primeiroHorario;
     }
 
+    public Date getSegundoHorario() {
+        return segundoHorario;
+    }
+
+    public void setSegundoHorario(Date segundoHorario) {
+        this.segundoHorario = segundoHorario;
+    }
+
+    public Date getTerceiroHorario() {
+        return terceiroHorario;
+    }
+
+    public void setTerceiroHorario(Date terceiroHorario) {
+        this.terceiroHorario = terceiroHorario;
+    }
+    
     public int getIngressosVendidos() {
         return ingressosVendidos;
     }

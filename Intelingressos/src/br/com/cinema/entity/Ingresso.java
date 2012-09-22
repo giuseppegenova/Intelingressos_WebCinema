@@ -43,11 +43,11 @@ public class Ingresso implements Serializable {
     private Date validadeCartao;
     
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ingressoCompra_id", unique = true)
+    @JoinColumn(name = "ingressoCompra_id", unique = true, referencedColumnName="id", insertable=true, nullable=false)
     private IngressoCompra ingressoCompra;
     
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ingressoTipo_id", unique = true)
+    @JoinColumn(name = "ingressoTipo_id", unique = true, referencedColumnName="id", insertable=true, nullable=false)
     private Set<IngressoTipo> ingressoTipo;
     
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)    

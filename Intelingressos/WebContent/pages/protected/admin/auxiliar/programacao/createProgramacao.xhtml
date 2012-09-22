@@ -116,25 +116,17 @@
                                     <h:message for="sessaoData" style="color: red" />
 
                                     <h:outputLabel for="sessaoPrimeiraHora" value="#{msgs.SessaoHora}" />
-                                    <p:calendar id="sessaoPrimeiraHora" value="#{programacaoMB.primeiroHorario}" pattern="HH:mm:ss" timeOnly="true" />                                      
+                                    <p:calendar id="sessaoPrimeiraHora" value="#{programacaoMB.sessao.primeiroHorario}" pattern="HH:mm:ss" timeOnly="true" />                                      
                                     <h:message for="sessaoPrimeiraHora" style="color: red" />
 
                                     <h:outputLabel for="sessaoSegundaHora" value="#{msgs.SessaoHora2}" />
-                                    <p:calendar id="sessaoSegundaHora" value="#{programacaoMB.segundoHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
+                                    <p:calendar id="sessaoSegundaHora" value="#{programacaoMB.sessao.segundoHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
                                     <h:message for="sessaoSegundaHora" style="color: red" />
 
-                                    <h:outputLabel for="sessaoTerceiraHora" value="#{msgs.SessaoHora2}" />
-                                    <p:calendar id="sessaoTerceiraHora" value="#{programacaoMB.terceiroHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
+                                    <h:outputLabel for="sessaoTerceiraHora" value="#{msgs.SessaoHora3}" />
+                                    <p:calendar id="sessaoTerceiraHora" value="#{programacaoMB.sessao.terceiroHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
                                     <h:message for="sessaoTerceiraHora" style="color: red" />
-
-                                    <h:outputLabel for="sessaoQuartaHora" value="#{msgs.SessaoHora2}" />
-                                    <p:calendar id="sessaoQuartaHora" value="#{programacaoMB.quartoHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
-                                    <h:message for="sessaoQuartaHora" style="color: red" />
-
-                                    <h:outputLabel for="sessaoQuintaHora" value="#{msgs.SessaoHora2}" />
-                                    <p:calendar id="sessaoQuintaHora" value="#{programacaoMB.quintoHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
-                                    <h:message for="sessaoQuintaHora" style="color: red" />
-
+                                   
                                 </h:panelGrid>                                
                                 <h:outputText value="Skip to last: " />  
                                 <h:selectBooleanCheckbox value="#{programacaoMB.skip}"/>
@@ -159,9 +151,10 @@
                                     <h:outputText value="#{msgs.Filme}:"  style="color: blue; font: bold italic large Palatino, serif "/>
                                     <h:outputText value="#{programacaoMB.filme.nome}" style="color: green; font: bold normal large Palatino, serif "/>
                                     <h:outputText value="#{msgs.FilmeSinopse}:"  style="color: blue; font: bold italic large Palatino, serif "/>
-                                    <h:outputText value="#{programacaoMB.filme.sinopse}"  style="color: green; font: bold normal large Palatino, serif "/>
+                                    <h:outputText value="#{programacaoMB.filme.sinopse}"  style="color: green; font: bold normal large Palatino, serif "/>                                    
                                     <h:outputText value="#{msgs.FilmeSite}:"  style="color: blue; font: bold italic large Palatino, serif "/>
                                     <h:outputText value="#{programacaoMB.filme.siteOficial}" style="color: green; font: bold normal large Palatino, serif "/>
+                                    <h:outputText />
                                     <h:outputText value="#{msgs.SalaNome}:"  style="color: blue; font: bold italic large Palatino, serif "/>
                                     <h:outputText value="#{programacaoMB.sala.nome}" style="color: green; font: bold normal large Palatino, serif "/>
                                     <h:outputText value="#{msgs.SalaCapacidade}:"  style="color: blue; font: bold italic large Palatino, serif "/>
@@ -171,23 +164,15 @@
                                         <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
                                     </h:outputText>
                                     <h:outputText value="#{msgs.SessaoHora}:" style="color: blue; font: bold italic large Palatino, serif "/>
-                                    <h:outputText  value="#{programacaoMB.primeiroHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                    <h:outputText  value="#{programacaoMB.sessao.primeiroHorario}" style="color: green; font: bold normal large Palatino, serif">  
                                         <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
                                     </h:outputText>
                                     <h:outputText value="#{msgs.SessaoHora2}:" style="color: blue; font: bold italic large Palatino, serif "/>
-                                    <h:outputText  value="#{programacaoMB.segundoHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                    <h:outputText  value="#{programacaoMB.sessao.segundoHorario}" style="color: green; font: bold normal large Palatino, serif">  
                                         <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
                                     </h:outputText>
                                     <h:outputText value="#{msgs.SessaoHora3}:" style="color: blue; font: bold italic large Palatino, serif "/>
-                                    <h:outputText  value="#{programacaoMB.terceiroHorario}" style="color: green; font: bold normal large Palatino, serif">  
-                                        <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
-                                    </h:outputText>
-                                    <h:outputText value="#{msgs.SessaoHora4}:" style="color: blue; font: bold italic large Palatino, serif "/>
-                                    <h:outputText  value="#{programacaoMB.quartoHorario}" style="color: green; font: bold normal large Palatino, serif">  
-                                        <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
-                                    </h:outputText>
-                                    <h:outputText value="#{msgs.SessaoHora5}:" style="color: blue; font: bold italic large Palatino, serif "/>
-                                    <h:outputText  value="#{programacaoMB.quintoHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                    <h:outputText  value="#{programacaoMB.sessao.terceiroHorario}" style="color: green; font: bold normal large Palatino, serif">  
                                         <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
                                     </h:outputText>
                                     <h:outputText />

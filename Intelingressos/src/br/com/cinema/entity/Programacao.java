@@ -35,7 +35,7 @@ public class Programacao implements Serializable{
 	private Date fim;
 	
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "filme_id")
+	@JoinColumn(name = "filme_id", referencedColumnName="id", insertable=true, nullable=false)
 	private Filme filme;
         
         @ManyToOne(cascade= CascadeType.ALL,fetch= FetchType.LAZY)
