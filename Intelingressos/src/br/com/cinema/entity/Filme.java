@@ -32,7 +32,7 @@ public class Filme implements Serializable {
     private String sinopse;
     @Column
     private String siteOficial;
-    @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Sessao> sessao;
     @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity=Sala.class)
     private List<Sala> sala;

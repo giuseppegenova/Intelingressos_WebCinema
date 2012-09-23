@@ -19,13 +19,14 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import org.primefaces.event.FlowEvent;
 
 @ManagedBean
-@ViewScoped
-public class ProgramacaoMB {
+@RequestScoped
+public class VendaMB {
 
     private static final String CREATE_PROGRAMACAO = "createProgramacao";
     private static final String DELETE_PROGRAMACAO = "deleteProgramacao";
@@ -34,19 +35,19 @@ public class ProgramacaoMB {
     private static final String CONSULTA_PROGRAMACAO = "consultaProgramacao";
     private static final String VENDA_PROGRAMACAO = "vendaProgramacao";
     private static final String STAY_IN_THE_SAME_PAGE = null;
-    private static Logger logger = Logger.getLogger(ProgramacaoMB.class.getName());
+    private static Logger logger = Logger.getLogger(VendaMB.class.getName());
     @EJB
     private ProgramacaoFacadeLocal programacaoFacade;
     @EJB
     private SessaoFacadeLocal sessaoFacade;
     @EJB
     private FilmeFacadeLocal filmeFacade;
+    
     private Programacao programacao;
     private Filme filme;
     private String filmeString;
     private Sala sala;
     private Sessao sessao;
-    private Sessao sessao2;
     private Date sessaoData;
     private List<Date> dataList;
     private List<Date> horaList;
@@ -59,12 +60,11 @@ public class ProgramacaoMB {
     private Map<Ingresso, String> ingressoMap;
     private boolean skip;
 
-    public ProgramacaoMB() {
+    public VendaMB() {
         programacao = new Programacao();
         filme = new Filme();
         sala = new Sala();
         sessao = new Sessao();
-        sessao2 = new Sessao();
         sessaoList = new ArrayList<Sessao>();
         filmeList = new ArrayList<Filme>();
         sessaoMap = new HashMap<Sessao, String>();
@@ -98,13 +98,14 @@ public class ProgramacaoMB {
 
     private void carregaSelectSessao(List<Sessao> ses) {
         for (int i = 0; i < ses.size(); i++) {
-            sessaoMap.put(ses.get(i), String.valueOf(i));
+            sessaoMap.put(ses.get(i), String.valueOf(ses.get(i).getId()));
         }
     }
 
-    public void carregaListaSessao() {
-        
-        sessaoList = sessaoFacade.findAll();
+    public void carregaListaSessao(AjaxBehaviorEvent event) {
+        FacesContext.getCurrentInstance();
+       
+        sessaoList = this.filme.getSessao();
         
         carregaSelectSessao(sessaoList);
     }
@@ -205,14 +206,6 @@ public class ProgramacaoMB {
 
     public void setSessao(Sessao sessao) {
         this.sessao = sessao;
-    }
-
-    public Sessao getSessao2() {
-        return sessao2;
-    }
-
-    public void setSessao2(Sessao sessao2) {
-        this.sessao2 = sessao2;
     }
 
     public List<Sessao> getSessaoList() {
@@ -349,7 +342,6 @@ public class ProgramacaoMB {
                 this.sessao.setIngressosVendidos(ingressoVendidoTP);
 
                 sessaoList.add(sessao);
-                sessaoList.add(sessao2);
                 salaList.add(sala);
 
                 this.filme.setSala(salaList);

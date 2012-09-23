@@ -23,12 +23,12 @@
                         
                         <h:inputHidden value="#{prog.id}" />
 
-                        <p:panel header="#{prog.filme.nome}" style="text-align:center">
+                        <p:panel header="#{msgs.compre}" style="text-align:center">
                             
-                            <h:panelGrid columns="1" style="width:100%">
-                                <!-- <p:graphicImage value="/images/cars/{car.manufacturer}.jpg"/> -->
+                        <h:panelGrid columns="1" style="width:100%">
+                            <!--        <p:graphicImage value="/images/cars/{car.manufacturer}.jpg"/> -->
 
-                                <h:outputText value="#{prog.sessao.data}" title="#{msgs.SessaoData}" />
+                                <h:outputText value="#{prog.filme.nome}"/>
 
                                 <p:commandLink update=":form:progDetail" oncomplete="progDialog.show()" title="View Detail">
                                     <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
@@ -36,7 +36,7 @@
                                                                  target="#{programacaoMB.programacao}" />
                                 </p:commandLink>
 
-                                <p:commandButton action="/pages/protected/admin/venda/programacaoVenda.xhtml" value="Compre seu ingresso" />
+                                <p:commandButton action="#{programacaoMB.vendaProgramacaoStart()}" value="Compre seu ingresso" />
 
                             </h:panelGrid>
 
@@ -55,14 +55,11 @@
                                 <h:outputLabel for="filme" value="Filme: " />
                                 <h:outputText id="filme" value="#{programacaoMB.programacao.filme.nome}" />
 
-                                <h:outputLabel for="sala" value="Sala: " />
-                                <h:outputText id="sala" value="#{programacaoMB.programacao.sala.nome}" />
-
-                                <h:outputLabel for="sessao" value="Sessão: " />
-                                <h:outputText id="sessao" value="#{programacaoMB.programacao.sessao.data}" />
-
                                 <h:outputLabel for="Sinopse" value="Sinopse: " />
                                 <h:outputText id="Sinopse" value="#{programacaoMB.programacao.filme.sinopse}" />
+
+                                <h:outputLabel for="SiteOficial" value="SiteOficial: " />
+                                <h:outputText id="SiteOficial" value="#{programacaoMB.programacao.filme.siteOficial}" />                                
 
                             </h:panelGrid>
                             

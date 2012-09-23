@@ -7,9 +7,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "sessao")
+@NamedQuery(name="Sessao.findByFilme", query="select c from Sessao c where c.filme = :filme")
 public class Sessao implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    public static final String FIND_BY_FILME = "Sessao.findByFilme";	
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

@@ -18,5 +18,7 @@ abstract void save(Sessao sessao);
 	abstract Sessao find(Long entityID);
 	
 	abstract List<Sessao> findAll();
+        
+        Sessao findSessaoByFilme(String filme);
 	
 }

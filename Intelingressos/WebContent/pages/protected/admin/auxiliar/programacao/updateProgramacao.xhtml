@@ -26,18 +26,18 @@
                         <p:calendar pattern="dd/MM/yyyy"
                                     value="#{programacaoMB.programacao.inicio}" size="7" id="programacaoInicio"
                                     required="true" requiredMessage="#{msgs.ProgramacaoInicioRequired}">
-                            <f:convertDateTime Pattern="dd/MM/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </p:calendar>
-                        <h:messages severity="info,warn" for="programacaoInicio" style="color: red"/>	
+                        <h:messages for="programacaoInicio" style="color: red"/>	
 
                         <p:outputLabel value="#{msgs.ProgramacaoFim}" for="programacaoFim"
                                        style="color: blue;" />
                         <p:calendar pattern="dd/MM/yyyy"
                                     value="#{programacaoMB.programacao.fim}" size="7" id="programacaoFim"
                                     required="true" requiredMessage="#{msgs.ProgramacaoFimRequired}">
-                            <f:convertDateTime Pattern="dd/MM/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </p:calendar>						
-                        <h:messages severity="info,warn" for="programacaoFim" style="color: red"/>
+                        <h:messages for="programacaoFim" style="color: red"/>
 
 
                     </h:panelGrid>			
@@ -112,13 +112,13 @@
                             <p:calendar pattern="dd/MM/yyyy"
                                         value="#{programacaoMB.sessao.data}" size="7" id="sessaoData"
                                         required="true" requiredMessage="#{msgs.SessaoDataRequired}">
-                                <f:convertDateTime Pattern="dd/MM/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </p:calendar>
                             <h:messages for="sessaoData" style="color: red"/>
 
                             <h:outputLabel for="sessaoHora" value="#{msgs.SessaoHora}"
                                            style="color: blue;" />
-                            <p:calendar value="#{programacaoMB.sessao.hora}" 
+                            <p:calendar value="#{programacaoMB.sessao.primeiroHorario}" 
                                         pattern="HH:mm:ss" timeOnly="true" 
                                         required="true"
                                         requiredMessage="#{msgs.SessaoHoraRequired}" id="sessaoHora"> 

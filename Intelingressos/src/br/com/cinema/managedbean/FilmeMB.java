@@ -56,10 +56,7 @@ public class FilmeMB {
     }
 
     public Filme getFilme() {
-        if (filme == null) {
-            filme = new Filme();
-        }
-        return filme;
+         return filme;
     }
 
     public void setFilme(Filme filme) {

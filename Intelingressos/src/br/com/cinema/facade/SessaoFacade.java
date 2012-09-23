@@ -37,6 +37,11 @@ public class SessaoFacade implements SessaoFacadeLocal{
 	public List<Sessao> findAll() {		
 		return sessaoDAO.findAll();
 	}
+
+    @Override
+    public Sessao findSessaoByFilme(String filme) {
+        return sessaoDAO.findSessaoByFilme(filme);
+    }
 	
 	
 

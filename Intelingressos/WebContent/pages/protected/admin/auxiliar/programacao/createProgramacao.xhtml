@@ -133,6 +133,39 @@
                             </p:panel>
                         </p:tab>
 
+                        <p:tab id="sessaoProgramacao2" title="#{msgs.SessaoSegunda}">
+                            <p:panel header="#{msgs.SessaoDados}">
+                                <h:messages globalOnly="true" style="color: red"/>
+                                <h:panelGrid columns="3" styleClass="panelGrid"
+                                             rowClasses="panelFirstLine,panelNextLine">
+
+                                     <h:outputLabel for="sessaoData2" value="#{msgs.SessaoData}" />
+                                    <p:calendar 
+                                        pattern="dd/MM/yyyy" value="#{programacaoMB.sessao.sessaoData}" size="7"
+                                        id="sessaoData2"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
+                                    </p:calendar>
+                                    <h:message for="sessaoData2" style="color: red" />
+                                    
+                                    <h:outputLabel for="sessaoPrimeiraHora2" value="#{msgs.SessaoHora}" />
+                                    <p:calendar id="sessaoPrimeiraHora2" value="#{programacaoMB.sessao2.primeiroHorario}"  pattern="HH:mm:ss" timeOnly="true" />                                      
+                                    <h:message for="sessaoPrimeiraHora2" style="color: red" />
+
+                                     <h:outputLabel for="sessaoSegundaHora2" value="#{msgs.SessaoHora2}" />
+                                    <p:calendar id="sessaoSegundaHora2" value="#{programacaoMB.sessao2.segundoHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
+                                    <h:message for="sessaoSegundaHora2" style="color: red" />
+
+                                    <h:outputLabel for="sessaoTerceiraHora2" value="#{msgs.SessaoHora3}" />
+                                    <p:calendar id="sessaoTerceiraHora2" value="#{programacaoMB.sessao2.terceiroHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
+                                    <h:message for="sessaoTerceiraHora2" style="color: red" />
+                                   
+                                </h:panelGrid>                                
+                                <h:outputText value="Skip to last: " />  
+                                <h:selectBooleanCheckbox value="#{programacaoMB.skip}"/>
+                            </p:panel>
+                        </p:tab>
+
+
 
                         <p:tab id="confirmacao" title="#{msgs.Finalizando}">
                             <h:inputHidden value="#{programacaoMB.programacao.id}" />
@@ -154,6 +187,7 @@
                                     <h:outputText value="#{programacaoMB.filme.sinopse}"  style="color: green; font: bold normal large Palatino, serif "/>                                    
                                     <h:outputText value="#{msgs.FilmeSite}:"  style="color: blue; font: bold italic large Palatino, serif "/>
                                     <h:outputText value="#{programacaoMB.filme.siteOficial}" style="color: green; font: bold normal large Palatino, serif "/>
+                                    <h:outputText />
                                     <h:outputText />
                                     <h:outputText value="#{msgs.SalaNome}:"  style="color: blue; font: bold italic large Palatino, serif "/>
                                     <h:outputText value="#{programacaoMB.sala.nome}" style="color: green; font: bold normal large Palatino, serif "/>

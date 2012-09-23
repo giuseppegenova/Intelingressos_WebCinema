@@ -14,6 +14,7 @@ public class FilmeConverter implements Converter {
 @Override
     public Object getAsObject(FacesContext arg0, UIComponent arg1, String key) {
         FacesContext context = FacesContext.getCurrentInstance();
+        
         FilmeMB filmeMB = (FilmeMB) context.getELContext().getELResolver().getValue(context.getELContext(), null, "filmeMB");
  
         return filmeMB.findFilmeById(Long.parseLong(key));
@@ -21,6 +22,9 @@ public class FilmeConverter implements Converter {
  
     @Override
     public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
+        if(arg2 == null){
+            return "";
+        }
         return String.valueOf(arg2);
     }
     
