@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">	
+		
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/pages/sair.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	
+		<!-- Nabegabilidade das Views para Manutenção de Cliente -->
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllClientes</from-outcome>
+			<to-view-id>/pages/protected/user/cliente/listAllClientes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createCliente</from-outcome>
+			<to-view-id>/pages/protected/user/cliente/createCliente.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateCliente</from-outcome>
+			<to-view-id>/pages/protected/user/cliente/updateCliente.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteCliente</from-outcome>
+			<to-view-id>/pages/protected/user/cliente/deleteCliente.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<!-- Nabegabilidade das Views para Manutenção de Cidade -->	
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllCidades</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/cidade/listAllCidades.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createCidade</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/cidade/createCidade.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateCidade</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/cidade/updateCidade.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteCidade</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/cidade/deleteCidade.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- Nabegabilidade das Views para Manutenção de Cinema -->
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllCinemas</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/cinema/listAllCinemas.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createCinema</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/cinema/createCinema.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateCinema</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/cinema/updateCinema.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteCinema</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/cinema/deleteCinema.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- Nabegabilidade das Views para Manutenção de Estado -->
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllEstados</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/estado/listAllEstados.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createEstado</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/estado/createEstado.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateEstado</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/estado/updateEstado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteEstado</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/estado/deleteEstado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- Nabegabilidade das Views para Manutenção de Filme -->
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllFilmes</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/filme/listAllFilmes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createFilme</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/filme/createFilme.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateFilme</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/filme/updateFilme.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteFilme</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/filme/deleteFilme.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>	
+	
+	<!-- Nabegabilidade das Views para Manutenção de Programacao -->
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllProgramacoes</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/programacao/listAllProgramacoes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createProgramacao</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/programacao/createProgramacao.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateProgramacao</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/programacao/updateProgramacao.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteProgramacao</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/programacao/deleteProgramacao.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+        
+        <!-- Nabegabilidade das Views para Manutenção de IngressoTipo -->
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllIngressosTipo</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/ingressoTipo/listAllIngressosTipo.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createIngressoTipo</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/ingressoTipo/createIngressoTipo.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateIngressoTipo</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/ingressoTipo/updateIngressoTipo.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteIngressoTipo</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/ingressoTipo/deleteIngressoTipo.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<!-- Nabegabilidade das Views para Manutenção de Sala -->
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllSalas</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/sala/listAllSalas.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createSala</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/sala/createSala.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateSala</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/sala/updateSala.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteSala</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/sala/deleteSala.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- Nabegabilidade das Views para Manutenção de Sessao -->
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listAllSessoes</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/sessao/listAllSessoes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>createSessao</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/sessao/createSessao.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>updateSessao</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/sessao/updateSessao.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>deleteSessao</from-outcome>
+			<to-view-id>/pages/protected/admin/auxiliar/sessao/deleteSessao.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+         <navigation-rule>
+		<navigation-case>
+			<from-outcome>consultaProgramacao</from-outcome>
+			<to-view-id>/pages/protected/user/consulta/programacaoConsulta.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<navigation-case>
+			<from-outcome>vendaProgramacao</from-outcome>
+			<to-view-id>/pages/protected/admin/venda/programacaoVenda.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<navigation-case>
+			<from-outcome>programacaoConsulta</from-outcome>
+			<to-view-id>/pages/protected/admin/venda/programacaoVenda.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+			
+	<application>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+	</application>
+</faces-config>

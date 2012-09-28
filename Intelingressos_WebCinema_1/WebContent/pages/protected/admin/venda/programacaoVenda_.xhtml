@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+
+        <ui:define name="centro">
+
+            <p:panel id="panelTitulo" header="#{msgs.programacaoTitleCadastro}"
+                     style="margin-bottom:10px;">
+                <h:form>  
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+
+                    <p:wizard widgetVar="wiz"
+                              flowListener="#{vendaMB.onFlowProcess}">
+
+                        <p:tab id="periodo" title="#{msgs.periodo}">
+
+                            <p:panel header="#{msgs.ProgramacaoCadastroInicio}">
+                                <h:messages globalOnly="true" style="color: red"/>
+                                <h:panelGrid columns="3" styleClass="panelGrid"
+                                             rowClasses="panelFirstLine,panelNextLine">
+
+                                    <p:outputLabel value="#{msgs.Filme}" for="filmeSelect" style="color: blue;"/>
+                                    <p:selectOneMenu id="filmeSelect" value="#{vendaMB.filme}" 
+                                                     required="true" requiredMessage="#{msgs.FilmeSelectRequired}"
+                                                     converter="filmeConverter">
+                                        <f:selectItem itemLabel="#{msgs.Selecione}"/>
+                                        <f:selectItems value="#{vendaMB.filmeMap}" var="filmes"
+                                                       itemLabel="#{filmes.nome}" itemValue="#{filmes}"/>
+                                        <f:ajax event="change" execute="filmeSelect"
+                                                listener="#{vendaMB.carregaListaSessao}" render="sessaoSelect"/> 
+                                    </p:selectOneMenu>
+                                    <h:messages  for="filmeSelect" style="color: red"/> 
+
+                                    <p:outputLabel value="#{msgs.Sessao}" for="sessaoSelect" style="color: blue;"/>
+                                    <p:selectOneMenu id="sessaoSelect" value="#{vendaMB.sessao}" 
+                                                     required="true" requiredMessage="#{msgs.FilmeSelectRequired}"
+                                                     converter="sessaoConverter">
+                                        <f:selectItem itemLabel="#{msgs.Selecione}"/>
+                                        <f:selectItems value="#{vendaMB.sessaoMap}" var="sessoes"
+                                                       itemLabel="#{sessoes.sessaoData}" itemValue="#{sessoes}"/>
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short" />
+                                        <f:ajax event="change" execute="sessaoSelect"
+                                                listener="#{vendaMB.carregaListaHoras}" render="horaSelect"/> 
+                                    </p:selectOneMenu>
+                                    <h:messages  for="sessaoSelect" style="color: red"/> 
+
+                               <!--     <p:outputLabel value="#{msgs.hora}" for="horaSelect" style="color: blue;"/>
+                                    <p:selectOneMenu id="horaSelect" value="#{vendaMB.sessao.sessaoData}" 
+                                                     required="true" requiredMessage="#{msgs.FilmeSelectRequired}"
+                                                     converter="filmeConverter">
+                                        <f:selectItem itemLabel="#{msgs.Selecione}"/>
+                                        <f:selectItems value="#{vendaMB.sessaoMap}" var="sessoes"
+                                                       itemLabel="#{sessoes.sessaoData}" itemValue="#{sessoes}"/>
+
+                                        <f:ajax event="change" execute="sessaoSelect" /> 
+                                    </p:selectOneMenu>
+                                    <h:messages  for="sessaoSelect" style="color: red"/> -->
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="filmeProgramacao" title="#{msgs.Filme}">
+                            <p:panel header="#{msgs.FilmeTitleCadastro}">
+                                <h:messages globalOnly="true" style="color: red"/>
+                                <h:panelGrid columns="3" styleClass="panelGrid"
+                                             rowClasses="panelFirstLine,panelNextLine">
+
+                                    <p:outputLabel for="filmeTitulo" value="#{msgs.FilmeTitulo}:" style="color: blue;"/>
+                                    <p:inputText id="filmeTitulo" value="#{vendaMB.filme.nome}"
+                                                 required="true" requiredMessage="#{msgs.FilmeTituloRequired}" />
+                                    <h:message for="filmeTitulo" style="color: red" />
+
+
+                                    <p:outputLabel value="#{msgs.FilmeSinopse}:" for="filmeSinopse" style="color: blue;"/>
+                                    <p:inputTextarea id="filmeSinopse" value="#{vendaMB.filme.sinopse}"
+                                                     maxlength="5000" required="true"
+                                                     requiredMessage="#{mesgs.FilmeSinopseRequired}" />
+                                    <h:message for="filmeSinopse" style="color: red" />
+
+                                    <p:outputLabel for="filmeSite" value="#{msgs.FilmeSite}:" style="color: blue;"/>
+                                    <p:inputText id="filmeSite" value="#{vendaMB.filme.siteOficial}"
+                                                 required="true" requiredMessage="#{msgs.FilmeSiteRequired}" />
+                                    <h:message for="filmeSite" style="color: red" />
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="salaProgramacao" title="#{msgs.Sala}">
+                            <p:panel header="#{msgs.Sala}">
+                                <h:messages globalOnly="true" style="color: red"/>
+                                <h:panelGrid columns="3" styleClass="panelGrid"
+                                             rowClasses="panelFirstLine,panelNextLine">
+
+                                    <p:outputLabel for="salaNome" value="#{msgs.SalaNome}"
+                                                   style="color: blue;" />
+                                    <p:inputText id="salaNome" value="#{vendaMB.sala.nome}"
+                                                 required="true" requiredMessage="#{msgs.SalaNomeRequired}" />
+                                    <h:messages for="salaNome" style="color: red"/>
+
+                                    <p:outputLabel value="#{msgs.SalaCapacidade}" for="salaCapacidade"
+                                                   style="color: blue;" />
+                                    <h:panelGrid  columns="1" style="margin-bottom:10px">  
+                                        <p:inputText id="salaCapacidade" value="#{vendaMB.sala.capacidade}" 
+                                                     required="true" requiredMessage="#{msgs.SalaCapacidadeRequired}"/>  
+                                        <p:slider for="salaCapacidade" maxValue="2000"/>  
+                                    </h:panelGrid>  
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+
+                        <p:tab id="sessaoProgramacao" title="#{msgs.SessaoPrimeira}">
+                            <p:panel header="#{msgs.SessaoDados}">
+                                <h:messages globalOnly="true" style="color: red"/>
+                                <h:panelGrid columns="3" styleClass="panelGrid"
+                                             rowClasses="panelFirstLine,panelNextLine">
+
+                                    <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
+                                    <p:calendar 
+                                        pattern="dd/MM/yyyy" value="#{vendaMB.sessao.sessaoData}" size="7"
+                                        id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
+                                    </p:calendar>
+                                    <h:message for="sessaoData" style="color: red" />
+
+                                    <h:outputLabel for="sessaoPrimeiraHora" value="#{msgs.SessaoHora}" />
+                                    <p:calendar id="sessaoPrimeiraHora" value="#{vendaMB.sessao.primeiroHorario}" pattern="HH:mm:ss" timeOnly="true" />                                      
+                                    <h:message for="sessaoPrimeiraHora" style="color: red" />
+
+                                    <h:outputLabel for="sessaoSegundaHora" value="#{msgs.SessaoHora2}" />
+                                    <p:calendar id="sessaoSegundaHora" value="#{vendaMB.sessao.segundoHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
+                                    <h:message for="sessaoSegundaHora" style="color: red" />
+
+                                    <h:outputLabel for="sessaoTerceiraHora" value="#{msgs.SessaoHora3}" />
+                                    <p:calendar id="sessaoTerceiraHora" value="#{vendaMB.sessao.terceiroHorario}" pattern="HH:mm:ss" timeOnly="true" /> 
+                                    <h:message for="sessaoTerceiraHora" style="color: red" />
+
+                                </h:panelGrid>                                
+                                <h:outputText value="Skip to last: " />  
+                                <h:selectBooleanCheckbox value="#{vendaMB.skip}"/>
+                            </p:panel>
+                        </p:tab>
+
+
+                        <p:tab id="confirmacao" title="#{msgs.Finalizando}">
+                            <h:inputHidden value="#{vendaMB.programacao.id}" />
+                            <p:panel header="#{msgs.FinalizandoCadastro}">
+                                <h:messages globalOnly="true" style="color: red" />
+                                <h:panelGrid id="confirmation" columns="4">
+
+                                    <h:outputText value="#{msgs.ProgramacaoInicio}:" style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText value="#{vendaMB.programacao.inicio}" style="color: green; font: bold normal large Palatino, serif ">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
+                                    </h:outputText>
+                                    <h:outputText value="#{msgs.ProgramacaoFim}:"  style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText value="#{vendaMB.programacao.fim}" style="color: green; font: bold normal large Palatino, serif ">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
+                                    </h:outputText>
+                                    <h:outputText value="#{msgs.Filme}:"  style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText value="#{vendaMB.filme.nome}" style="color: green; font: bold normal large Palatino, serif "/>
+                                    <h:outputText value="#{msgs.FilmeSinopse}:"  style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText value="#{vendaMB.filme.sinopse}"  style="color: green; font: bold normal large Palatino, serif "/>                                    
+                                    <h:outputText value="#{msgs.FilmeSite}:"  style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText value="#{vendaMB.filme.siteOficial}" style="color: green; font: bold normal large Palatino, serif "/>
+                                    <h:outputText />
+                                    <h:outputText />
+                                    <h:outputText value="#{msgs.SalaNome}:"  style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText value="#{vendaMB.sala.nome}" style="color: green; font: bold normal large Palatino, serif "/>
+                                    <h:outputText value="#{msgs.SalaCapacidade}:"  style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText value="#{vendaMB.sala.capacidade}"  style="color: green; font: bold normal large Palatino, serif "/>
+                                    <h:outputText value="#{msgs.SessaoData}:"  style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText   value="#{vendaMB.sessao.sessaoData}"  style="color: green; font: bold normal large Palatino, serif ">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
+                                    </h:outputText>
+                                    <h:outputText value="#{msgs.SessaoHora}:" style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText  value="#{vendaMB.sessao.primeiroHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                        <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
+                                    </h:outputText>
+                                    <h:outputText value="#{msgs.SessaoHora2}:" style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText  value="#{vendaMB.sessao.segundoHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                        <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
+                                    </h:outputText>
+                                    <h:outputText value="#{msgs.SessaoHora3}:" style="color: blue; font: bold italic large Palatino, serif "/>
+                                    <h:outputText  value="#{vendaMB.sessao.terceiroHorario}" style="color: green; font: bold normal large Palatino, serif">  
+                                        <f:convertDateTime pattern="HH:mm:ss" timeStyle="short"/>
+                                    </h:outputText>
+                                    <h:outputText />
+                                    <h:outputText />
+
+                                </h:panelGrid>
+                                <h:panelGrid id="submitCadastro" columns="3">
+                                    <h:inputHidden value="#{vendaMB.programacao.id}" />
+
+                                    <h:commandButton action="#{vendaMB.createProgramacaoEnd()}"
+                                                     value="#{msgs.create}" />
+
+                                    <h:commandButton action="#{vendaMB.listAllProgramacoes()}"
+                                                     value="#{msgs.cancel}" immediate="true" />
+
+                                </h:panelGrid>
+                            </p:panel>
+
+
+                        </p:tab>
+
+                    </p:wizard>
+                </h:form>
+            </p:panel>
+
+        </ui:define>
+
+    </ui:decorate>
+
+</html>

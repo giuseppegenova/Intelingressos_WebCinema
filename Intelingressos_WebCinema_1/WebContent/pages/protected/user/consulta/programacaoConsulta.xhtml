@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+
+        <ui:define name="centro">
+
+            <h:form id="form">
+
+                <p:panel id="panelTitulo" header="#{msgs.ConsultaTitle}"
+                         style="margin-bottom:10px; color: yellowgreen">
+
+                    <p:carousel id="consultaFilmes" value="#{programacaoMB.programacaoList}" var="prog" itemStyleClass="carItem" headerText="#{msgs.FilmeCartaz}" style="color: yellowgreen"> 
+
+                        <h:panelGrid columns="1" style="width:100%">
+                            <!--        <p:graphicImage value="/images/cars/{car.manufacturer}.jpg"/> -->
+
+                            <h:outputText value="#{prog.filme.nome}" style="color: blue"/>
+
+                        </h:panelGrid>
+
+                        <p:commandLink update=":form:progDetail" oncomplete="progDialog.show()" title="#{msgs.FilmeDetail}" style="color: yellowgreen">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
+                            <f:setPropertyActionListener value="#{prog}"   
+                                                         target="#{programacaoMB.programacao}" />  
+                        </p:commandLink>
+
+                        <p:commandButton action="#{programacaoMB.vendaProgramacaoStart()}" value="Compre seu ingresso" style="color: yellowgreen">
+                            <f:setPropertyActionListener value="#{prog}"   
+                                                         target="#{programacaoMB.programacao}" />  
+                        </p:commandButton>
+
+
+                    </p:carousel>
+
+                    <p:dialog  header="#{msgs.FilmeDetail}" widgetVar="progDialog" showEffect="explode" 
+                               hideEffect="bounce" modal="true" appendToBody="true" >
+                        <p:outputPanel id="progDetail" style="text-align:center;" layout="block" >
+
+                            <!--  <p:graphicImage value="/images/cars/{programacaoMB.programacao.manufacturer}.jpg"/> -->
+
+                            <h:panelGrid  columns="2" cellpadding="5">
+                                <h:outputLabel for="filme" value="#{msgs.Filme}" style="color: blue; font: bold italic large Palatino, serif "/>
+                                <h:outputText id="filme" value="#{programacaoMB.programacao.filme.nome}" style="color: green; font: bold normal large Palatino, serif"/>
+
+                                <h:outputLabel for="Sinopse" value="#{msgs.FilmeSinopse}" style="color: blue; font: bold italic large Palatino, serif "/>
+                                <h:outputText id="Sinopse" value="#{programacaoMB.programacao.filme.sinopse}" style="color: green; font: bold normal large Palatino, serif"/>
+
+                                <h:outputLabel for="SiteOficial" value="#{msgs.FilmeSite}" style="color: blue; font: bold italic large Palatino, serif "/>
+                                <h:outputText id="SiteOficial" value="#{programacaoMB.programacao.filme.siteOficial}" style="color: green; font: bold normal large Palatino, serif"/>                                
+
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:decorate>
+</html>

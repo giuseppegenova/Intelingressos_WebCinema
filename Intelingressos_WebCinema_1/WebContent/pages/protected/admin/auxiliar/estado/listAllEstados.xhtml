@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="main.css" />
+    </h:head>
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro"> 
+
+            <p:ajaxStatus style="width:16px;height:16px; alignment-adjust: auto" id="ajaxStatusPanel2" >
+                <f:facet name="start">
+                    <h:graphicImage value="/pages/resources/images/ajax-loader.gif" style="alignment-adjust: auto"/>
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
+
+            <h:form prependId="false">	
+
+                <p:dataTable id="dataTable" var="estado" value="#{estadoMB.getAllEstados()}"
+                             paginator="true" rows="10"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+
+                    <f:facet name="header">
+                        #{msgs.EstadoListFieldset}
+                    </f:facet>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msgs.EstadoNome}" />
+                        </f:facet>
+                        <h:outputText value="#{estado.nome}" />
+                    </p:column>  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msgs.EstadoSigla}" />
+                        </f:facet>
+                        <h:outputText value="#{estado.sigla}" />
+                    </p:column>  
+                    <p:column>
+                        <f:facet name="header">
+                            #{msgs.opcoes}
+                        </f:facet>
+                        <p:panelGrid columns="2" >
+
+                            <!-- Always save the id as hidden when you use a request scope MB -->
+                            <h:inputHidden value="#{estado.id}" />
+
+
+                            <p:commandButton action="#{estadoMB.updateEstadoStart()}" value="#{msgs.update}" immediate="true" >
+                                <f:setPropertyActionListener target="#{estadoMB.estado}" value="#{estado}" />
+                            </p:commandButton>
+
+                            <p:commandButton action="#{estadoMB.deleteEstadoStart()}" value="#{msgs.delete}">
+                                <f:setPropertyActionListener target="#{estadoMB.estado}" value="#{estado}" />
+                            </p:commandButton>
+
+                        </p:panelGrid>
+                    </p:column>
+                </p:dataTable>
+                <br />
+                <p:commandButton action="#{estadoMB.createEstadoStart()}" value="#{msgs.create} #{msgs.Estado}" />
+
+            </h:form>  
+            <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">
+                <f:facet name="start">
+                    <h:graphicImage value="/pages/resources/images/ajax-loader.gif" />
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
+        </ui:define>
+    </ui:decorate>
+</html>

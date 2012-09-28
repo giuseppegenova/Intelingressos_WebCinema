@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+
+        <ui:define name="centro">
+
+            <p:panel id="panelTitulo" header="#{msgs.ClienteTitleCadastro}"
+                     style="margin-bottom:10px;">
+                
+             <!--   <p:ajaxStatus style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">  
+    <f:facet name="start">  
+        <p:graphicImage value="/pages/resources/images/ajax-loader.gif" /> 
+    </f:facet> -->  
+
+                <h:form id="progForm">
+
+                    <p:panel id="panelCadastroLogin" header="#{msgs.ClienteCreateFieldset}"
+                             style="margin-bottom:10px;">
+
+                        <h:panelGrid columns="3" styleClass="panelGrid"
+                                     rowClasses="panelFirstLine,panelNextLine">
+
+                            <p:outputLabel for="clienteEmail" value="#{msgs.Email}" style="color: blue;"/>
+                            <p:inputText id="clienteEmail" value="#{clienteMB.cliente.email}"
+                                         required="true" requiredMessage="#{msgs.EmailRequired}" />
+                            <h:messages  for="clienteEmail" style="color: red"/>
+
+                            <p:outputLabel for="clienteSenha" value="#{msgs.Senha}" style="color: blue;"/>					
+                            <p:password redisplay="false" id="clienteSenha" feedback="true" inline="true" 
+                                        value="#{clienteMB.cliente.senha}" required="true"
+                                        requiredMessage="#{msgs.SenhaRequired}" />
+                            <h:messages  for="clienteSenha" style="color: red"/>	
+
+
+                        </h:panelGrid>			
+                    </p:panel>
+                    <p:panel id="panelCadastroPessoal" header="#{msgs.ClienteCreateFieldsetPessoal}" 
+                             style="margin-bottom:10px;">
+
+                        <h:panelGrid columns="3" styleClass="panelGrid"
+                                     rowClasses="panelFirstLine,panelNextLine">
+
+                            <p:outputLabel for="clienteNome" value="#{msgs.Nome}" style="color: blue;"/>
+                            <p:inputText id="clienteNome" value="#{clienteMB.cliente.nome}"
+                                         required="true" requiredMessage="#{msgs.NomeRequired}" />
+                            <h:messages severity="info,warn" for="clienteNome" style="color: red"/>
+
+                            <p:outputLabel for="clienteCpf" value="#{msgs.ClienteCpf}" style="color: blue;"/>
+                            <p:inputMask mask="999.999.999-99" id="clienteCpf"
+                                         value="#{clienteMB.cliente.cpf}" required="true"
+                                         requiredMessage="#{msgs.CpfRequired}" size="14" />
+                            <h:messages severity="info,warn" for="clienteCpf" style="color: red"/>
+
+                            <p:outputLabel for="clienteCelular" value="#{msgs.Celular}" style="color: blue;"/>
+                            <p:inputMask mask="(99)9999-9999" id="clienteCelular"
+                                         value="#{clienteMB.cliente.celular}" required="true"
+                                         requiredMessage="#{msgs.CelularRequired}" />
+                            <h:messages severity="info,warn" for="clienteCelular" style="color: red"/>
+
+                            <p:outputLabel for="clienteTelefone" value="#{msgs.Telefone}" style="color: blue;"/>
+                            <p:inputMask mask="(99)9999-9999" id="clienteTelefone"
+                                         value="#{clienteMB.cliente.telefone}" required="true"
+                                         requiredMessage="#{msgs.TelefoneRequired}" />
+                            <h:messages  for="clienteTelefone" style="color: red"/>
+
+                            <p:outputLabel for="clienteEnderecoLogradouro"
+                                           value="#{msgs.EnderecoLogradouro}" style="color: blue;"/>
+                            <p:inputText id="clienteEnderecoLogradouro"
+                                         value="#{clienteMB.endereco.logradouro}" required="true"
+                                         requiredMessage="#{msgs.LogradouroRequired}" />
+                            <h:messages  for="clienteEnderecoLogradouro" style="color: red"/>
+
+                            <p:outputLabel for="clienteEnderecoNumero"
+                                           value="#{msgs.EnderecoNumero}" style="color: blue;"/>
+                            <p:inputText id="clienteEnderecoNumero"
+                                         value="#{clienteMB.endereco.numero}" required="false"
+                                         requiredMessage="#{msgs.NumeroRequired}" />
+                            <h:messages  for="clienteEnderecoNumero" style="color: red"/>
+
+                            <p:outputLabel for="clienteEnderecoComplemento"
+                                           value="#{msgs.EnderecoComplemento}" style="color: blue;"/>
+                            <p:inputText id="clienteEnderecoComplemento"
+                                         value="#{clienteMB.endereco.complemento}" required="true"
+                                         requiredMessage="#{msgs.ComplementoRequired}" />
+                            <h:messages  for="clienteEnderecoComplemento" style="color: red"/>
+
+                            <p:outputLabel for="clienteEnderecoCep"
+                                           value="#{msgs.EnderecoCep}" style="color: blue;"/>
+                            <p:inputMask mask="999.999-99" id="clienteEnderecoCep"
+                                         value="#{clienteMB.endereco.cep}" required="true"
+                                         requiredMessage="#{msgs.CepRequired}" />
+                            <h:messages  for="clienteEnderecoCep" style="color: red"/>
+
+                            <p:outputLabel value="Estado:" for="estado" style="color: blue;"/>
+                            <p:selectOneMenu id="estado" value="#{clienteMB.estado}" required="true" 
+                                             requiredMessage="#{msgs.EstadoSelectRequired}"
+                                             converter="clienteConverter">
+                                <f:selectItem itemLabel=" Selecionar Estado " />
+                                <f:selectItems value="#{clienteMB.estadoMap}" var="estados"
+                                               itemLabel="#{estados.nome}"  itemValue="#{estados}" />
+                                <f:ajax event="change" listener="#{clienteMB.atualizaCidades()}" 
+                                        execute="estado" render="cidade" /> 
+                            </p:selectOneMenu>
+                            <h:messages  for="estado" style="color: red"/>
+
+                            <p:outputLabel value="Cidade:" for="cidade" style="color: blue;"/>
+                            <p:selectOneMenu id="cidade" value="#{clienteMB.cidade}" 
+                                             required="true" requiredMessage="#{msgs.CidadeSelectRequired}"
+                                             converter="clienteConverter">
+                                <f:selectItem itemLabel=" Selecionar Cidade "/>
+                                <f:selectItems value="#{clienteMB.cidadeMap}" var="cidades"
+                                               itemLabel="#{cidades.nome}" itemValue="#{cidades}"/>
+                                 <f:ajax event="change" execute="cidade"/> 
+                            </p:selectOneMenu>
+                            <h:messages  for="cidade" style="color: red"/> 
+
+                        </h:panelGrid>
+
+                    </p:panel>
+
+
+                    <h:panelGrid columns="2">
+
+                        <h:commandButton action="#{clienteMB.createClienteEnd()}"
+                                         value="#{msgs.create}" />
+
+                        <h:commandButton action="#{clienteMB.listAllClientes()}"
+                                         value="#{msgs.cancel}" immediate="true" />
+
+                    </h:panelGrid>
+
+                </h:form>
+                    
+              <!--  </p:ajaxStatus>  -->
+
+            </p:panel>
+
+        </ui:define>
+
+    </ui:decorate>
+
+</html>

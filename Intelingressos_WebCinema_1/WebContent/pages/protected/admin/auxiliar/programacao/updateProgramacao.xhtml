@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+
+        <ui:define name="centro">
+
+            <p:panel id="panelTitulo" header="#{msgs.programacaoTitleCadastro}"
+                     style="margin-bottom:10px;" >
+
+                <h:form id="progForm" >			
+
+                    <h:panelGrid columns="3" styleClass="panelGrid"
+                                 rowClasses="panelFirstLine,panelNextLine" >
+
+                        <h:inputHidden value="#{programacaoMB.programacao.id}" />
+                        
+                        <p:outputLabel for="programacaoInicio" value="#{msgs.ProgramacaoInicio}"
+                                       style="color: blue;" />
+                        <p:calendar pattern="dd/MM/yyyy"
+                                    value="#{programacaoMB.programacao.inicio}" size="7" id="programacaoInicio"
+                                    required="true" requiredMessage="#{msgs.ProgramacaoInicioRequired}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:calendar>
+                        <h:messages for="programacaoInicio" style="color: red"/>	
+
+                        <p:outputLabel value="#{msgs.ProgramacaoFim}" for="programacaoFim"
+                                       style="color: blue;" />
+                        <p:calendar pattern="dd/MM/yyyy"
+                                    value="#{programacaoMB.programacao.fim}" size="7" id="programacaoFim"
+                                    required="true" requiredMessage="#{msgs.ProgramacaoFimRequired}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:calendar>						
+                        <h:messages for="programacaoFim" style="color: red"/>
+
+
+                    </h:panelGrid>			
+
+                    <p:panel id="panel" header="Filme" style="margin-bottom:10px;">
+                        <h:panelGrid columns="3" styleClass="panelGrid"
+                                     rowClasses="panelFirstLine,panelNextLine">
+                            
+                         
+
+                            <p:outputLabel for="filmeTitulo" value="#{msgs.FilmeTitulo}"
+                                           style="color: blue;" />
+                            <p:inputText id="filmeTitulo" value="#{programacaoMB.filme.nome}"
+                                         required="true" requiredMessage="#{msgs.FilmeTituloRequired}"
+                                         label="filmeTitulo" />
+                            <h:messages for="filmeTitulo" style="color: red"/>
+
+                            <p:outputLabel value="#{msgs.FilmeSinopse}" for="filmeSinopse"
+                                           style="color: blue;" />
+                            <p:inputTextarea id="filmeSinopse"
+                                             value="#{programacaoMB.filme.sinopse}" maxlength="5000"
+                                             required="true" requiredMessage="#{msgs.FilmeSinopseRequired}" />
+                            <h:messages for="filmeSinopse" style="color: red"/>
+
+                            <p:outputLabel for="filmeSite" value="#{msgs.FilmeSite}"
+                                           style="color: blue;" />
+                            <p:inputText id="filmeSite"
+                                         value="#{programacaoMB.filme.siteOficial}" required="true"
+                                         requiredMessage="#{msgs.FilmeSiteRequired}" />
+                            <h:messages for="filmeSite" style="color: red"/>
+
+                        </h:panelGrid>
+
+                    </p:panel>
+
+                  
+
+                    <p:panel id="panel2" header="Sala" style="margin-bottom:10px;">
+
+                        <h:panelGrid columns="3" styleClass="panelGrid"
+                                     rowClasses="panelFirstLine,panelNextLine">
+                            
+                         
+
+                            <p:outputLabel for="salaNome" value="#{msgs.SalaNome}"
+                                           style="color: blue;" />
+                            <p:inputText id="salaNome" value="#{programacaoMB.sala.nome}"
+                                         required="true" requiredMessage="#{msgs.SalaNomeRequired}" />
+                            <h:messages for="salaNome" style="color: red"/>
+
+                            <p:outputLabel value="#{msgs.SalaCapacidade}" for="salaCapacidade"
+                                           style="color: blue;" />
+                            <h:panelGrid columns="1" style="margin-bottom:10px">  
+                                <p:inputText id="salaCapacidade" value="#{programacaoMB.sala.capacidade}" />  
+                                <p:slider for="salaCapacidade" maxValue="500"/>  
+                            </h:panelGrid>
+
+                        </h:panelGrid>
+
+                    </p:panel>
+
+                  
+
+                    <p:panel id="panel3" header="Sessão" style="margin-bottom:10px;">
+
+                        <h:panelGrid columns="3" styleClass="panelGrid"
+                                     rowClasses="panelFirstLine,panelNextLine">
+                            
+                          
+                            <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}"
+                                           style="color: blue;" />
+                            <p:calendar pattern="dd/MM/yyyy"
+                                        value="#{programacaoMB.sessao.sessaoData}" size="7" id="sessaoData"
+                                        required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </p:calendar>
+                            <h:messages for="sessaoData" style="color: red"/>
+                            
+                             <h:outputLabel for="sessaoData2" value="#{msgs.SessaoData}"
+                                           style="color: blue;" />
+                            <p:calendar pattern="dd/MM/yyyy"
+                                        value="#{programacaoMB.sessao.sessaoData2}" size="7" id="sessaoData2"
+                                        required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </p:calendar>
+                            <h:messages for="sessaoData2" style="color: red"/>
+
+                            <h:outputLabel for="sessaoHoraPrimeira" value="#{msgs.SessaoHora}"
+                                           style="color: blue;" />
+                            <p:calendar id="sessaoHoraPrimeira" value="#{programacaoMB.sessao.sessaoPrimeiraHora}" 
+                                        pattern="HH:mm:ss" timeOnly="true"  timeZone="GMT-05:00"
+                                        required="true"
+                                        requiredMessage="#{msgs.SessaoHoraRequired}"> 
+                                <f:convertDateTime pattern="HH:mm:ss" for="sessaoHoraPrimeira"  timeZone="GMT-05:00"/>                                
+                            </p:calendar>
+                            <h:messages for="sessaoHoraPrimeira" style="color: red"/>                            
+                            
+                            <h:outputLabel for="sessaoHoraSegunda" value="#{msgs.SessaoHora}"
+                                           style="color: blue;" />
+                            <p:calendar value="#{programacaoMB.sessao.sessaoSegundaHora}" 
+                                        pattern="HH:mm:ss" timeOnly="true"  timeZone="GMT-05:00"
+                                        required="true"
+                                        requiredMessage="#{msgs.SessaoHoraRequired}" id="sessaoHoraSegunda"> 
+                                <f:convertDateTime pattern="HH:mm:ss" for="sessaoHoraSegunda"  timeZone="GMT-05:00"/>                                
+                            </p:calendar>
+                            <h:messages for="sessaoHoraSegunda" style="color: red"/>
+                            
+                             <h:outputLabel for="sessaoHoraTerceira" value="#{msgs.SessaoHora}"
+                                           style="color: blue;" />
+                            <p:calendar value="#{programacaoMB.sessao.sessaoTerceiraHora}" 
+                                        pattern="HH:mm:ss" timeOnly="true"  timeZone="GMT-05:00"
+                                        required="true"
+                                        requiredMessage="#{msgs.SessaoHoraRequired}" id="sessaoHoraTerceira"> 
+                                <f:convertDateTime pattern="HH:mm:ss" for="sessaoHoraTerceira"  timeZone="GMT-05:00"/>                                
+                            </p:calendar>
+                            <h:messages for="sessaoHoraTerceira" style="color: red"/>
+                            
+                        </h:panelGrid>
+                    </p:panel>
+                    
+                    <h:panelGrid columns="2">    
+
+                        <h:commandButton action="#{programacaoMB.updateProgramacaoEnd()}"
+                                         value="#{msgs.update}" />
+                        <h:commandButton action="#{programacaoMB.listAllProgramacoes()}"
+                                         value="#{msgs.cancel}" immediate="true" />
+
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>
+    </ui:decorate>
+</html>

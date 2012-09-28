@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro">
+            <p:panel id="painelData" header="#{msgs.SessaoTitleCadastroData}" >
+                <h:form>
+                    <h:messages globalOnly="true"/>
+                    <h:panelGrid columns="3" styleClass="panelGrid"
+                                 rowClasses="panelFirstLine,panelNextLine">
+
+                        <p:outputLabel value="Filme" for="filmeSelect" style="color: blue;"/>
+                        <p:autoComplete value="#{sessaoMB.filme}" id="filmeSelect" 
+                                        completeMethod="#{sessaoMB.carregaListaFilmes()}"
+                        var="p" itemLabel="#{p.nome}" itemValue="#{p}" converter="sessaoConverter" forceSelection="true"/>
+                        <h:messages  for="filmeSelect" style="color: red"/>
+                    <!--    <p:selectOneMenu id="filme" value="#{sessaoMB.filme}" required="true" 
+                                         requiredMessage="#{msgs.FilmeSelectRequired}"
+                                         converter="sessaoConverter" immediate="true">
+                            <f:selectItem itemLabel="#{msgs.Selecione}" />
+                            <f:selectItems value="#{sessaoMB.filmeMap}" var="filmes"
+                                           itemLabel="#{filmes.nome}"  itemValue="#{filmes.id}" />
+                            <f:ajax event="change" execute="filme" listener="#{sessaoMB.setFilme(filme)}"/> 
+                       </p:selectOneMenu> -->
+                        
+                        
+                        <h:outputLabel for="sessaoData" value="#{msgs.SessaoData}" />
+                        <p:calendar 
+                            pattern="dd/MM/yyyy" value="#{sessaoMB.dataLocal}" size="7"
+                            id="sessaoData"	required="true" requiredMessage="#{msgs.SessaoDataRequired}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeStyle="short"/>
+
+                        </p:calendar>	
+                    </h:panelGrid>
+                    <p:panel id="DadosSessao" header="#{msgs.SessaoListaHoras}"
+                             style="margin-bottom:10px;">
+                        <p:pickList id="pickList" value="#{sessaoMB.horaPic}" var="hora" 
+                                    itemLabel="#{hora}" itemValue="#{hora}" >
+                            <f:facet name="sourceCaption">Disponível</f:facet>  
+                            <f:facet name="targetCaption">Selecionado</f:facet>  
+                        </p:pickList>  
+                        <p:commandButton id="SessaoSubmit" value="Submit" update="displaySessoes" oncomplete="sessaoDialog.show()" style="margin-top:5px"/> 
+                    </p:panel>  
+                    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="sessaoDialog" appendToBody="true">  
+                        <h:panelGrid id="displaySessoes" columns="2">  
+                            <h:outputText  value="#{sessaoMB.dataLocal}" style="font-weight:bold" >  
+                                <f:convertDateTime  pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>  
+                            </h:outputText>                           
+
+                            <h:outputText value="Horario: " style="font-weight:bold"/>  
+                            <ui:repeat value="#{sessaoMB.horaPic.target}" var="item">  
+                                <h:outputText value="#{item}" style="margin-right:5px" />  
+                            </ui:repeat>
+
+                        </h:panelGrid>  
+                    </p:dialog>   
+                    <h:panelGrid columns="2">
+                        
+                        <h:inputHidden value="#{filme.id}" />
+                         
+                        <h:commandButton action="#{sessaoMB.createSessaoEnd()}"
+                                         value="#{msgs.create}" />
+                        <h:commandButton action="#{sessaoMB.listAllSessoes()}"
+                                         value="#{msgs.cancel}" immediate="true" />
+
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>
+    </ui:decorate>
+</html>

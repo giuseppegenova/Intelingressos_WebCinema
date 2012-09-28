@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+	<h:form>		
+		<h:messages />
+		<p:dataTable id="dataTable" var="programacao" value="#{programacaoMB.getAllProgramacoes()}"
+                 paginator="true" rows="10"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5,10,15">
+                 <f:facet name="header">
+		            #{msgs.ClienteListFieldset}
+		        </f:facet>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.Nome}" />
+				</f:facet>
+				
+				<h:outputText value="#{cliente.nome}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.ClienteCpf}"/>
+				</f:facet>
+				
+				<h:outputText value="#{cliente.cpf}" />
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.Email}"/>
+				</f:facet>
+				
+				<h:outputText value="#{cliente.email}" />
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.Celular}" />
+				</f:facet>
+				
+				<h:outputText value="#{cliente.celular}" />
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.Telefone}" />
+				</f:facet>
+				
+				<h:outputText value="#{cliente.telefone}" />
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.Endereco}" />
+				</f:facet>
+				
+				<h:outputText value="#{cliente.endereco.logradouro}" />
+			</p:column>
+			
+			<p:column>
+				<h:panelGrid columns="2" >
+				
+					<!-- Always save the id as hidden when you use a request scope MB -->
+					<h:inputHidden value="#{clienteMB.cliente.id}" />
+					
+					
+					<p:commandButton action="#{clienteMB.updateClienteStart()}" value="#{msgs.update}" immediate="true">
+						<f:setPropertyActionListener target="#{clienteMB.cliente}" value="#{cliente}" />
+					</p:commandButton>
+					
+					<p:commandButton action="#{clienteMB.deleteClienteStart()}" value="#{msgs.delete}">
+						<f:setPropertyActionListener target="#{clienteMB.cliente}" value="#{cliente}" />
+					</p:commandButton>
+					
+				</h:panelGrid>
+			</p:column>
+		</p:dataTable>		
+		<br />
+		<p:commandButton action="#{clienteMB.createClienteStart()}" value="#{msgs.create} #{msgs.ClienteNome}" />
+	</h:form>
+</ui:define>
+</ui:decorate>
+</html>

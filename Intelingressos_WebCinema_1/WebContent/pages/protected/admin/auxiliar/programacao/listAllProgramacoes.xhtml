@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+	
+		
+		<h:form prependId="false">
+
+    <p:dataTable id="dataTable" var="programacao" value="#{programacaoMB.getAllProgramacoes()}"
+                 paginator="true" rows="10"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5,10,15">
+        <f:facet name="header">
+            #{msgs.ProgramacaoListagem}
+        </f:facet>
+        
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="#{msgs.ProgramacaoFilme}" />
+            </f:facet>
+            <h:outputText value="#{programacao.filme.getNome()}" />
+        </p:column> 
+
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="#{msgs.ProgramacaoInicio}" />
+            </f:facet>
+            <h:outputText value="#{programacao.inicio}" >
+                <f:convertDateTime pattern="dd/MM/yyyy" />
+            </h:outputText>
+        </p:column>   
+        
+         <p:column>
+            <f:facet name="header">
+                <h:outputText value="#{msgs.ProgramacaoFim}" />
+            </f:facet>
+            <h:outputText value="#{programacao.fim}" >
+                <f:convertDateTime pattern="dd/MM/yyyy" />
+            </h:outputText>
+        </p:column>       
+
+        <p:column>
+            <f:facet name="header">
+					#{msgs.opcoes}
+            </f:facet>
+            <p:panelGrid columns="2" >
+
+                <!-- Always save the id as hidden when you use a request scope MB -->
+                <h:inputHidden value="#{programacaoMB.programacao.id}" />
+
+
+                <p:commandButton action="#{programacaoMB.updateProgramacaoStart()}" value="#{msgs.update}" immediate="true" >
+                    <f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
+                </p:commandButton>
+
+                <p:commandButton action="#{programacaoMB.deleteProgramacaoStart()}" value="#{msgs.delete}">
+                    <f:setPropertyActionListener target="#{programacaoMB.programacao}" value="#{programacao}" />
+                </p:commandButton>
+
+            </p:panelGrid>
+        </p:column>
+    </p:dataTable>
+    <br />
+    <p:commandButton action="#{programacaoMB.createProgramacaoStart()}" value="#{msgs.create} #{msgs.Programacao}" />
+                </h:form>  
+</ui:define>
+</ui:decorate>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="/pages/templates/principalTemplate.xhtml">
+	<ui:define name="centro">
+		<h1 align="center">#{msgs.salaTitleCadastro}</h1>
+
+		<h:form>
+			<h:messages />
+
+			<h:panelGrid columns="2" styleClass="panelGrid"
+				rowClasses="panelFirstLine,panelNextLine">
+
+				<h:outputLabel for="salaNome" value="#{msgs.SalaNome}" />
+				<h:inputText id="salaNome" value="#{salaMB.sala.nome}"
+					required="true" requiredMessage="#{msgs.SalaNomeRequired}" />
+
+
+				<h:outputLabel value="#{msgs.SalaCapacidade}" for="salaCapacidade" />
+				<h:inputTextarea id="salaCapacidade"
+					value="#{salaMB.sala.capacidade}" maxlength="5000" required="true"
+					requiredMessage="#{mesgs.SalaCapacidadeRequired}" />
+			</h:panelGrid>
+
+			<h:panelGrid columns="2">
+
+				<h:commandButton action="#{salaMB.updateSalaEnd()}"
+					value="#{msgs.update}" />
+				<h:commandButton action="#{salaMB.listAllSalas()}"
+					value="#{msgs.cancel}" immediate="true" />
+
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:decorate>
+</html>

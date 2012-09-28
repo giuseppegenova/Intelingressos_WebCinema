@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro">
+            <p:panel header="#{msgs.FilmeTitleUpdate}" id="painelFilme" >
+                <h:form>
+
+                    <h:messages globalOnly="true"/>
+
+                    <h:panelGrid columns="3" styleClass="panelGrid"
+                                 rowClasses="panelFirstLine,panelNextLine">
+
+                        <p:outputLabel for="filmeTitulo" value="#{msgs.FilmeTitulo}:"  style="color: blue;"/>
+                        <p:inputText id="filmeTitulo" value="#{filmeMB.filme.nome}"
+                                     required="true" requiredMessage="#{msgs.FilmeTituloRequired}" />
+                        <h:message for="filmeTitulo" style="color: red" />
+
+
+                        <p:outputLabel value="#{msgs.FilmeSinopse}:" for="filmeSinopse"  style="color: blue;"/>
+                        <p:inputTextarea id="filmeSinopse" value="#{filmeMB.filme.sinopse}"
+                                         maxlength="5000" required="true"
+                                         requiredMessage="#{mesgs.FilmeSinopseRequired}" />
+                        <h:message for="filmeSinopse" style="color: red" />
+
+                        <p:outputLabel for="filmeSite" value="#{msgs.FilmeSite}:"  style="color: blue;"/>
+                        <p:inputText id="filmeSite" value="#{filmeMB.filme.siteOficial}"
+                                     required="true" requiredMessage="#{msgs.FilmeSiteRequired}" />
+                        <h:message for="filmeSite" style="color: red" />
+
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="3">
+
+                        <h:inputHidden value="#{filmeMB.filme.id}" />
+                        
+                        <p:commandButton action="#{filmeMB.updateFilmeEnd()}"
+                                         value="#{msgs.update}"  style="color: blue;"/>
+                        <p:commandButton action="#{filmeMB.listAllFilmes()}"
+                                         value="#{msgs.cancel}" immediate="true"  style="color: blue;"/>
+
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>
+    </ui:decorate>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="main.css" />
+    </h:head>
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro">
+            <h:form>
+                <p:dataTable id="dataTable" var="sessao" value="#{sessaoMB.allSessoes}"
+                             paginator="true" rows="10"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+                    <f:facet name="header">
+                        #{msgs.SessaoListagem}
+                    </f:facet>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msgs.SessaoData}" />
+                        </f:facet>
+                        <h:outputText value="#{sessao.sessaoData}" >
+                          <!--  <f:convertDateTime  pattern="dd/MM/yyyy" timeZone="GMT-03:00"/> -->
+                        </h:outputText>
+                    </p:column> 
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msgsessaoIngressosDisponiveis}" />
+                        </f:facet>
+                        <h:outputText value="#{sessao.ingressosDisponiveis}" />
+                    </p:column> 			
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msgs.SessaoIngressosVendidos}" />
+                        </f:facet>
+                        <h:outputText value="#{sessao.ingressosVendidos}" />
+                    </p:column> 			
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msgs.opcoes}" />
+                        </f:facet>
+                        <h:panelGrid columns="3" style="text-align: center">
+
+
+                            <h:inputHidden value="#{sessao.id}" />
+
+
+                            <p:commandButton action="#{sessaoMB.updateSessaoStart()}" value="#{msgs.update}" immediate="true" >
+                                <f:setPropertyActionListener target="#{sessaoMB.sessao}" value="#{sessao}" />
+                            </p:commandButton>
+
+                            <p:commandButton action="#{sessaoMB.deleteSessaoStart()}" value="#{msgs.delete}">
+                                <f:setPropertyActionListener target="#{sessaoMB.sessao}" value="#{sessao}" />
+                            </p:commandButton>
+
+                        </h:panelGrid>
+                    </p:column> 			
+
+                </p:dataTable>
+
+                <p:commandButton action="#{sessaoMB.createSessaoStart()}" value="#{msgs.create} #{msgs.Sessao}" /> 
+
+            </h:form>
+        </ui:define>
+    </ui:decorate>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro">
+            <p:panel header="#{msgs.IngressoTipoTitleCadastro}" id="painelFilme" >
+                <h:form>
+
+                    <h:messages globalOnly="true" />
+
+                    <h:panelGrid columns="3" styleClass="panelGrid"
+                                 rowClasses="panelFirstLine,panelNextLine">
+
+                        <h:outputLabel for="tipoIngressoNome" value="#{msgs.IngressoTipo}:" 
+                                       style="color: blue;"/>
+                        <p:inputText id="tipoIngressoNome"  value="#{ingressoTipoMB.ingressoTipo.nome}"
+                                     required="true" requiredMessage="#{msgs.IngressoTipoNomeRequired}">
+                        </p:inputText>
+                        <h:messages for="tipoIngressoNome" style="color: red"/>
+                        
+                        <p:outputLabel value="#{msgs.IngressoTipoPreco}:" for="tipoIngressoPreco"
+                                           style="color: blue;" />
+                        <p:inputMask mask="99" id="tipoIngressoPreco"  value="#{ingressoTipoMB.ingressoTipo.preco}"
+                                     required="true" requiredMessage="#{msgs.IngressoTipoPrecoRequired}">
+                            <f:convertNumber />
+                        </p:inputMask>
+                        <h:messages for="tipoIngressoPreco" style="color: red"/>
+                        
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="2">
+
+                        <h:commandButton action="#{ingressoTipoMB.createIngressoTipoEnd()}"
+                                         value="#{msgs.create}" />
+                        <h:commandButton action="#{ingressoTipoMB.listAllIngressosTipo()}"
+                                         value="#{msgs.cancel}" immediate="true" />
+
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>
+    </ui:decorate>
+</html>

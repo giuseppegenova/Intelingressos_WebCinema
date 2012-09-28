@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro">            
+            <p:panel id="panelTitulo" header="#{msgs.ProgramacaoCompra}"
+                     style="margin-bottom:10px;">
+                <h:form>  
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+
+                    <p:wizard widgetVar="wiz"
+                              flowListener="#{programacaoMB.onFlowProcess}">
+
+                        <p:tab id="periodo" title="#{msgs.periodo}">
+
+                            <p:panel header="#{msgs.ProgramacaoVendaDetermine}">
+                                <h:messages globalOnly="true" style="color: red"/>
+                                <h:panelGrid columns="3" styleClass="panelGrid"
+                                             rowClasses="panelFirstLine,panelNextLine">
+
+                                    <p:outputLabel value="#{msgs.FilmeEscolhido}: " for="filmeLabel" style="color: blue;"/><h:outputText /> <h:outputText /> 
+                                    <p:inputText id="filmeLabel" value="#{programacaoMB.programacao.filme.nome}" disabled="true"/>  
+                                    <h:messages for="filmeLabel" style="color: red" /><h:outputText /> 
+                                   <h:outputText /> <h:outputText /> <h:outputText /> 
+                                    <h:outputText value="#{msgs.SessaoEscolha}: " style="color: blue" /> <h:outputText /> <h:outputText /> 
+                                    <p:selectOneRadio id="options1" style="color: blue" required="true">  
+                                        <f:selectItem id="primeiraHoraRadio" itemLabel="#{programacaoMB.programacao.sessao.sessaoData}" itemValue="#{programacaoMB.programacao.sessao.sessaoData}" />  
+                                        <f:selectItem itemLabel="#{programacaoMB.programacao.sessao.sessaoData2}" itemValue="#{programacaoMB.programacao.sessao.sessaoData2}" />
+                                        <p:ajax event="change" update="sessaoEscolhida" immediate="true" listener="#{programacaoMB.programacao.sessao.sessaoData}"/>
+                                  </p:selectOneRadio>                                    
+                                    <h:messages for="options1" style="color: red" /><h:outputText /> 
+                                    <h:outputText /> <p:inputText id="sessaoEscolhida" disabled="true"/><h:outputText /> 
+                                    <h:outputText value="#{msgs.SessaoHorarios}: " style="color: blue"/>  <h:outputText /> <h:outputText />
+                                    <p:selectOneRadio id="options2" style="color: blue" required="true">  
+                                        <f:selectItem itemLabel="#{programacaoMB.programacao.sessao.sessaoPrimeiraHora}" itemValue="#{programacaoMB.programacao.sessao.sessaoPrimeiraHora}" />
+                                        <f:selectItem itemLabel="#{programacaoMB.programacao.sessao.sessaoSegundaHora}" itemValue="#{programacaoMB.programacao.sessao.sessaoSegundaHora}" />  
+                                        <f:selectItem itemLabel="#{programacaoMB.programacao.sessao.sessaoTerceiraHora}" itemValue="#{programacaoMB.programacao.sessao.sessaoTerceiraHora}" />  
+                                    </p:selectOneRadio>  
+                                    <h:messages for="options2" style="color: red" /><h:outputText /> 
+                                    <h:outputText /> <h:outputText /> <h:outputText /> 
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab> 
+                        
+                        <p:tab id="ingressos" title="#{msgs.Ingresso}">
+
+                            <p:panel header="#{msgs.ProgramacaoVendaDetermine}">
+                                <h:messages globalOnly="true" style="color: red"/>
+                                <h:panelGrid columns="3" styleClass="panelGrid"
+                                             rowClasses="panelFirstLine,panelNextLine">
+
+                                    
+                                    
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>       
+                    </p:wizard>
+                </h:form>
+            </p:panel>            
+        </ui:define>
+    </ui:decorate>
+</html>

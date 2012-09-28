@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+  <h:head>
+        <title>#{msgs.tituloPrincipal}</title>
+        <style type="text/css">
+            body {background-color: #eeeeee; font-size: 12px}
+        </style> 
+    </h:head>
+    <h:body>
+        <div align="center">
+            <p:layout style="min-width:1020px;max-width:1020px;min-height:600px;max-height:1200px;">  
+                <p:layoutUnit position="north" size="60">  
+                                      <h:graphicImage url="/pages/resources/images/logo.png" alt="Intelingressos - Seu site de ingressos online"/>                   
+                </p:layoutUnit>  
+
+                <p:layoutUnit position="west" size="220">  
+                    <ui:insert name="menu">
+                        <h:form>
+                            <p:panelMenu style="width:200px">
+                                <p:submenu label="#{msgs.Programacao}">
+                                    <p:menuitem value="Cinema" url="/pages/protected/admin/auxiliar/cinema/listAllCinemas.xhtml" icon="ui-icon-circle-plus" />
+                                    <p:menuitem value="Filme" url="/pages/protected/admin/auxiliar/filme/listAllFilmes.xhtml" icon="ui-icon-circle-plus" /> 
+                                    <p:menuitem value="Programacão" url="/pages/protected/admin/auxiliar/programacao/listAllProgramacoes.xhtml" icon="ui-icon-circle-plus" /> 
+                                    <p:menuitem value="Sala" url="/pages/protected/admin/auxiliar/sala/listAllSalas.xhtml" icon="ui-icon-circle-plus" /> 
+                                    <p:menuitem value="Sessão" url="/pages/protected/admin/auxiliar/sessao/listAllSessoes.xhtml" icon="ui-icon-circle-plus" />  
+                                    <p:menuitem value="IngressoTipo" url="/pages/protected/admin/auxiliar/ingressoTipo/listAllIngressosTipo.xhtml" icon="ui-icon-circle-plus" />                                                                       
+                                </p:submenu>
+                                <p:submenu label="#{msgs.Cliente}" style="">
+                                <p:menuitem value="#{msgs.Cliente}" url="/pages/protected/user/cliente/listAllClientes.xhtml" icon="ui-icon-circle-plus" />
+                                <p:menuitem value="#{msgs.Cidade}" url="/pages/protected/admin/auxiliar/cidade/listAllCidades.xhtml" icon="ui-icon-circle-plus" />
+                                <p:menuitem value="#{msgs.Estado}" url="/pages/protected/admin/auxiliar/estado/listAllEstados.xhtml" icon="ui-icon-circle-plus" />
+                                <p:menuitem value="#{msgs.ConsultaProgramacao}" url="/pages/protected/user/consulta/programacaoConsulta.xhtml" icon="ui-icon-circle-plus" />
+                                 <p:menuitem value="#{msgs.Logout}" action="#{sessaoMB.encerraSessao()}"/>
+                                </p:submenu>
+                            </p:panelMenu>
+                        </h:form>
+                    </ui:insert>
+                </p:layoutUnit>  
+                <p:layoutUnit position="center">  
+                    <ui:insert name="centro" id="centro">
+                        O que estiver aqui será substituido!
+                    </ui:insert>
+                </p:layoutUnit> 
+                
+                 <p:layoutUnit position="south" size="60">  
+                             <p>Desenvolvido por Systemas Java  &nbsp; &nbsp; &nbsp; &nbsp; email: systemasjava@gmail.com &nbsp; &nbsp; &nbsp; &nbsp; fone: (21)7266-0689</p>
+                 </p:layoutUnit>  
+            </p:layout>  
+        </div>
+    </h:body>
+</html>

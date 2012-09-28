@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:decorate template="/pages/templates/principalTemplate.xhtml">
+        <ui:define name="centro">
+            <h:form>
+                <h:messages/>
+                <p:panel header="#{msgs.ProgramacaoTitleDelete}" id="painelProgramacao" >
+                   
+                    <h3 style="color: blue">#{msgs.ProgramacaoDeleteHeader}: </h3><h2 style="color: darkred"> #{programacaoMB.programacao.filme.nome}</h2>
+                    <h:inputHidden value="#{programacaoMB.programacao.id}" />
+                    <h:panelGrid columns="2">
+
+                        <p:commandButton action="#{programacaoMB.deleteProgramacaoEnd()}" value="#{msgs.delete}" />
+                        <p:commandButton action="#{programacaoMB.listAllProgramacoes()}" value="#{msgs.cancel}" immediate="true" />
+                        
+                    </h:panelGrid>                   
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:decorate>
+</html>
